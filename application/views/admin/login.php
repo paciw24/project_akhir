@@ -16,7 +16,7 @@
     <div class="bg-default">
         <div class="container d-flex justify-content-center align-items-center">
                 <div class="card p-3 shadow">
-                    <form action="<?=base_url('proseslogin') ?>"method="post">
+                    <form action="<?= base_url('prosesLogin') ?>" method="POST">
                         <div class="mb-3">
                             <h3 class="text-center text-uppercase">Berkah Laundry</h3>
                         </div>
