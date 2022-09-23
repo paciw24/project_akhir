@@ -1,3 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700;800;900&display=swap');
+
 :root{
     --bg-default:#466f6d;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-default);
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-image: url('../img/batik.png');
+    background-repeat: repeat;
+    background-size: 207px;
+}
+.card{
+    width: 500px;
+}
+.container{
+    width: 100%;
+    height: 100vh;
+}
+form h3{
+    font-weight: 600;
 }
