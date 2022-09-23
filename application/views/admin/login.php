@@ -16,7 +16,7 @@
     <div class="bg-default">
         <div class="container d-flex justify-content-center align-items-center">
                 <div class="card p-3 shadow">
-                    <form action="">
+                    <form action="<?=base_url('proseslogin') ?>"method="post">
                         <div class="mb-3">
                             <h3 class="text-center text-uppercase">Berkah Laundry</h3>
                         </div>
@@ -27,6 +27,9 @@
                         <div class="mb-3">
                             <label for="password">Password</label>
                             <input type="password" class="form-control mt-1" placeholder="Masukkan Password">
+                        </div>
+                        <div class="mb-3">
+                            <button class="form-control">Login</button>
                         </div>
                     </form>
                 </div>
