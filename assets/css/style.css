@@ -2,6 +2,7 @@
 
 :root{
     --bg-default:#466f6d;
+    --bg-secondary: #6ca49c;
 }
 body{
     font-family: 'Poppins', sans-serif;
@@ -22,4 +23,14 @@ body{
 }
 form h3{
     font-weight: 600;
+}
+.btn-secondary1{
+    background: var(--bg-secondary);
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.btn-secondary1:hover{
+    background-color: var(--bg-default);
+    color: #fff;
 }
