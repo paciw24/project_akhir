@@ -17,8 +17,9 @@
         <div class="container container-login d-flex justify-content-center align-items-center">
             <div class="card card-login p-3 shadow">
                 <form action="<?= base_url('prosesLogin') ?>" method="POST">
-                    <div class="mb-3">
-                        <h3 class="text-center text-header text-uppercase">Berkah Laundry</h3>
+                    <div class="mb-3 d-flex justify-content-center flex-column align-items-center">
+                        <img src="<?= base_url('assets/img/logoLaundry.png') ?>" width="80px" alt="">
+                        <h3 class="text-header text-uppercase">Admin Login</h3>
                     </div>
                     <div class="mb-3">
                         <label for="username">Username</label>
