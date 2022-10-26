@@ -46,11 +46,11 @@
                 <div class="card shadow-sm br-4">
                     <div class="card-body d-flex justify-content-between">
                         <div>
-                            <div class="number">1,504</div>
-                            <div class="cardName text-secondary">Daily Views</div>
+                            <div class="number">4</div>
+                            <div class="cardName text-secondary">Paket</div>
                         </div>
                         <div class="iconBox">
-                            <ion-icon name="eye-outline"></ion-icon>
+                            <ion-icon name="file-tray-full-outline"></ion-icon>
                         </div>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                             <div class="cardName text-secondary">Orders</div>
                         </div>
                         <div class="iconBox">
-                            <ion-icon name="server-outline"></ion-icon>
+                            <ion-icon name="cart-outline"></ion-icon>
                         </div>
                     </div>
                 </div>

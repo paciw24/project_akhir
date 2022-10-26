@@ -3,8 +3,8 @@
 :root {
     --header-height: 3rem;
     --nav-width: 68px;
-    --first-color: #4723D9;
-    --first-color-light: #AFA5D9;
+    --first-color: #FF758F;
+    --first-color-light: #ffccd5;
     --white-color: #F7F6FB;
     --body-font: 'Nunito', sans-serif;
     --normal-font-size: 1rem;
@@ -149,6 +149,9 @@ a {
 }
 .br-4{
     border-radius: 20px!important;
+}
+.card{
+    cursor: pointer!important;
 }
 .card .number {
     position: relative;
