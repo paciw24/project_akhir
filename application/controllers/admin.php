@@ -36,6 +36,38 @@ class Admin extends CI_Controller
             redirect(base_url('login'));
         }
     }
+    public function keHalamanMember()
+    {
+        if ($this->session->role == TRUE) {
+            $this->load->view('admin/member');
+        } else {
+            redirect(base_url('login'));
+        }
+    }
+    public function keHalamanOutlet()
+    {
+        if ($this->session->role == TRUE) {
+            $this->load->view('admin/outlet');
+        } else {
+            redirect(base_url('login'));
+        }
+    }
+    public function keHalamanAdmin()
+    {
+        if ($this->session->role == TRUE) {
+            $this->load->view('admin/user');
+        } else {
+            redirect(base_url('login'));
+        }
+    }
+    public function keHalamanTransaksi()
+    {
+        if ($this->session->role == TRUE) {
+            $this->load->view('admin/transaksi');
+        } else {
+            redirect(base_url('login'));
+        }
+    }
     public function logout()
     {
         session_destroy();

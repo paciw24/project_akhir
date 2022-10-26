@@ -99,7 +99,7 @@ a {
 }
 
 .nav_logo-icon {
-    font-size: 1.25rem;
+    width: 25px!important;
     color: var(--white-color)
 }
 

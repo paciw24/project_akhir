@@ -4,6 +4,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route['prosesLogin'] = 'Admin/prosesLogin';
 $route['login'] = 'Admin/keHalamanLogin';
 $route['admin/dasboard'] = 'admin/keHalamanDasboard';
+$route['admin/member'] = 'admin/keHalamanMember';
+$route['admin/outlet'] = 'admin/keHalamanOutlet';
+$route['admin/user'] = 'admin/keHalamanAdmin';
+$route['admin/transaksi'] = 'admin/keHalamanTransaksi';
 $route['logout'] = 'admin/logout';
 // Halaman Member
 
