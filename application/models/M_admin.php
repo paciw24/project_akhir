@@ -6,4 +6,8 @@ class M_admin extends CI_Model
    {
       return $this->db->get_where('tb_user', $data)->num_rows();
    }
+   public function getDataMember()
+    {
+        return $this->db->get('tb_member');
+    }
 }

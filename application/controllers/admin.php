@@ -39,7 +39,8 @@ class Admin extends CI_Controller
     public function keHalamanMember()
     {
         if ($this->session->role == TRUE) {
-            $this->load->view('admin/member');
+            $data['member'] = $this->M_admin->getDataMember()->result();
+            $this->load->view('admin/member',$data);
         } else {
             redirect(base_url('login'));
         }
