@@ -39,7 +39,7 @@
                     </a>
                 </div>
             </div>
-            <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Sign Out</span> </a>
+            <a href="<?= base_url('logout') ?>" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Sign Out</span> </a>
         </nav>
     </div>
     <!--Container Main start-->
@@ -50,7 +50,7 @@
                     <p>Pengaturan Transaksi</p>
                     <div class="">
                         <input type="text" id="cari" name="cari" placeholder="Cari">
-                        <button class="add_new" id="myBtn">+ Tambah Data</button>
+                        <button class="add_new">+ Tambah Data</button>
                     </div>
                 </div>
                 <thead class="bg-pink">

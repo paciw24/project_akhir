@@ -216,7 +216,7 @@ a {
     background-color: var(--first-color);
 }
 .add_new:hover{
-    background-color: var(--first-color-light);
+    background-color: #ff4d6d;
 }
 .btn-edit{
     background-color: var(--first-color)!important;

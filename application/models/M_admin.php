@@ -20,4 +20,13 @@ class M_admin extends CI_Model
         $this->db->join('tb_paket', 'tb_detail_transaksi.id_paket = tb_paket.id', 'left');
         return $this->db->get();
     }
+    public function tambahMem($data = null){
+        $this->db->insert('tb_member', $data);
+    }
+    public function getDataUbah($id){
+        $data = array(
+            'id' => $id
+        );
+        return $this->db->get_where('tb_member', $data);
+    }
 }

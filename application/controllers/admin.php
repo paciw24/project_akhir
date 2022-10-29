@@ -45,6 +45,26 @@ class Admin extends CI_Controller
             redirect(base_url('login'));
         }
     }
+    public function tambahMember(){
+        $data = array(
+            'nama' => $this->input->post('nama', true),
+            'username' => $this->input->post('username', true),
+            'password' => $this->input->post('password', true),
+            'alamat' => $this->input->post('alamat', true),
+            'jenis_kelamin' => $this->input->post('jenis_kelamin',true),
+            'telp' => $this->input->post('telp', true)
+        );
+        $this->M_admin->tambahMem($data);
+        $this->session->set_flashdata(
+            'success', 
+            'Berhasil'
+        );
+        redirect('admin/member');
+    }
+    public function editMember($id){
+        $data['ubah'] = $this->M_admin->getDataUbah($id)->row();
+        $this->load->view('admin/ubahMember', $data);
+    }
     public function keHalamanAdmin()
     {
         if ($this->session->role == TRUE) {
