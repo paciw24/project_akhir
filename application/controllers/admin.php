@@ -45,14 +45,6 @@ class Admin extends CI_Controller
             redirect(base_url('login'));
         }
     }
-    public function keHalamanOutlet()
-    {
-        if ($this->session->role == TRUE) {
-            $this->load->view('admin/outlet');
-        } else {
-            redirect(base_url('login'));
-        }
-    }
     public function keHalamanAdmin()
     {
         if ($this->session->role == TRUE) {
@@ -64,7 +56,8 @@ class Admin extends CI_Controller
     public function keHalamanTransaksi()
     {
         if ($this->session->role == TRUE) {
-            $this->load->view('admin/transaksi');
+            $data['transaksi'] = $this->M_admin->getDataTransaksi()->result();
+            $this->load->view('admin/transaksi', $data);
         } else {
             redirect(base_url('login'));
         }

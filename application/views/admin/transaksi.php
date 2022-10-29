@@ -30,11 +30,11 @@
                 <div class="nav_list">
                     <a href="<?= base_url('admin/dasboard') ?>" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a>
                     <a href="<?= base_url('admin/user') ?>" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Admin</span> </a>
-                    <a href="<?= base_url('admin/member') ?>" class="nav_link active"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Member</span> </a>
+                    <a href="<?= base_url('admin/member') ?>" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Member</span> </a>
                     <a href="<?= base_url('admin/paket') ?>" class="nav_link">
                         <ion-icon name="briefcase-outline" class="nav_icon"></ion-icon><span class="nav_name">Paket</span>
                     </a>
-                    <a href="<?= base_url('admin/transaksi') ?>" class="nav_link">
+                    <a href="<?= base_url('admin/transaksi') ?>" class="nav_link active">
                         <ion-icon name="cart-outline" class="nav_icon"></ion-icon> <span class="nav_name">Transaksi</span>
                     </a>
                 </div>
@@ -47,7 +47,7 @@
         <div class="card px-3 shadow-sm">
             <table class="table table-striped table-hover">
                 <div class="table_header">
-                    <p>Pengaturan Member</p>
+                    <p>Pengaturan Transaksi</p>
                     <div class="">
                         <input type="text" id="cari" name="cari" placeholder="Cari">
                         <button class="add_new" id="myBtn">+ Tambah Data</button>
@@ -56,32 +56,46 @@
                 <thead class="bg-pink">
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Username</th>
-                        <th scope="col">Alamat</th>
-                        <th scope="col">Jenis Kelamin</th>
-                        <th scope="col">Telp</th>
+                        <th scope="col">Invoice</th>
+                        <th scope="col">Nama Member</th>
+                        <th scope="col">Tanggal</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Dibayar</th>
+                        <th scope="col">Gambar</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $no = 1; ?>
-                    <?php foreach ($member as $mem) { ?>
+                    <?php foreach ($transaksi as $tr) { ?>
                         <tr>
                             <td><?= $no++ ?></td>
-                            <td><?= $mem->nama ?></td>
-                            <td><?= $mem->username ?></td>
-                            <td><?= $mem->alamat ?></td>
+                            <td><?= $tr->kode_invoice ?></td>
+                            <td><?= $tr->NAMA_MEMBER ?></td>
+                            <td><?= $tr->tgl ?></td>
                             <td>
                                 <?php
-                                if ($mem->jenis_kelamin == "P") {
-                                    echo "Perempuan";
-                                } else {
-                                    echo "Laki - Laki";
-                                }
+                                    if ($tr->status == "baru") {
+                                        echo "<span class='btn-baru'>Baru</span>";
+                                    } elseif ($tr->status == "proses") {
+                                        echo "<span class='btn-proses'>Proses</span>";
+                                    }elseif($tr->status == "selesai"){
+                                        echo "<span class='btn-selesai'>Selesai</span>";
+                                    }else{
+                                        echo "<span class='btn-diambil'>Diambil</span>";
+                                    }
                                 ?>
                             </td>
-                            <td><?= $mem->telp ?></td>
+                            <td>
+                                <?php  
+                                    if($tr->dibayar == "belum_dibayar"){
+                                        echo "<span class='btn-diambil'>Belum Dibayar</span>";
+                                    }else{
+                                        echo "<span class='btn-baru'>Dibayar</span>";
+                                    }
+                                ?>
+                            </td>
+                            <td><?= $tr->gambar ?></td>
                             <td>
                                 <a class="btn btn-sm btn-edit" href="" id="btnEdit">Edit</a>
                                 <a onclick="" class="btn btn-sm btn-danger">Hapus</a>
