@@ -82,6 +82,15 @@ class Admin extends CI_Controller
             redirect(base_url('login'));
         }
     }
+    public function keHalamanDetailTransaksi($id)
+    {
+        if ($this->session->role == TRUE) {
+            $data['transaksi'] = $this->M_admin->getDataDetailTransaksi($id)->row();
+            $this->load->view('admin/detailTransaksi', $data);
+        } else {
+            redirect(base_url('login'));
+        }
+    }
     public function logout()
     {
         session_destroy();

@@ -10,6 +10,7 @@ $route['admin/member/ubah/(:any)'] = 'admin/editMember/$1';
 $route['admin/member/edit'] = 'admin/editMember';
 $route['admin/user'] = 'admin/keHalamanAdmin';
 $route['admin/transaksi'] = 'admin/keHalamanTransaksi';
+$route['admin/transaksi/detail/(:any)'] = 'admin/keHalamanDetailTransaksi/$1';
 $route['logout'] = 'admin/logout';
 // Halaman Member
 
