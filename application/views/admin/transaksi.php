@@ -62,43 +62,46 @@
                         <th scope="col">Status</th>
                         <th scope="col">Dibayar</th>
                         <th scope="col">Gambar</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $no = 1; ?>
                     <?php foreach ($transaksi as $tr) { ?>
                         <tr>
-                            <td><?= $no++ ?></td>
-                            <td><?= $tr->kode_invoice ?></td>
-                            <td><?= $tr->NAMA_MEMBER ?></td>
-                            <td><?= $tr->tgl ?></td>
-                            <td>
+                            <td class="align-middle"><?= $no++ ?></td>
+                            <td class="align-middle"><?= $tr->kode_invoice ?></td>
+                            <td class="align-middle"><?= $tr->NAMA_MEMBER ?></td>
+                            <td class="align-middle"><?= $tr->tgl ?></td>
+                            <td class="align-middle">
                                 <?php
-                                    if ($tr->status == "baru") {
-                                        echo "<span class='btn-baru'>Baru</span>";
-                                    } elseif ($tr->status == "proses") {
-                                        echo "<span class='btn-proses'>Proses</span>";
-                                    }elseif($tr->status == "selesai"){
-                                        echo "<span class='btn-selesai'>Selesai</span>";
-                                    }else{
-                                        echo "<span class='btn-diambil'>Diambil</span>";
-                                    }
+                                if ($tr->status == "baru") {
+                                    echo "<span class='btn-baru'>Baru</span>";
+                                } elseif ($tr->status == "proses") {
+                                    echo "<span class='btn-proses'>Proses</span>";
+                                } elseif ($tr->status == "selesai") {
+                                    echo "<span class='btn-selesai'>Selesai</span>";
+                                } else {
+                                    echo "<span class='btn-diambil'>Diambil</span>";
+                                }
                                 ?>
                             </td>
-                            <td>
-                                <?php  
-                                    if($tr->dibayar == "belum_dibayar"){
-                                        echo "<span class='btn-diambil'>Belum Dibayar</span>";
-                                    }else{
-                                        echo "<span class='btn-baru'>Dibayar</span>";
-                                    }
+                            <td class="align-middle">
+                                <?php
+                                if ($tr->dibayar == "belum_dibayar") {
+                                    echo "<span class='btn-diambil'>Belum Dibayar</span>";
+                                } else {
+                                    echo "<span class='btn-baru'>Dibayar</span>";
+                                }
                                 ?>
                             </td>
-                            <td><?= $tr->gambar ?></td>
-                            <td>
-                                <a class="btn btn-sm btn-edit" href="" id="btnEdit">Edit</a>
-                                <a onclick="" class="btn btn-sm btn-danger">Hapus</a>
+                            <td class="align-middle">
+                                <a href="<?= base_url('assets/img/logo.png') ?>" target="_blank">
+                                    <img src="<?= base_url('assets/img/logo.png') ?>" class="img-bukti" alt="Gambar Bukti">
+                                </a>
+                            </td>
+                            <td class="align-middle">
+                                <a class="btn btn-sm btn-edit" href="" id="btnEdit">Lihat Detail</a>
                             </td>
                         </tr>
                     <?php } ?>

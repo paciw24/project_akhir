@@ -57,11 +57,11 @@
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Nama</th>
-                        <th scope="col">Username</th>
+                        <th scope="col">Nama Pengguna</th>
                         <th scope="col">Alamat</th>
                         <th scope="col">Jenis Kelamin</th>
                         <th scope="col">Telp</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -109,11 +109,11 @@
                             <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama" required>
                         </div>
                         <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
+                            <label for="username" class="form-label">Nama Pengguna</label>
                             <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan Username" required>
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
+                            <label for="password" class="form-label">Kata Sandi</label>
                             <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Password" required>
                         </div>
                         <div class="mb-3">
