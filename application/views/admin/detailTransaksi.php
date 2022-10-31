@@ -16,9 +16,7 @@
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
         <div class="d-flex align-items-center">
             <span class="me-3">Farhan Rafahadi</span>
-            <div class="header_img">
-                <img src="https://i.imgur.com/hczKIze.jpg" alt="">
-            </div>
+            <div class="avatar" data-label="FR"></div>
         </div>
     </header>
     <div class="l-navbar" id="nav-bar">

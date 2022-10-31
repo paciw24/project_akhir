@@ -16,9 +16,7 @@
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
         <div class="d-flex align-items-center">
             <span class="me-3">Farhan Rafahadi</span>
-            <div class="header_img">
-                <img src="https://i.imgur.com/hczKIze.jpg" alt="">
-            </div>
+            <div class="avatar" data-label="FR"></div>
         </div>
     </header>
     <div class="l-navbar" id="nav-bar">
@@ -83,7 +81,7 @@
                             </td>
                             <td><?= $mem->telp ?></td>
                             <td>
-                                <a class="btn btn-sm btn-edit" href="<?= base_url('admin/member/ubah/'. $mem->id) ?>" id="btnEdit">Edit</a>
+                                <a class="btn btn-sm btn-edit" href="<?= base_url('admin/member/ubah/' . $mem->id) ?>" id="btnEdit">Edit</a>
                                 <a onclick="" class="btn btn-sm btn-danger">Hapus</a>
                             </td>
                         </tr>
@@ -93,7 +91,7 @@
         </div>
     </div>
     <!--Container Main end-->
-    
+
     <!-- Modal Tambah -->
     <div class="modal fade" id="ModalTambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -152,12 +150,12 @@
     <!-- Javascript -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script type="text/javascript">
-        <?php if($this->session->flashdata('success')) { ?>
+        <?php if ($this->session->flashdata('success')) { ?>
             Swal.fire({
-            icon: 'success',
-            title: 'Berhasil Disimpan',
-            showConfirmButton: false,
-            timer: 2000
+                icon: 'success',
+                title: 'Berhasil Disimpan',
+                showConfirmButton: false,
+                timer: 2000
             })
         <?php } ?>
     </script>
