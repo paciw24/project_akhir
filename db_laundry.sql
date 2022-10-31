@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2022 at 09:20 AM
+-- Generation Time: Oct 31, 2022 at 07:43 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.26
 
@@ -56,7 +56,8 @@ CREATE TABLE `tb_member` (
 --
 
 INSERT INTO `tb_member` (`id`, `nama`, `username`, `password`, `alamat`, `jenis_kelamin`, `telp`) VALUES
-(1, 'test', 'ok', 'ok', 'ok', 'L', '082190004060');
+(1, 'test', 'ok', 'ok', 'ok', 'L', '082190004060'),
+(2, 'farhan', 'farhan', 'farhan', 'bekasi', 'L', '081290004060');
 
 -- --------------------------------------------------------
 
@@ -84,7 +85,7 @@ CREATE TABLE `tb_transaksi` (
   `tgl` datetime NOT NULL,
   `status` enum('baru','proses','selesai','diambil') NOT NULL,
   `dibayar` enum('dibayar','belum_dibayar') NOT NULL,
-  `gambar` text NOT NULL,
+  `bukti` text NOT NULL,
   `id_user` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -92,7 +93,7 @@ CREATE TABLE `tb_transaksi` (
 -- Dumping data for table `tb_transaksi`
 --
 
-INSERT INTO `tb_transaksi` (`id`, `kode_invoice`, `id_member`, `tgl`, `status`, `dibayar`, `gambar`, `id_user`) VALUES
+INSERT INTO `tb_transaksi` (`id`, `kode_invoice`, `id_member`, `tgl`, `status`, `dibayar`, `bukti`, `id_user`) VALUES
 (1, 'P001', 1, '2022-10-29 07:48:06', 'selesai', 'belum_dibayar', 'test', 1),
 (2, 'P002', 1, '2022-10-29 08:08:10', 'baru', 'belum_dibayar', 'test', 1),
 (3, 'P003', 1, '2022-10-29 08:08:35', 'proses', 'dibayar', 'test', 1),
@@ -171,7 +172,7 @@ ALTER TABLE `tb_detail_transaksi`
 -- AUTO_INCREMENT for table `tb_member`
 --
 ALTER TABLE `tb_member`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_paket`
