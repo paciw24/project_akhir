@@ -263,6 +263,41 @@ a {
     width: 70px;
     object-fit: cover;
 }
+.table_list{
+    padding: 0 20px;
+    width: calc(100%-40px);
+    position: relative;
+    margin-bottom: 20px;
+}
+.table_list .list{
+    position: relative;
+    display: flex;
+    height: 40px;
+    align-items: center;
+    border: 2px solid #fff;
+}
+.table_list .list .labelInfo{
+    width: 35%;
+    background-color: var(--first-color);
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 20px;
+    color: #fff;
+    border-radius: 5px 0 0 5px;
+}
+.table_list .list input{
+    width: 65%;
+    height: 36px;
+    border: 2px solid #0298cf;
+    outline: none;
+    border-radius: 0 5px 5px 0;
+    padding: 0 0 0 10px;
+}
+.table_list .list input:read-only{
+    border: 2px solid #ddd;
+    background: #eee;
+}
 @media screen and (min-width: 768px) {
     body {
         margin: calc(var(--header-height) + 1rem) 0 0 0;

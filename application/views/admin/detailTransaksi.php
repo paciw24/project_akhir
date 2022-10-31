@@ -44,7 +44,40 @@
     </div>
     <!--Container Main start-->
     <div class="height-100 bg-light">
-        
+        <div class="card px-3 pt-3 shadow-sm">
+            <div class="table_list">
+                <div class="list">
+                    <div class="labelInfo">
+                        <label for="kdtransaksi">Invoice</label>
+                    </div>
+                    <input type="text" value="<?= $transaksi->kode_invoice ?>" name="invoice" id="invoice" readonly>
+                </div>
+                <div class="list">
+                    <div class="labelInfo">
+                        <label for="tgltransaksi">Tanggal</label>
+                    </div>
+                    <input type="text" value="" name="tgl" id="tgl" readonly>
+                </div>
+                <div class="list">
+                    <div class="labelInfo">
+                        <label for="nmpembeli">Nama Member</label>
+                    </div>
+                    <input type="text" value="" name="namaMember" id="namaMember" readonly>
+                </div>
+                <div class="list">
+                    <div class="labelInfo">
+                        <label for="alamat">Alamat</label>
+                    </div>
+                    <input type="text" value="" name="alamat" id="alamat" readonly>
+                </div>
+                <div class="list">
+                    <div class="labelInfo">
+                        <label for="notelp">No Telp</label>
+                    </div>
+                    <input type="text" value="" name="notelp" id="notelp" readonly>
+                </div>
+            </div>
+        </div>
     </div>
     <!--Container Main end-->
 
