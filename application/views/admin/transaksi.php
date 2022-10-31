@@ -101,7 +101,7 @@
                                 </a>
                             </td>
                             <td class="align-middle">
-                                <a class="btn btn-sm btn-edit" href="<?= base_url('admin/transaksi/detail/'. $tr->id) ?>" id="btnEdit">Lihat Detail</a>
+                                <a class="btn btn-sm btn-edit" href="<?= base_url('admin/transaksi/detail/' . $tr->id_transaksi) ?>" id="btnEdit">Lihat Detail</a>
                             </td>
                         </tr>
                     <?php } ?>
