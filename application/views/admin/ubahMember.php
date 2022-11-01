@@ -44,7 +44,7 @@
    <div class="height-100 bg-light">
       <div class="card p-3">
          <form action="<?= base_url('admin/member/edit') ?>" method="post">
-            <input type="hidden" name="id" value="<?= $ubah->id ?>">
+            <input type="hidden" name="id" value="<?= $ubah->id_member ?>">
             <div class="mb-3">
                <label for="nama" class="form-label">Nama</label>
                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama" value="<?= $ubah->nama ?>" required>
@@ -62,6 +62,7 @@
                <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan Alamat" value="<?= $ubah->alamat ?>" required>
             </div>
             <div class="mb-3">
+               <label for="">Jenis Kelamin</label>
                <div class="form-check">
                   <input class="form-check-input" type="radio" name="jenis_kelamin" id="lk" value="L" <?php if ($ubah->jenis_kelamin == "L") { ?> checked=checked <?php } ?>>
                   <label class="form-check-label" for="lk">
@@ -80,8 +81,8 @@
                <input type="text" class="form-control" id="telp" name="telp" placeholder="Masukkan Telp" value="<?= $ubah->telp ?>" required>
             </div>
             <div class="mb-3 d-flex justify-content-between">
-               <a href="<?= base_url('admin/member') ?>" class="btn btn-danger">Kembali</a>
-               <button class="add_new" data-bs-dismiss="modal">Simpan</button>
+               <a href="<?= base_url('admin/member') ?>" class="btn btn-back">Kembali</a>
+               <button class="btn btn-edit" data-bs-dismiss="modal">Simpan</button>
             </div>
          </form>
       </div>

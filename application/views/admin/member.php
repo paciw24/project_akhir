@@ -81,7 +81,7 @@
                             </td>
                             <td><?= $mem->telp ?></td>
                             <td>
-                                <a class="btn btn-sm btn-edit" href="<?= base_url('admin/member/ubah/' . $mem->id) ?>" id="btnEdit">Edit</a>
+                                <a class="btn btn-sm btn-edit" href="<?= base_url('admin/member/ubah/' . $mem->id_member) ?>" id="btnEdit">Edit</a>
                                 <a onclick="" class="btn btn-sm btn-danger">Hapus</a>
                             </td>
                         </tr>

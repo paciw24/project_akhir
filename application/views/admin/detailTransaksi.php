@@ -43,7 +43,7 @@
     <!--Container Main start-->
     <div class="height-100 bg-light">
         <div class="card px-3 pt-3 shadow-sm">
-            <div class="table_header">
+            <div class="table_header p-0 m-0">
                 <p>Detail Pesanan</p>
             </div>
             <div class="table_list">
@@ -79,7 +79,7 @@
                 </div>
             </div>
             <table class="table table-striped table-hover">
-                <div class="table_header">
+                <div class="table_header p-0 m-0">
                     <p>Rincian Pesanan</p>
                 </div>
                 <thead class="bg-pink">

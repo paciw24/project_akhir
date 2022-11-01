@@ -43,7 +43,7 @@
     <!--Container Main start-->
     <div class="height-100 bg-light">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 mb-3">
                 <div class="card card-hover shadow-sm br-4">
                     <div class="card-body d-flex justify-content-between">
                         <div>
@@ -56,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mb-3">
                 <div class="card card-hover shadow-sm br-4">
                     <div class="card-body d-flex justify-content-between">
                         <div>
@@ -69,7 +69,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mb-3">
                 <div class="card card-hover shadow-sm br-4">
                     <div class="card-body d-flex justify-content-between">
                         <div>
@@ -82,7 +82,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mb-3">
                 <div class="card card-hover shadow-sm br-4">
                     <div class="card-body d-flex justify-content-between">
                         <div>

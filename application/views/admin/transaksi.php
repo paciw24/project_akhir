@@ -59,7 +59,7 @@
                         <th scope="col">Tanggal</th>
                         <th scope="col">Status</th>
                         <th scope="col">Dibayar</th>
-                        <th scope="col">Gambar</th>
+                        <th scope="col">Bukti</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
