@@ -189,7 +189,6 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0px;
 }
 .table_header p{
     color: var(--first-color);
@@ -264,8 +263,7 @@ a {
     object-fit: cover;
 }
 .table_list{
-    padding: 0 20px;
-    width: calc(100%-40px);
+    width: 100%;
     position: relative;
     margin-bottom: 20px;
 }

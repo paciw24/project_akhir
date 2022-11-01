@@ -41,12 +41,23 @@ class M_admin extends CI_Model
         $data = array(
             'tb_transaksi.id_transaksi' => $id
         );
-        $this->db->select('tb_transaksi.*, tb_member.nama AS NAMA_MEMBER, tb_user.nama AS NAMA_USER, tb_detail_transaksi.*, tb_paket.*');
+        $this->db->select('tb_transaksi.*, tb_member.nama AS NAMA_MEMBER, tb_member.alamat AS ALAMAT, tb_member.telp AS TELP, tb_user.nama AS NAMA_USER, tb_detail_transaksi.*, tb_paket.*, SUM(tb_detail_transaksi.subtotal) AS TOTAL');
         $this->db->from('tb_transaksi');
         $this->db->where($data);
         $this->db->join('tb_member', 'tb_transaksi.id_member = tb_member.id_member');
         $this->db->join('tb_user', 'tb_transaksi.id_user = tb_user.id_user');
         $this->db->join('tb_detail_transaksi', 'tb_transaksi.id_transaksi = tb_detail_transaksi.id_transaksi');
+        $this->db->join('tb_paket', 'tb_detail_transaksi.id_paket = tb_paket.id_paket');
+        return $this->db->get();
+    }
+    public function getDataDetails($id){
+        $data = array(
+            'tb_transaksi.id_transaksi' => $id
+        );
+        $this->db->select('tb_transaksi.id_transaksi, tb_detail_transaksi.*, tb_paket.*');
+        $this->db->from('tb_transaksi');
+        $this->db->where($data);
+        $this->db->join('tb_detail_transaksi', 'tb_transaksi.id_transaksi = tb_detail_transaksi.id_transaksi','left');
         $this->db->join('tb_paket', 'tb_detail_transaksi.id_paket = tb_paket.id_paket');
         return $this->db->get();
     }

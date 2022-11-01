@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2022 at 08:38 AM
+-- Generation Time: Nov 01, 2022 at 03:32 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.26
 
@@ -31,6 +31,7 @@ CREATE TABLE `tb_detail_transaksi` (
   `id_transaksi` int(5) NOT NULL,
   `id_paket` int(5) NOT NULL,
   `qty` double NOT NULL,
+  `subtotal` int(11) NOT NULL,
   `keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -38,8 +39,10 @@ CREATE TABLE `tb_detail_transaksi` (
 -- Dumping data for table `tb_detail_transaksi`
 --
 
-INSERT INTO `tb_detail_transaksi` (`id_transaksi`, `id_paket`, `qty`, `keterangan`) VALUES
-(1, 1, 3, 'ok');
+INSERT INTO `tb_detail_transaksi` (`id_transaksi`, `id_paket`, `qty`, `subtotal`, `keterangan`) VALUES
+(1, 1, 3, 0, 'ok'),
+(1, 1, 3, 19500, 'ok'),
+(1, 1, 2, 1999, 'ok');
 
 -- --------------------------------------------------------
 
