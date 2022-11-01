@@ -25,6 +25,12 @@ class M_admin extends CI_Model
         return $this->db->get_where('tb_member', $data);
     }
 
+
+    // Paket
+    
+
+
+
     // Transaksi
     public function getDataTransaksi()
     {
