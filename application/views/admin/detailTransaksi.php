@@ -43,8 +43,23 @@
     <!--Container Main start-->
     <div class="height-100 bg-light">
         <div class="card px-3 pt-3 shadow-sm">
-            <div class="table_header p-0 m-0">
+            <div class="table_header px-3 p-0 m-0">
                 <p>Detail Pesanan</p>
+                <div class="d-flex">
+                    <div class="mb-3">
+                        <?php
+                        if ($transaksi->status == "baru") {
+                            echo "<span class='btn-baru'>Baru</span>";
+                        } elseif ($transaksi->status == "proses") {
+                            echo "<span class='btn-proses'>Proses</span>";
+                        } elseif ($transaksi->status == "selesai") {
+                            echo "<span class='btn-selesai'>Selesai</span>";
+                        } else {
+                            echo "<span class='btn-diambil'>Diambil</span>";
+                        }
+                        ?>
+                    </div>
+                </div>
             </div>
             <div class="table_list">
                 <div class="list">
@@ -79,8 +94,17 @@
                 </div>
             </div>
             <table class="table table-striped table-hover">
-                <div class="table_header p-0 m-0">
+                <div class="table_header p-0 px-3 m-0">
                     <p>Rincian Pesanan</p>
+                    <div class="mb-3">
+                        <?php
+                        if ($transaksi->dibayar == "belum_dibayar") {
+                            echo "<span class='btn-diambil'>Belum Dibayar</span>";
+                        } else {
+                            echo "<span class='btn-baru'>Dibayar</span>";
+                        }
+                        ?>
+                    </div>
                 </div>
                 <thead class="bg-pink">
                     <tr>
@@ -114,10 +138,52 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="d-flex mb-3 justify-content-between">
+                <a href="<?= base_url('admin/transaksi') ?>" class="btn btn-back">Kembali</a>
+                <div class="d-flex">
+                    <div class="me-2">
+                        <form action="<?= base_url('admin/transaksi/updateStatus') ?>" method='post'>
+                            <input type='hidden' value='<?= $transaksi->id_transaksi ?>' name='id'>
+                            <?php
+                            if ($transaksi->status == "baru") {
+                                echo "<input type='hidden' value='proses' name='status'>";
+                                echo "<button class='btn btn-back'>Proses</button>";
+                            } elseif ($transaksi->status == "proses") {
+                                echo "<input type='hidden' value='selesai' name='status'>";
+                                echo "<button class='btn btn-back'>selesai</button>";
+                            } elseif ($transaksi->status == "selesai") {
+                                echo "<input type='hidden' value='diambil' name='status'>";
+                                echo "<button class='btn btn-back'>diambil</button>";
+                            } else {
+                                echo "";
+                            }
+                            ?>
+                        </form>
+                    </div>
+                    <div class="">
+                        <?php
+                        if ($transaksi->dibayar == "belum_dibayar") {
+                            echo "<button class='btn btn-edit'>Bayar</button>";
+                        } else {
+                            echo "";
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!--Container Main end-->
-
+    <script>
+        <?php if ($this->session->flashdata('success')) { ?>
+            Swal.fire({
+                icon: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        <?php } ?>
+    </script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>

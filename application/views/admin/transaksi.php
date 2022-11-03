@@ -108,7 +108,17 @@
         </div>
     </div>
     <!--Container Main end-->
-
+    <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@10" ></script>
+    <script>
+    <?php if ($this->session->flashdata('success')) { ?>
+        Swal.fire({
+        icon: 'success',
+        title: 'Berhasil Disimpan',
+        showConfirmButton: false,
+        timer: 2000
+        })
+    <?php } ?>
+    </script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>

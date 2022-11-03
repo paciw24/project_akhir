@@ -262,16 +262,17 @@ a {
     color: #ff9500;
 }.btn-selesai {
     padding: 3px 5px 6px 5px;
-    background-color: #efaeae;
-    border: 1px solid #f00;
-    border-radius: 15px !important;
-    color: #f00;
-}.btn-diambil {
-    padding: 3px 5px 6px 5px;
     background-color: #aeccef;
     border: 1px solid rgb(0, 102, 255);
     border-radius: 15px !important;
     color: rgb(0, 102, 255);
+    
+}.btn-diambil {
+    padding: 3px 5px 6px 5px;
+    background-color: #efaeae;
+    border: 1px solid #f00;
+    border-radius: 15px !important;
+    color: #f00;
 }
 .img-bukti{
     width: 70px;
