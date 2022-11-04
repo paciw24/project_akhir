@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laundry App</title>
     <!-- CSS -->
+    <link rel="icon" type="image/x-icon" href="<?= base_url('assets/img/logo.png') ?>">
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a81368914c.js"></script>
     <link rel="stylesheet" href="<?= base_url('assets/css/admin.css') ?>">

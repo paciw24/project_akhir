@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DASHBOARD | BERKAH LAUNDRY</title>
+    <link rel="icon" type="image/x-icon" href="<?= base_url('assets/img/logo.png') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/admin.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
     <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
@@ -15,7 +16,7 @@
     <header class="header position-relative bg-white shadow-sm" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
         <div class="d-flex align-items-center">
-            <span class="me-3">Farhan Rafahadi</span>
+            <span class="me-3"><?= $this->session->userdata('nama') ?></span>
             <div class="avatar" data-label="FR"></div>
         </div>
     </header>
@@ -108,16 +109,16 @@
         </div>
     </div>
     <!--Container Main end-->
-    <script src = "https://cdn.jsdelivr.net/npm/sweetalert2@10" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
-    <?php if ($this->session->flashdata('success')) { ?>
-        Swal.fire({
-        icon: 'success',
-        title: 'Berhasil Disimpan',
-        showConfirmButton: false,
-        timer: 2000
-        })
-    <?php } ?>
+        <?php if ($this->session->flashdata('success')) { ?>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil Disimpan',
+                showConfirmButton: false,
+                timer: 2000
+            })
+        <?php } ?>
     </script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
