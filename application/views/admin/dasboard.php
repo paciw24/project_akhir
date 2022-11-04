@@ -15,7 +15,7 @@
     <header class="header position-relative bg-white shadow-sm" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
         <div class="d-flex align-items-center">
-            <span class="me-3">Farhan Rafahadi</span>
+            <span class="me-3"><?= $this->session->userdata('nama') ?></span>
             <div class="avatar" data-label="FR"></div>
         </div>
     </header>

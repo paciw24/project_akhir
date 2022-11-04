@@ -9,6 +9,8 @@
     <!-- CSS -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <link rel="stylesheet" href="<?= base_url('assets/css/admin.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
     <!-- CSS END -->
 </head>
@@ -23,6 +25,7 @@
             <form action="<?= base_url('prosesLogin') ?>" method="post">
                 <img src="<?= base_url('assets/img/avatar.png') ?>">
                 <h2 class="title">Welcome</h2>
+                <?= $this->session->flashdata('pesan') ?>
                 <div class="input-div one">
                     <div class="i">
                         <i class="fas fa-user"></i>

@@ -9,21 +9,25 @@ class Admin extends CI_Controller
     }
     public function prosesLogin()
     {
-        $data = array(
-            'username' => $this->input->post('username'),
-            'password' => $this->input->post('password')
-        );
-        $cek = $this->M_admin->cekLogin($data);
+        $username =$this->input->post('username',true);
+        $password = $this->input->post('password', true);
 
-        if ($cek > 0) {
-            $sess = array(
-                'status' => TRUE,
-                'role' => 'admin'
-            );
-            $this->session->set_userdata($sess);
+        $user = $this->M_admin->cekLogin(['username' => $username])->row_array();
 
-            redirect(base_url('admin/dasboard'));
+        if ($user){
+            if($password == $user['password']){
+                $data = [
+                    'username' => $user['username'],
+                    'nama' => $user['nama']
+                ];
+                $this->session->set_userdata($data);
+                redirect('admin/dasboard');
+            }else{
+                $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Password Salah !</div>');
+                redirect('login');
+            }
         } else {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-warning" role="alert">Username Tidak Ditemukan !</div>');
             redirect(base_url('login'));
         }
     }
@@ -37,7 +41,8 @@ class Admin extends CI_Controller
     // Dashboard
     public function keHalamanDasboard()
     {
-        if ($this->session->role == TRUE) {
+        if ($this->session->username == TRUE) {
+            $data['nama'] = $this->M_admin->cekLogin(['nama' => $this->session->userdata('nama')])->row_array();
             $this->load->view('admin/dasboard');
         } else {
             redirect(base_url('login'));
@@ -47,7 +52,7 @@ class Admin extends CI_Controller
     // Menu Member
     public function keHalamanMember()
     {
-        if ($this->session->role == TRUE) {
+        if ($this->session->username == TRUE) {
             $data['member'] = $this->M_admin->getDataMember()->result();
             $this->load->view('admin/member', $data);
         } else {
@@ -73,15 +78,19 @@ class Admin extends CI_Controller
     }
     public function editMember($id)
     {
-        $data['ubah'] = $this->M_admin->getDataUbah($id)->row();
-        $this->load->view('admin/ubahMember', $data);
+        if ($this->session->username == TRUE) {
+            $data['ubah'] = $this->M_admin->getDataUbah($id)->row();
+            $this->load->view('admin/ubahMember', $data);
+        } else {
+            redirect(base_url('login'));
+        }
     }
 
 
     // Menu Admin
     public function keHalamanAdmin()
     {
-        if ($this->session->role == TRUE) {
+        if ($this->session->username == TRUE) {
             $this->load->view('admin/user');
         } else {
             redirect(base_url('login'));
@@ -92,7 +101,7 @@ class Admin extends CI_Controller
     // Paket
     public function keHalamanPaket()
     {
-        if ($this->session->role == TRUE) {
+        if ($this->session->username == TRUE) {
             $data['paket'] = $this->M_admin->getDataPaket()->result();
             $this->load->view('admin/paket', $data);
         } else {
@@ -104,7 +113,7 @@ class Admin extends CI_Controller
     // Menu Transaksi
     public function keHalamanTransaksi()
     {
-        if ($this->session->role == TRUE) {
+        if ($this->session->username == TRUE) {
             $data['transaksi'] = $this->M_admin->getDataTransaksi()->result();
             $this->load->view('admin/transaksi', $data);
         } else {
@@ -113,7 +122,7 @@ class Admin extends CI_Controller
     }
     public function keHalamanDetailTransaksi($id)
     {
-        if ($this->session->role == TRUE) {
+        if ($this->session->username == TRUE) {
             $data['transaksi'] = $this->M_admin->getDataDetailTransaksi($id)->row();
             $data['detail'] = $this->M_admin->getDataDetails($id)->result();
             $this->load->view('admin/detailTransaksi', $data);
@@ -125,7 +134,7 @@ class Admin extends CI_Controller
     {
         $data = array(
             'status' => $this->input->post('status', true)
-        );
+         );
         
         $this->M_admin->updateStat($data, ['id_transaksi' => $this->input->post('id')]);
         $this->session->set_flashdata('success', 'berhasil');

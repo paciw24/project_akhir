@@ -4,7 +4,7 @@ class M_admin extends CI_Model
 {
     public function cekLogin($data)
     {
-        $query = $this->db->get_where('tb_user', $data)->num_rows();
+        return $this->db->get_where('tb_user', $data);
     }
     // Admin
 
@@ -57,18 +57,20 @@ class M_admin extends CI_Model
         $this->db->join('tb_paket', 'tb_detail_transaksi.id_paket = tb_paket.id_paket');
         return $this->db->get();
     }
-    public function getDataDetails($id){
+    public function getDataDetails($id)
+    {
         $data = array(
             'tb_transaksi.id_transaksi' => $id
         );
         $this->db->select('tb_transaksi.id_transaksi, tb_detail_transaksi.*, tb_paket.*');
         $this->db->from('tb_transaksi');
         $this->db->where($data);
-        $this->db->join('tb_detail_transaksi', 'tb_transaksi.id_transaksi = tb_detail_transaksi.id_transaksi','left');
+        $this->db->join('tb_detail_transaksi', 'tb_transaksi.id_transaksi = tb_detail_transaksi.id_transaksi', 'left');
         $this->db->join('tb_paket', 'tb_detail_transaksi.id_paket = tb_paket.id_paket');
         return $this->db->get();
     }
-    public function updateStat($data, $where){
+    public function updateStat($data, $where)
+    {
         $this->db->where($where);
         $this->db->update('tb_transaksi', $data);
     }
