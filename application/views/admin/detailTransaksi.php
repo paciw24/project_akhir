@@ -164,7 +164,7 @@
                     <div class="">
                         <?php
                         if ($transaksi->dibayar == "belum_dibayar") {
-                            echo "<button class='btn btn-edit'>Bayar</button>";
+                            echo "<button class='btn btn-edit' data-bs-toggle='modal' data-bs-target='#ModalBayar'>Bayar</button>";
                         } else {
                             echo "";
                         }
@@ -175,16 +175,31 @@
         </div>
     </div>
     <!--Container Main end-->
-    <script>
-        <?php if ($this->session->flashdata('success')) { ?>
-            Swal.fire({
-                icon: 'success',
-                title: 'Your work has been saved',
-                showConfirmButton: false,
-                timer: 1500
-            })
-        <?php } ?>
-    </script>
+    <!-- Modal Bayar -->
+    <div class="modal fade" id="ModalBayar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content" style=" border:none!important;">
+                <div class="modal-body">
+                    <form action="<?= base_url('admin/transaksi/bayar') ?>" method="post">
+                        <input type="hidden" name="id" value="<?= $transaksi->id_transaksi ?>">
+                        <input type="hidden" name="bayar" value="dibayar">
+                        <div class="mb-3">
+                            <label for="total" class="form-label">Total Bayar</label>
+                            <input type="text" class="form-control" id="total" name="total" value="<?= $transaksi->TOTAL ?>" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="total" class="form-label">Cash</label>
+                            <input type="text" class="form-control" id="cash" name="cash" placeholder="Masukkan Uang" required>
+                        </div>
+                        <div class="mb-3 d-flex justify-content-end">
+                            <button class="add_new">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal bayar End -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>

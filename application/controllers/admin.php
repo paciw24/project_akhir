@@ -140,4 +140,16 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('success', 'berhasil');
         redirect(base_url('admin/transaksi'));
     }
+    public function updateBayar()
+    {
+        $data = array(
+            'dibayar' => $this->input->post('bayar', true)
+        );
+        $total = $this->input->post('total', true);
+        $cash = $this->input->post('cash', true);
+        $hasil = $cash - $total;
+        $this->M_admin->updateByr($data, ['id_transaksi' => $this->input->post('id')]);
+        $this->session->set_flashdata('kembalian', $hasil);
+        redirect(base_url('admin/transaksi'));
+    }
 }

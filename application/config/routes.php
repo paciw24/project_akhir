@@ -26,6 +26,7 @@ $route['admin/paket'] = 'admin/keHalamanPaket';
 $route['admin/transaksi'] = 'admin/keHalamanTransaksi';
 $route['admin/transaksi/detail/(:any)'] = 'admin/keHalamanDetailTransaksi/$1';
 $route['admin/transaksi/updateStatus'] = 'admin/updateStatus';
+$route['admin/transaksi/bayar'] = 'admin/updateBayar';
 
 
 // Halaman Member

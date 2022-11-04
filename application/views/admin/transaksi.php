@@ -119,6 +119,13 @@
                 timer: 2000
             })
         <?php } ?>
+
+        <?php if ($this->session->flashdata('kembalian')) { ?>
+            Swal.fire({
+                title: 'Kembalian',
+                text: '<?= "Rp. " . number_format($this->session->flashdata('kembalian'), 0, ',', '.') ?>',
+            })
+        <?php } ?>
     </script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
