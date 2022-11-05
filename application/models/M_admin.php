@@ -31,8 +31,27 @@ class M_admin extends CI_Model
     {
         return $this->db->get('tb_paket');
     }
-
-
+    public function tambahPaket($data = null)
+    {
+        $this->db->insert('tb_paket', $data);
+    }
+    public function getDataUbahPaket($id)
+    {
+        $data = array(
+            'id_paket' => $id
+        );
+        return $this->db->get_where('tb_paket', $data);
+    }
+    public function updatePaket($data, $where)
+    {
+        $this->db->where($where);
+        $this->db->update('tb_paket', $data);
+    }
+    public function hapusPaket($id)
+    {
+        $this->db->where('id_paket', $id);
+        return $this->db->delete('tb_paket');
+    }
 
     // Transaksi
     public function getDataTransaksi()

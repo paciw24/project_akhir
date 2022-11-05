@@ -108,6 +108,49 @@ class Admin extends CI_Controller
             redirect(base_url('login'));
         }
     }
+    public function tambahPaket()
+    {
+        $data = array(
+            'jenis' => $this->input->post('jenis', true),
+            'nama_paket' => $this->input->post('nmpaket', true),
+            'harga' => $this->input->post('Harga', true),
+        );
+        $this->M_admin->tambahpaket($data);
+        $this->session->set_flashdata(
+            'success',
+            'Berhasil'
+        );
+        redirect('admin/paket');
+    }
+    public function editPaket($id)
+    {
+        if ($this->session->username == TRUE) {
+            $data['ubah'] = $this->M_admin->getDataUbahPaket($id)->row();
+            $this->load->view('admin/ubahPaket', $data);
+        } else {
+            redirect(base_url('login'));
+        }
+    }
+    public function ubahPaket()
+    {
+        $data = array(
+            'jenis' => $this->input->post('jenis', true),
+            'nama_paket' => $this->input->post('nmpaket', true),
+            'harga' => $this->input->post('Harga', true),
+         );
+        $this->M_admin->updatePaket($data, ['id_paket' => $this->input->post('id')]);
+        $this->session->set_flashdata('success', 'berhasil');
+        redirect(base_url('admin/paket'));
+    }
+    public function hapus_paket($id)
+    {
+        $this->M_admin->hapusPaket($id);
+        $this->session->set_flashdata(
+            'delete',
+            'Berhasil'
+        );
+        redirect(base_url('admin/paket'));
+    }
 
 
     // Menu Transaksi

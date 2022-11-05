@@ -21,6 +21,10 @@ $route['admin/user'] = 'admin/keHalamanAdmin';
 
     // Paket
 $route['admin/paket'] = 'admin/keHalamanPaket';
+$route['admin/paket/tambah'] = 'admin/tambahPaket';
+$route['admin/paket/ubah/(:any)'] = 'admin/editPaket/$1';
+$route['admin/paket/edit'] = 'admin/ubahPaket';
+$route['admin/paket/hapusPaket/(:any)'] = 'admin/hapus_paket/$1';
 
     // transaksi
 $route['admin/transaksi'] = 'admin/keHalamanTransaksi';

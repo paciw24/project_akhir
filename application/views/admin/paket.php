@@ -55,9 +55,9 @@
                 <thead class="bg-pink">
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Nama Pengguna</th>
-                        <th scope="col">Alamat</th>
+                        <th scope="col">Jenis</th>
+                        <th scope="col">Nama Paket</th>
+                        <th scope="col">Harga</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
@@ -67,6 +67,12 @@
                         <tr>
                             <td><?= $no++ ?></td>
                             <td><?= $pt->jenis ?></td>
+                            <td><?= $pt->nama_paket?></td>
+                            <td><?= $pt->harga?></td>
+                            <td>
+                                <a class="btn btn-sm btn-edit" href="<?= base_url('admin/paket/ubah/' . $pt->id_paket) ?>" id="btnEdit">Edit</a>
+                                <a onclick="HapusMenu();" class="btn btn-sm btn-danger">Hapus</a>
+                            </td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -80,44 +86,29 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content" style=" border:none!important;">
                 <div class="modal-header" style="background: #FF758F;">
-                    <h1 class="modal-title fs-5 text-uppercase fw-bold" style="color: #fff;" id="exampleModalLabel">Tambah Member</h1>
+                    <h1 class="modal-title fs-5 text-uppercase fw-bold" style="color: #fff;" id="exampleModalLabel">Tambah Paket</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?= base_url('admin/member/tambah') ?>" method="post">
+                    <form action="<?= base_url('admin/paket/tambah') ?>" method="post">
                         <div class="mb-3">
-                            <label for="nama" class="form-label">Nama</label>
-                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama" required>
+                            <label for="jenis" class="form-label">jenis</label>
+                            <select class="form-select" aria-label="jenis" name="jenis" id="jenis">
+                                <option selected>Pilih Jenis</option>
+                                <option value="kiloan">kiloan</option>
+                                <option value="selimut">Selimut</option>
+                                <option value="bed_cover">Bed Cover</option>
+                                <option value="kaos">Kaos</option>
+                                <option value="lain">lain</option>
+                            </select>
                         </div>
                         <div class="mb-3">
-                            <label for="username" class="form-label">Nama Pengguna</label>
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan Username" required>
+                            <label for="nama_paket" class="form-label">Nama Paket</label>
+                            <input type="text" class="form-control" id="nmpaket" name="nmpaket" placeholder="Masukan Nama Paket" required>
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label">Kata Sandi</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Password" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="alamat" class="form-label">Alamat</label>
-                            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan Alamat" required>
-                        </div>
-                        <div class="mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jenis_kelamin" id="lk" value="L" <?= set_radio('jenis_kelamin', 'L'); ?> checked>
-                                <label class="form-check-label" for="lk">
-                                    Laki - laki
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jenis_kelamin" value="P" <?= set_radio('jenis_kelamin', 'P'); ?> id="pr">
-                                <label class="form-check-label" for="pr">
-                                    Perempuan
-                                </label>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="telp" class="form-label">Telp</label>
-                            <input type="text" class="form-control" id="telp" name="telp" placeholder="Masukkan Telp" required>
+                            <label for="harga" class="form-label">Harga</label>
+                            <input type="number" class="form-control" id="harga" name="Harga" placeholder="Harga" required>
                         </div>
                         <div class="mb-3 d-flex justify-content-end">
                             <button class="add_new" data-bs-dismiss="modal">Simpan</button>
@@ -141,6 +132,28 @@
                 timer: 2000
             })
         <?php } ?>
+        <?php if ($this->session->flashdata('delete')) { ?>
+            Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+            )
+        <?php } ?>
+        function HapusMenu() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                <?php foreach ($paket as $pt) { ?>
+                    window.location.href = "<?= base_url('admin/paket/hapusPaket/' . $pt->id_paket) ?>";
+                <?php } ?>
+            })
+        }
     </script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
