@@ -46,7 +46,7 @@
         <div class="card px-3 shadow-sm">
             <table class="table table-striped table-hover">
                 <div class="table_header">
-                    <p>Pengaturan Member</p>
+                    <p>Pengaturan Paket</p>
                     <div class="">
                         <input type="text" id="cari" name="cari" placeholder="Cari">
                         <button class="add_new" id="myBtn" data-bs-toggle="modal" data-bs-target="#ModalTambah">+ Tambah Data</button>
@@ -67,11 +67,11 @@
                         <tr>
                             <td><?= $no++ ?></td>
                             <td><?= $pt->jenis ?></td>
-                            <td><?= $pt->nama_paket?></td>
-                            <td><?= $pt->harga?></td>
+                            <td><?= $pt->nama_paket ?></td>
+                            <td><?= $pt->harga ?></td>
                             <td>
                                 <a class="btn btn-sm btn-edit" href="<?= base_url('admin/paket/ubah/' . $pt->id_paket) ?>" id="btnEdit">Edit</a>
-                                <a onclick="HapusMenu();" class="btn btn-sm btn-danger">Hapus</a>
+                                <a onclick="HapusMenu(<?= $pt->id_paket ?>);" class="btn btn-sm btn-danger">Hapus</a>
                             </td>
                         </tr>
                     <?php } ?>
@@ -139,7 +139,8 @@
                 'success'
             )
         <?php } ?>
-        function HapusMenu() {
+
+        function HapusMenu(id) {
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -149,9 +150,7 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
-                <?php foreach ($paket as $pt) { ?>
-                    window.location.href = "<?= base_url('admin/paket/hapusPaket/' . $pt->id_paket) ?>";
-                <?php } ?>
+                window.location.href = "<?= base_url('admin/paket/hapusPaket')?>/"+id;
             })
         }
     </script>
