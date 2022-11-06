@@ -83,7 +83,7 @@
                             <td><?= $mem->telp ?></td>
                             <td>
                                 <a class="btn btn-sm btn-edit" href="<?= base_url('admin/member/ubah/' . $mem->id_member) ?>" id="btnEdit">Edit</a>
-                                <a onclick="" class="btn btn-sm btn-danger">Hapus</a>
+                                <a onclick="HapusMenu(<?= $mem->id_member ?>);" class="btn btn-sm btn-danger">Hapus</a>
                             </td>
                         </tr>
                     <?php } ?>
@@ -159,6 +159,29 @@
                 timer: 2000
             })
         <?php } ?>
+        <?php if ($this->session->flashdata('delete')) { ?>
+            Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+            )
+        <?php } ?>
+
+        function HapusMenu(id) {
+            Swal.fire({
+                title: 'yakin lu?',
+                text: "Ga bisa ulang lho!",
+                icon: 'Warnig',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "<?= base_url('admin/member/hapusMember')?>/"+id;
+                }
+            })
+        }
     </script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

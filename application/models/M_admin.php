@@ -24,7 +24,16 @@ class M_admin extends CI_Model
         );
         return $this->db->get_where('tb_member', $data);
     }
-
+    public function updateMember($data, $where)
+    {
+        $this->db->where($where);
+        $this->db->update('tb_member', $data);
+    }
+    public function hapusMember($id)
+    {
+        $this->db->where('id_member', $id);
+        return $this->db->delete('tb_member');
+    }
 
     // Paket
     public function getDataPaket()

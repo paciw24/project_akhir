@@ -52,7 +52,8 @@
             </div>
             <div class="mb-3">
                <label for="username" class="form-label">Nama Pengguna</label>
-               <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan Username" value="<?= $ubah->username ?>" disabled>
+               <input type="text" class="form-control" id="username" name="user" placeholder="Masukkan Username" value="<?= $ubah->username ?>" disabled>
+               <input type="hidden" class="form-control" id="username" name="username" placeholder="Masukkan Username" value="<?= $ubah->username ?>">
             </div>
             <div class="mb-3">
                <label for="password" class="form-label">Kata Sandi</label>

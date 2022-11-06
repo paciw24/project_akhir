@@ -14,7 +14,8 @@ $route['admin/dasboard'] = 'admin/keHalamanDasboard';
 $route['admin/member'] = 'admin/keHalamanMember';
 $route['admin/member/tambah'] = 'admin/tambahMember';
 $route['admin/member/ubah/(:any)'] = 'admin/editMember/$1';
-$route['admin/member/edit'] = 'admin/editMember';
+$route['admin/member/edit'] = 'admin/ubahMember';
+$route['admin/member/hapusMember/(:any)'] = 'admin/hapus_member/$1';
 
     // User
 $route['admin/user'] = 'admin/keHalamanAdmin';
