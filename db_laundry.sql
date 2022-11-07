@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2022 at 03:32 AM
+-- Generation Time: Nov 07, 2022 at 05:35 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.26
 
@@ -66,7 +66,8 @@ CREATE TABLE `tb_member` (
 
 INSERT INTO `tb_member` (`id_member`, `nama`, `username`, `password`, `alamat`, `jenis_kelamin`, `telp`) VALUES
 (1, 'test', 'ok', 'ok', 'ok', 'L', '082190004060'),
-(2, 'farhan', 'farhan', 'farhan', 'bekasi', 'L', '081290004060');
+(2, 'farhan', 'farhan', 'farhan', 'bekasi', 'L', '081290004060'),
+(3, 'farhan', 'farhan', '123', 'bekasi', 'L', '081290004060');
 
 -- --------------------------------------------------------
 
@@ -86,7 +87,8 @@ CREATE TABLE `tb_paket` (
 --
 
 INSERT INTO `tb_paket` (`id_paket`, `jenis`, `nama_paket`, `harga`) VALUES
-(1, 'kiloan', 'Baju', 6500);
+(1, 'kiloan', 'Baju', 6500),
+(7, 'selimut', 'test', 1000);
 
 -- --------------------------------------------------------
 
@@ -102,6 +104,7 @@ CREATE TABLE `tb_transaksi` (
   `status` enum('baru','proses','selesai','diambil') NOT NULL,
   `dibayar` enum('dibayar','belum_dibayar') NOT NULL,
   `bukti` text NOT NULL,
+  `verifikasi_pembayaran` enum('setuju','tolak') NOT NULL,
   `id_user` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -109,11 +112,8 @@ CREATE TABLE `tb_transaksi` (
 -- Dumping data for table `tb_transaksi`
 --
 
-INSERT INTO `tb_transaksi` (`id_transaksi`, `kode_invoice`, `id_member`, `tgl`, `status`, `dibayar`, `bukti`, `id_user`) VALUES
-(1, 'P001', 1, '2022-10-29 07:48:06', 'selesai', 'belum_dibayar', 'test', 1),
-(2, 'P002', 1, '2022-10-29 08:08:10', 'baru', 'belum_dibayar', 'test', 1),
-(3, 'P003', 1, '2022-10-29 08:08:35', 'proses', 'dibayar', 'test', 1),
-(4, 'P004', 1, '2022-10-29 08:08:35', 'diambil', 'dibayar', 'test', 1);
+INSERT INTO `tb_transaksi` (`id_transaksi`, `kode_invoice`, `id_member`, `tgl`, `status`, `dibayar`, `bukti`, `verifikasi_pembayaran`, `id_user`) VALUES
+(1, 'P001', 1, '2022-10-29 07:48:06', 'diambil', '', 'test', 'setuju', 1);
 
 -- --------------------------------------------------------
 
@@ -181,13 +181,13 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_member`
 --
 ALTER TABLE `tb_member`
-  MODIFY `id_member` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_member` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tb_paket`
 --
 ALTER TABLE `tb_paket`
-  MODIFY `id_paket` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_paket` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tb_transaksi`

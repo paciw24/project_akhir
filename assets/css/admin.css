@@ -250,7 +250,7 @@ header span{
     border-radius: 6px;
     color: var(--first-color);
 }
-.btn-baru{
+.btn-diambil{
     padding: 3px 5px 6px 5px;
     background-color: #cdeac0;
     border: 1px solid #38b000;
@@ -263,14 +263,14 @@ header span{
     border: 1px solid #ff9500;
     border-radius: 15px !important;
     color: #ff9500;
-}.btn-selesai {
+}.btn-baru {
     padding: 3px 5px 6px 5px;
     background-color: #aeccef;
     border: 1px solid rgb(0, 102, 255);
     border-radius: 15px !important;
     color: rgb(0, 102, 255);
     
-}.btn-diambil {
+}.btn-selesai {
     padding: 3px 5px 6px 5px;
     background-color: #efaeae;
     border: 1px solid #f00;

@@ -65,9 +65,10 @@ class M_admin extends CI_Model
     // Transaksi
     public function getDataTransaksi()
     {
-        $this->db->select('tb_transaksi.*, tb_member.nama AS NAMA_MEMBER, tb_user.nama AS NAMA_USER');
+        $this->db->select('tb_transaksi.*, tb_member.nama AS NAMA_MEMBER, tb_user.nama AS NAMA_USER, SUM(tb_detail_transaksi.subtotal) AS TOTAL');
         $this->db->from('tb_transaksi');
         $this->db->join('tb_member', 'tb_transaksi.id_member = tb_member.id_member');
+        $this->db->join('tb_detail_transaksi', 'tb_transaksi.id_transaksi = tb_detail_transaksi.id_transaksi');
         $this->db->join('tb_user', 'tb_transaksi.id_user = tb_user.id_user');
         return $this->db->get();
     }

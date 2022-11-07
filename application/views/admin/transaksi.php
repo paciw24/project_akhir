@@ -49,7 +49,6 @@
                     <p>Pengaturan Transaksi</p>
                     <div class="">
                         <input type="text" id="cari" name="cari" placeholder="Cari">
-                        <button class="add_new">+ Tambah Data</button>
                     </div>
                 </div>
                 <thead class="bg-pink">
@@ -57,7 +56,7 @@
                         <th scope="col">No</th>
                         <th scope="col">Invoice</th>
                         <th scope="col">Nama Member</th>
-                        <th scope="col">Tanggal</th>
+                        <th scope="col">Total Harga</th>
                         <th scope="col">Status</th>
                         <th scope="col">Dibayar</th>
                         <th scope="col">Bukti</th>
@@ -71,7 +70,7 @@
                             <td class="align-middle"><?= $no++ ?></td>
                             <td class="align-middle"><?= $tr->kode_invoice ?></td>
                             <td class="align-middle"><?= $tr->NAMA_MEMBER ?></td>
-                            <td class="align-middle"><?= $tr->tgl ?></td>
+                            <td class="align-middle"><?= "Rp. " . number_format($tr->TOTAL, 0, ',', '.') ?></td>
                             <td class="align-middle">
                                 <?php
                                 if ($tr->status == "baru") {
@@ -88,9 +87,9 @@
                             <td class="align-middle">
                                 <?php
                                 if ($tr->dibayar == "belum_dibayar") {
-                                    echo "<span class='btn-diambil'>Belum Dibayar</span>";
+                                    echo "<span class='btn-baru'>Belum Dibayar</span>";
                                 } else {
-                                    echo "<span class='btn-baru'>Dibayar</span>";
+                                    echo "<span class='btn-diambil'>Dibayar</span>";
                                 }
                                 ?>
                             </td>

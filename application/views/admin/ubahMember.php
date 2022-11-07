@@ -44,6 +44,9 @@
    <!--Container Main start-->
    <div class="height-100 bg-light">
       <div class="card p-3">
+         <div class="table_header p-0 px-3 m-0">
+            <p>Ubah Member</p>
+         </div>
          <form action="<?= base_url('admin/member/edit') ?>" method="post">
             <input type="hidden" name="id" value="<?= $ubah->id_member ?>">
             <div class="mb-3">

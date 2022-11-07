@@ -161,21 +161,22 @@
         <?php } ?>
         <?php if ($this->session->flashdata('delete')) { ?>
             Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
+                'Berhasil Dihapus!',
+                'Data yang terhapus tidak bisa dikembalikan.',
                 'success'
             )
         <?php } ?>
 
         function HapusMenu(id) {
             Swal.fire({
-                title: 'yakin lu?',
-                text: "Ga bisa ulang lho!",
-                icon: 'Warnig',
+                title: 'Apakah anda yakin?',
+                text: "Data yang dihapus tidak bisa dikembalikan!",
+                icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Yakin!',
+                cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href = "<?= base_url('admin/member/hapusMember')?>/"+id;

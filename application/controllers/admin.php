@@ -43,6 +43,7 @@ class Admin extends CI_Controller
     {
         if ($this->session->username == TRUE) {
             $data['nama'] = $this->M_admin->cekLogin(['nama' => $this->session->userdata('nama')])->row_array();
+            
             $this->load->view('admin/dasboard');
         } else {
             redirect(base_url('login'));
