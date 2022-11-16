@@ -674,7 +674,7 @@ h3.title-w3-agileits.two {
 #testimonial{
 	background: #12345f;
 }
-#testimonial,.inner_section_w3ls,.about-w3layouts-agileinfo,#blog,{
+#testimonial,.inner_section_w3ls,.about-w3layouts-agileinfo,#blog{
      padding:5em 0;
 }
 .banner-bottom{
@@ -1686,7 +1686,7 @@ img {
   font-size: 20px;
   
    position:fixed;
-  z-index: z-index: 1030;
+  z-index: 1030;
 }
 
 .facebook {

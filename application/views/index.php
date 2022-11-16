@@ -5,8 +5,10 @@
     <title>Thelaundry</title>
 
     <link rel="icon" href="icon.png">
+    <link href="<?= base_url('assets/') ?>css/Price-style.css" rel="stylesheet" type="text/css" media="all" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta name="keywords" content="Immerse a Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <link href="<?= base_url('assets/') ?>css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">
@@ -55,16 +57,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <div class="w3_bandwn">
             <div class="container">
-                <div class="col-md-3 w3_l">
-                    <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:Thelaundry@Gmail.com">Thelaundry@Gmail.com</a>
-                </div>
-                <div class="col-md-6 w3_c">
-                    <i class="fa fa-phone" aria-hidden="true"></i> +92 308 4384589
-                </div>
-                <div class="col-md-3 w3_r">
-                    <a href="https://facebook.com" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                    <a href="https://www.instagram.com" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                    <a href="https://twitter.com" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                <div class="d-flex justify-content-space-between">
+                    <div class="col-md-3 w3_l d-flex">
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:Thelaundry@Gmail.com">Thelaundry@Gmail.com</a>
+                    </div>
+                    <div class="col-md-6 w3_c">
+                        <i class="fa fa-phone" aria-hidden="true"></i> +92 308 4384589
+                    </div>
+                    <div class="col-md-3 w3_r">
+                        <a href="https://facebook.com" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    </div>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -117,7 +121,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <h4 class="modal-title">Thelaundry</h4>
                             </div>
                             <div class="modal-body">
-                                <img src="<?= base_url('assets/') ?>images/modal.jpg" class="img-responsive" alt="tfg">
+                                <img src=<?= base_url('assets/') ?>"images/modal.jpg" class="img-responsive" alt="tfg">
                                 <p>Our network is still growing. Currently, we are operating in the major areas of Lahore and soon we would be spreading clean laundry to the entire city.
                                     theloundary is here to save your precious time and take the load off your shoulders, literally. It is an on-demand laundry and dry-cleaning service. Don’t worry. Your clothes will be in the hands of experienced and professional team, especially trained to handle your laundry with great care. We NEVER compromise on quality. Safe and environment friendly detergents and dry-cleaning products of imported quality are used.
 
@@ -149,71 +153,80 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="inner_sec_info_agileits_w3">
                     <!-- <div class="border1"> -->
                     <div class="w3_banup">
-                        <div class="col-md-4 w3_ret">
-                            <div class="col-md-10 w3_txt">
-                                <h4>Wash </h4>
-                                <p>Our services are not only fast, clean, efficient, they are also very reliable. </p>
-                            </div>
-                            <div class="col-md-2 w3ls_ic">
-                                <i class="fa fa-crosshairs" aria-hidden="true"></i>
+                        <div class="row">
+
+                            <div class="col-md-4 w3_ret">
+                                <div class="d-flex">
+                                    <div class="col-md-10 w3_txt">
+                                        <h4>Wash </h4>
+                                        <p>Our services are not only fast, clean, efficient, they are also very reliable. </p>
+                                    </div>
+                                    <div class="col-md-2 w3ls_ic ms-3">
+                                        <i class="fa fa-crosshairs" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="d-flex">
+                                    <div class="col-md-10 w3_txt">
+
+                                        <h4>Dry</h4>
+                                        <p>Our services are not only fast, clean, efficient, they are also very reliable. </p>
+                                    </div>
+                                    <div class="col-md-2 w3ls_ic ms-3">
+                                        <i class="fa fa-assistive-listening-systems" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="d-flex">
+                                    <div class="col-md-10 w3_txt">
+
+                                        <h4>Iron</h4>
+                                        <p>Our services are not only fast, clean, efficient, they are also very reliable. .</p>
+                                    </div>
+                                    <div class="col-md-2 w3ls_ic ms-3">
+                                        <i class="fa fa-tint" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
 
                             </div>
-
-                            <div class="clearfix"></div>
-
-                            <div class="col-md-10 w3_txt">
-
-                                <h4>Dry</h4>
-                                <p>Our services are not only fast, clean, efficient, they are also very reliable. </p>
+                            <div class="col-md-4 w3l_mid">
+                                <div class="bulb">
+                                    <img src="<?= base_url('assets/') ?>images/pic.jpg" alt="" />
+                                </div>
                             </div>
-                            <div class="col-md-2 w3ls_ic">
-                                <i class="fa fa-assistive-listening-systems" aria-hidden="true"></i>
+                            <div class="col-md-4 wthree_r">
+                                <div class="d-flex">
+                                    <div class="col-md-2 w3ls_ic me-3">
+                                        <i class="fa fa-street-view" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="col-md-10 w3_txt">
+                                        <h4>Bedding</h4>
+                                        <p class="move">Our services are not only fast, clean, efficient, they are also very reliable. </p>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="d-flex">
+                                    <div class="col-md-2 w3ls_icr me-3">
+                                        <i class="fa fa-fast-forward" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="col-md-10 w3_txt">
+                                        <h4>Speedy</h4>
+                                        <p class="move">Our services are not only fast, clean, efficient, they are also very reliable. </p>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="d-flex">
+                                    <div class="col-md-2 w3ls_icr me-3">
+                                        <i class="fa fa-bolt" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="col-md-10 w3_txt">
+                                        <h4>Stream</h4>
+                                        <p class="move">Our services are not only fast, clean, efficient, they are also very reliable. </p>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
                             </div>
-                            <div class="clearfix"></div>
-
-                            <div class="col-md-10 w3_txt">
-
-                                <h4>Iron</h4>
-                                <p>Our services are not only fast, clean, efficient, they are also very reliable. .</p>
-                            </div>
-                            <div class="col-md-2 w3ls_ic">
-                                <i class="fa fa-tint" aria-hidden="true"></i>
-                            </div>
-                            <div class="clearfix"></div>
-
-                        </div>
-                        <div class="col-md-4 w3l_mid">
-                            <div class="bulb">
-                                <img src="<?= base_url('assets/') ?>images/pic.jpg" alt="" />
-                            </div>
-                        </div>
-                        <div class="col-md-4 wthree_r">
-                            <div class="col-md-2 w3ls_ic">
-                                <i class="fa fa-street-view" aria-hidden="true"></i>
-                            </div>
-                            <div class="col-md-10 w3_txt">
-                                <h4>Bedding</h4>
-                                <p class="move">Our services are not only fast, clean, efficient, they are also very reliable. </p>
-                            </div>
-                            <div class="clearfix"></div>
-
-                            <div class="col-md-2 w3ls_icr">
-                                <i class="fa fa-fast-forward" aria-hidden="true"></i>
-                            </div>
-                            <div class="col-md-10 w3_txt">
-                                <h4>Speedy</h4>
-                                <p class="move">Our services are not only clean, efficient, they are also very fast. </p>
-                            </div>
-                            <div class="clearfix"></div>
-
-                            <div class="col-md-2 w3ls_icr">
-                                <i class="fa fa-bolt" aria-hidden="true"></i>
-                            </div>
-                            <div class="col-md-10 w3_txt">
-                                <h4>Stream</h4>
-                                <p class="move">Our services are not only fast, clean, efficient, they are also very reliable. </p>
-                            </div>
-                            <div class="clearfix"></div>
                         </div>
 
                         <div class="clearfix"></div>
@@ -230,9 +243,62 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="w3ls_frmrt">
         <div class="container">
             <h3>Order Now</h3>
+            <div class="main">
+                <div class="padding-w3l">
+                    <div class="content" >
+                        <div class="grid1">
+                            <div class="header">
+                                <h3>Men,s</h3>
+                            </div>
+                            <div class="info-agile">
+                                <p> Free Pick_up</p>
+                                <p> Total Clothes</p>
+                                <p class="text"><span> 24/7</span> Support</p>
+                                <p> Free Delivery</p>
+                            </div>
+                            <div class="submit">
+                                <a class=" sign-up popup-with-zoom-anim" data-toggle="modal" data-target="#myModal1">Order</a>
+                            </div>
+                        </div>
 
 
-            <?php include('Price/index.php') ?>
+                        <div class="grid2">
+                            <div class="header">
+                                <h3>Woman</h3>
+                            </div>
+                            <div class="info-agile">
+                                <p> Free Pick_up</p>
+                                <p> Total Clothes</p>
+                                <p class="text"><span> 24/7</span> Support</p>
+                                <p> Free Delivery</p>
+                            </div>
+                            <div class="submit">
+                                <a class=" sign-up popup-with-zoom-anim" data-toggle="modal" data-target="#myModal1">Order</a>
+                            </div>
+                        </div>
+
+                        <div class="grid3">
+                            <div class="header">
+                                <h3>Children</h3>
+                            </div>
+                            <div class="info-agile">
+                                <p> Free Pick_up</p>
+                                <p> Total Clothes</p>
+                                <p class="text"><span> 24/7</span> Support</p>
+                                <p> Free Delivery</p>
+                            </div>
+                            <div class="submit">
+                                <a class=" sign-up popup-with-zoom-anim" data-toggle="modal" data-target="#myModal1">Order</a>
+                            </div>
+                        </div>
+
+
+
+                        <div class="clear"> </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="clearfix"></div>
 
         </div>
@@ -270,33 +336,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- Services-->
     <div class="services" id="services">
         <div class="container">
-            <h3>Services</h3>
-            <div class="col-md-4 hhh">
-                <div class="wthree_rt">
-                    <i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i>
-                    <h4>WASH & F0LD</h4>
-                    <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting of the in industry.</p> -->
-                </div>
-            </div>
-            <div class="col-md-4 hhh">
-                <div class="wthree_rt">
-                    <i class="fa fa-assistive-listening-systems" aria-hidden="true"></i>
-                    <h4>DRY CLEANING</h4>
-                    <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting of the in industry.</p> -->
-                </div>
-            </div>
 
-            <div class="col-md-4 hhh">
-                <div class="wthree_rt">
-                    <i class="fa fa-bolt" aria-hidden="true"></i>
-                    <h4>IRON/PRESS</h4>
-                    <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting of the in industry.</p> -->
+            <h3>Services</h3>
+            <div class="row">
+                <div class="col-md-4 hhh">
+                    <div class="wthree_rt">
+                        <i class="fa fa-american-sign-language-interpreting text-center" aria-hidden="true"></i>
+                        <h4>WASH & F0LD</h4>
+                        <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting of the in industry.</p> -->
+                    </div>
+                </div>
+                <div class="col-md-4 hhh">
+                    <div class="wthree_rt text-center">
+                        <i class="fa fa-assistive-listening-systems" aria-hidden="true"></i>
+                        <h4>DRY CLEANING</h4>
+                        <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting of the in industry.</p> -->
+                    </div>
+                </div>
+
+                <div class="col-md-4 hhh">
+                    <div class="wthree_rt text-center">
+                        <i class="fa fa-bolt" aria-hidden="true"></i>
+                        <h4>IRON/PRESS</h4>
+                        <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting of the in industry.</p> -->
+                    </div>
                 </div>
             </div>
             <!-- <div class="clearfix"></div>
 <div class="w3l_serdwn"> -->
             <!-- <div class="col-md-4 hhh">
-<div class="agile_ser">
+                <div class="agile_ser">
 <i class="fa fa-user" aria-hidden="true"></i>
 <h4>Personal laundress</h4>
 <p>Lorem Ipsum is simply dummy text of the printing and typesetting of the in industry.</p>
@@ -332,22 +401,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="item active">
                                 <div class="row">
                                     <div class="col-md-3 col-sm-6 col-xs-6 img-gallery-w3l">
-                                        <a href="<?= base_url('assets/') ?>images/g1.jpg" class="thumbnail cm-overlay">
+                                        <a href="images/g1.jpg" class="thumbnail cm-overlay">
                                             <img src="<?= base_url('assets/') ?>images/g1.jpg" class="img-responsive" alt="Image" style="max-width:100%;">
                                         </a>
                                     </div>
                                     <div class="col-md-3 col-sm-6 col-xs-6 img-gallery-w3l">
-                                        <a href="<?= base_url('assets/') ?>images/g2.jpg" class="thumbnail cm-overlay">
+                                        <a href="images/g2.jpg" class="thumbnail cm-overlay">
                                             <img src="<?= base_url('assets/') ?>images/g2.jpg" class="img-responsive" alt="Image" style="max-width:100%;">
                                         </a>
                                     </div>
                                     <div class="col-md-3 col-sm-6 col-xs-6 img-gallery-w3l">
-                                        <a href="<?= base_url('assets/') ?>images/g3.jpg" class="thumbnail cm-overlay">
+                                        <a href="images/g3.jpg" class="thumbnail cm-overlay">
                                             <img src="<?= base_url('assets/') ?>images/g3.jpg" class="img-responsive" alt="Image" style="max-width:100%;">
                                         </a>
                                     </div>
                                     <div class="col-md-3 col-sm-6 col-xs-6 img-gallery-w3l">
-                                        <a href="<?= base_url('assets/') ?>images/g4.jpg" class="thumbnail cm-overlay">
+                                        <a href="images/g4.jpg" class="thumbnail cm-overlay">
                                             <img src="<?= base_url('assets/') ?>images/g4.jpg" class="img-responsive" alt="Image" style="max-width:100%;">
                                         </a>
                                     </div>
@@ -359,22 +428,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="item">
                                 <div class="row">
                                     <div class="col-md-3 col-sm-6 col-xs-6 img-gallery-w3l">
-                                        <a href="<?= base_url('assets/') ?>images/g5.jpg" class="thumbnail cm-overlay">
+                                        <a href="images/g5.jpg" class="thumbnail cm-overlay">
                                             <img src="<?= base_url('assets/') ?>images/g5.jpg" class="img-responsive" alt="Image" style="max-width:100%;">
                                         </a>
                                     </div>
                                     <div class="col-md-3 col-sm-6 col-xs-6 img-gallery-w3l">
-                                        <a href="<?= base_url('assets/') ?>images/g6.jpg" class="thumbnail cm-overlay">
+                                        <a href="images/g6.jpg" class="thumbnail cm-overlay">
                                             <img src="<?= base_url('assets/') ?>images/g6.jpg" class="img-responsive" alt="Image" style="max-width:100%;">
                                         </a>
                                     </div>
                                     <div class="col-md-3 col-sm-6 col-xs-6 img-gallery-w3l">
-                                        <a href="<?= base_url('assets/') ?>images/g7.jpg" class="thumbnail cm-overlay">
+                                        <a href="images/g7.jpg" class="thumbnail cm-overlay">
                                             <img src="<?= base_url('assets/') ?>images/g7.jpg" class="img-responsive" alt="Image" style="max-width:100%;">
                                         </a>
                                     </div>
                                     <div class="col-md-3 col-sm-6 col-xs-6 img-gallery-w3l">
-                                        <a href="<?= base_url('assets/') ?>images/g1.jpg" class="thumbnail cm-overlay">
+                                        <a href="images/g1.jpg" class="thumbnail cm-overlay">
                                             <img src="<?= base_url('assets/') ?>images/g1.jpg" class="img-responsive" alt="Image" style="max-width:100%;">
                                         </a>
                                     </div>
@@ -386,22 +455,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="item">
                                 <div class="row">
                                     <div class="col-md-3 col-sm-6 col-xs-6 img-gallery-w3l">
-                                        <a href="<?= base_url('assets/') ?>images/g2.jpg" class="thumbnail cm-overlay">
+                                        <a href="images/g2.jpg" class="thumbnail cm-overlay">
                                             <img src="<?= base_url('assets/') ?>images/g2.jpg" class="img-responsive" alt="Image" style="max-width:100%;">
                                         </a>
                                     </div>
                                     <div class="col-md-3 col-sm-6 col-xs-6 img-gallery-w3l">
-                                        <a href="<?= base_url('assets/') ?>images/g3.jpg" class="thumbnail cm-overlay">
+                                        <a href="images/g3.jpg" class="thumbnail cm-overlay">
                                             <img src="<?= base_url('assets/') ?>images/g3.jpg" class="img-responsive" alt="Image" style="max-width:100%;">
                                         </a>
                                     </div>
                                     <div class="col-md-3 col-sm-6 col-xs-6 img-gallery-w3l">
-                                        <a href="<?= base_url('assets/') ?>images/g4.jpg" class="thumbnail cm-overlay">
+                                        <a href="images/g4.jpg" class="thumbnail cm-overlay">
                                             <img src="<?= base_url('assets/') ?>images/g4.jpg" class="img-responsive" alt="Image" style="max-width:100%;">
                                         </a>
                                     </div>
                                     <div class="col-md-3 col-sm-6 col-xs-6 img-gallery-w3l">
-                                        <a href="<?= base_url('assets/') ?>images/g5.jpg" class="thumbnail cm-overlay">
+                                        <a href="images/g5.jpg" class="thumbnail cm-overlay">
                                             <img src="<?= base_url('assets/') ?>images/g5.jpg" class="img-responsive" alt="Image" style="max-width:100%;">
                                         </a>
                                     </div>
@@ -604,6 +673,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             });
 
+        });
+    </script>
+
+    <!-- //flexSlider -->
+    <!-- /gallery -->
+    <script src="<?= base_url('assets/') ?>js/jquery.tools.min.js"></script>
+    <script src="<?= base_url('assets/') ?>js/jquery.mobile.custom.min.js"></script>
+    <script src="<?= base_url('assets/') ?>js/jquery.cm-overlay.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.cm-overlay').cmOverlay();
+        });
+    </script>
+    <!-- //gallery -->
+
+    <!-- Move-to-top-->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+            };
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
         });
     </script>
 
