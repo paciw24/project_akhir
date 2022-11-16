@@ -129,6 +129,9 @@ class Admin extends CI_Controller
         } else {
             redirect(base_url('login'));
         }
+        $this->form_validation->set_rules('namapaket', 'Nama Paket', 'required', [
+            'required' => 'Nama paket belum diisi'
+        ]);
     }
     public function tambahPaket()
     {

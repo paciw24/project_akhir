@@ -38,6 +38,6 @@ $route['admin/transaksi/bayar'] = 'admin/updateBayar';
 
 
 //eror
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'member';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
