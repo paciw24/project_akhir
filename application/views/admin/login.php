@@ -54,7 +54,6 @@
     <script>
         const inputs = document.querySelectorAll(".input");
 
-
         function addcl() {
             let parent = this.parentNode.parentNode;
             parent.classList.add("focus");
@@ -66,12 +65,15 @@
                 parent.classList.remove("focus");
             }
         }
-
-
         inputs.forEach(input => {
             input.addEventListener("focus", addcl);
             input.addEventListener("blur", remcl);
         });
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                $(this).remove();
+            });
+        }, 4000);
     </script>
     <!-- JAVASCRIPT END -->
 </body>

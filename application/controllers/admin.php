@@ -9,20 +9,20 @@ class Admin extends CI_Controller
     }
     public function prosesLogin()
     {
-        $username =$this->input->post('username',true);
+        $username = $this->input->post('username', true);
         $password = $this->input->post('password', true);
 
         $user = $this->M_admin->cekLogin(['username' => $username])->row_array();
 
-        if ($user){
-            if($password == $user['password']){
+        if ($user) {
+            if ($password == $user['password']) {
                 $data = [
                     'username' => $user['username'],
                     'nama' => $user['nama']
                 ];
                 $this->session->set_userdata($data);
                 redirect('admin/dasboard');
-            }else{
+            } else {
                 $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Password Salah !</div>');
                 redirect('login');
             }
@@ -43,7 +43,6 @@ class Admin extends CI_Controller
     {
         if ($this->session->username == TRUE) {
             $data['nama'] = $this->M_admin->cekLogin(['nama' => $this->session->userdata('nama')])->row_array();
-            
             $this->load->view('admin/dasboard');
         } else {
             redirect(base_url('login'));
@@ -95,7 +94,7 @@ class Admin extends CI_Controller
             'alamat' => $this->input->post('alamat', true),
             'jenis_kelamin' => $this->input->post('jenis_kelamin', true),
             'telp' => $this->input->post('telp', true)
-         );
+        );
         $this->M_admin->updateMember($data, ['id_member' => $this->input->post('id')]);
         $this->session->set_flashdata('success', 'berhasil');
         redirect(base_url('admin/member'));
@@ -160,7 +159,7 @@ class Admin extends CI_Controller
             'jenis' => $this->input->post('jenis', true),
             'nama_paket' => $this->input->post('nmpaket', true),
             'harga' => $this->input->post('Harga', true),
-         );
+        );
         $this->M_admin->updatePaket($data, ['id_paket' => $this->input->post('id')]);
         $this->session->set_flashdata('success', 'berhasil');
         redirect(base_url('admin/paket'));
@@ -200,8 +199,8 @@ class Admin extends CI_Controller
     {
         $data = array(
             'status' => $this->input->post('status', true)
-         );
-        
+        );
+
         $this->M_admin->updateStat($data, ['id_transaksi' => $this->input->post('id')]);
         $this->session->set_flashdata('success', 'berhasil');
         redirect(base_url('admin/transaksi'));
