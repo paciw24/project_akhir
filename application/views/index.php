@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Thelaundry</title>
+    <title>Berkah Laundry</title>
 
     <link rel="icon" href="icon.png">
     <link href="<?= base_url('assets/') ?>css/Price-style.css" rel="stylesheet" type="text/css" media="all" />
@@ -59,10 +59,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="container">
                 <div class="d-flex justify-content-space-between">
                     <div class="col-md-3 w3_l d-flex">
-                        <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:Thelaundry@Gmail.com">Thelaundry@Gmail.com</a>
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:Thelaundry@Gmail.com">Berkahlaundry@Gmail.com</a>
                     </div>
                     <div class="col-md-6 w3_c">
-                        <i class="fa fa-phone" aria-hidden="true"></i> +92 308 4384589
+                        <i class="fa fa-phone" aria-hidden="true"></i> +62 812 9224 4317
                     </div>
                     <div class="col-md-3 w3_r">
                         <a href="https://facebook.com" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -83,7 +83,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <h1><a class="navbar-brand" href="#">The Laundry</a></h1>
+                    <h1><a class="navbar-brand" href="#">Berkah Laundry</a></h1>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -104,30 +104,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div><!-- /.container-fluid -->
         </nav>
         <div class="w3l_bandwn">
-            <h2>Welcome to Thelaundry</h2>
+            <h2>Selamat Datang Di Berkah Laundry</h2>
             <div class="about-p text-center">
                 <span class="sub-title"></span>
                 <span class="fa fa-star" aria-hidden="true"></span>
                 <span class="sub-title"></span>
             </div>
-            <h3>Washing Clothes</h3>
+            <h3>Mencuci Pakaian</h3>
             <div class="agile_dwng">
-                <a href="#" data-toggle="modal" data-target="#myModal">Read More </a>
+                <a href="#" data-toggle="modal" data-target="#myModal">Baca Selengkapnya </a>
                 <div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Thelaundry</h4>
+                                <h4 class="modal-title">Berkah Laundry</h4>
                             </div>
                             <div class="modal-body">
                                 <img src=<?= base_url('assets/') ?>"images/modal.jpg" class="img-responsive" alt="tfg">
-                                <p>Our network is still growing. Currently, we are operating in the major areas of Lahore and soon we would be spreading clean laundry to the entire city.
-                                    theloundary is here to save your precious time and take the load off your shoulders, literally. It is an on-demand laundry and dry-cleaning service. Don’t worry. Your clothes will be in the hands of experienced and professional team, especially trained to handle your laundry with great care. We NEVER compromise on quality. Safe and environment friendly detergents and dry-cleaning products of imported quality are used.
+                                <p>Jaringan kami masih terus berkembang. Saat ini, kami beroperasi di area utama Bekasi dan segera kami akan menyebar cucian bersih ke seluruh kota.
+                                    Berkah laundary ada di sini untuk menghemat waktu berharga Anda dan menghilangkan beban Anda, secara harfiah. Ini adalah layanan laundry dan dry-cleaning berdasarkan permintaan. Jangan khawatir. Pakaian Anda akan ditangani oleh tim yang berpengalaman dan profesional, yang terlatih khusus untuk menangani cucian Anda dengan sangat hati-hati. Kami TIDAK PERNAH berkompromi pada kualitas. Detergen yang aman dan ramah lingkungan serta produk dry-cleaning kualitas impor digunakan.
 
-                                    We Pickup and Deliver Garments at your Doorstep.
+                                    Kami Pickup dan Kirim Pakaian di Depan Pintu Anda.
 
-                                    Our services are not only fast, clean, efficient, they are also very reliable. Our customer care executives are especially trained to provide guidance and ensure on-time delivery.</p>
+                                    Layanan kami tidak hanya cepat, bersih, efisien, tetapi juga sangat andal. Eksekutif layanan pelanggan kami dilatih secara khusus untuk memberikan panduan dan memastikan pengiriman tepat waktu.</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -144,11 +144,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="about" id="about">
         <div class="features" id="features">
             <div class="container">
-                <h3>About Us</h3>
+                <h3>Tentang Kami</h3>
                 <div class="tittle_head_w3layouts">
-                    <h4>Powerful Features</h4>
+                    <h4>Fitur Kuat</h4>
 
-                    <P>Our services are not only fast, clean, efficient, they are also very reliable. Our customer care executives are especially trained to provide guidance and ensure on-time delivery.</p>
+                    <P>Layanan kami tidak hanya cepat, bersih, efisien, tetapi juga sangat andal. Eksekutif layanan pelanggan kami dilatih secara khusus untuk memberikan panduan dan memastikan pengiriman tepat waktu.</p>
                 </div>
                 <div class="inner_sec_info_agileits_w3">
                     <!-- <div class="border1"> -->
@@ -158,8 +158,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="col-md-4 w3_ret">
                                 <div class="d-flex">
                                     <div class="col-md-10 w3_txt">
-                                        <h4>Wash </h4>
-                                        <p>Our services are not only fast, clean, efficient, they are also very reliable. </p>
+                                        <h4>Mencuci </h4>
+                                        <p>Layanan kami tidak hanya cepat, bersih, efisien, tetapi juga sangat andal. </p>
                                     </div>
                                     <div class="col-md-2 w3ls_ic ms-3">
                                         <i class="fa fa-crosshairs" aria-hidden="true"></i>
@@ -169,8 +169,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <div class="d-flex">
                                     <div class="col-md-10 w3_txt">
 
-                                        <h4>Dry</h4>
-                                        <p>Our services are not only fast, clean, efficient, they are also very reliable. </p>
+                                        <h4>Kering</h4>
+                                        <p>Layanan kami tidak hanya cepat, bersih, efisien, tetapi juga sangat andal. </p>
                                     </div>
                                     <div class="col-md-2 w3ls_ic ms-3">
                                         <i class="fa fa-assistive-listening-systems" aria-hidden="true"></i>
@@ -180,8 +180,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <div class="d-flex">
                                     <div class="col-md-10 w3_txt">
 
-                                        <h4>Iron</h4>
-                                        <p>Our services are not only fast, clean, efficient, they are also very reliable. .</p>
+                                        <h4>Setrika</h4>
+                                        <p>Layanan kami tidak hanya cepat, bersih, efisien, tetapi juga sangat andal. .</p>
                                     </div>
                                     <div class="col-md-2 w3ls_ic ms-3">
                                         <i class="fa fa-tint" aria-hidden="true"></i>
@@ -201,8 +201,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <i class="fa fa-street-view" aria-hidden="true"></i>
                                     </div>
                                     <div class="col-md-10 w3_txt">
-                                        <h4>Bedding</h4>
-                                        <p class="move">Our services are not only fast, clean, efficient, they are also very reliable. </p>
+                                        <h4>Seprai</h4>
+                                        <p class="move">Layanan kami tidak hanya cepat, bersih, efisien, tetapi juga sangat andal. </p>
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>
@@ -211,8 +211,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <i class="fa fa-fast-forward" aria-hidden="true"></i>
                                     </div>
                                     <div class="col-md-10 w3_txt">
-                                        <h4>Speedy</h4>
-                                        <p class="move">Our services are not only fast, clean, efficient, they are also very reliable. </p>
+                                        <h4>Cepat</h4>
+                                        <p class="move">Layanan kami tidak hanya cepat, bersih, efisien, tetapi juga sangat andal. </p>
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>
@@ -221,8 +221,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <i class="fa fa-bolt" aria-hidden="true"></i>
                                     </div>
                                     <div class="col-md-10 w3_txt">
-                                        <h4>Stream</h4>
-                                        <p class="move">Our services are not only fast, clean, efficient, they are also very reliable. </p>
+                                        <h4>Uap</h4>
+                                        <p class="move">Layanan kami tidak hanya cepat, bersih, efisien, tetapi juga sangat andal. </p>
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>
@@ -242,53 +242,53 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- Order Form-->
     <div class="w3ls_frmrt">
         <div class="container">
-            <h3>Order Now</h3>
+            <h3>Pesan Sekarang</h3>
             <div class="main">
                 <div class="padding-w3l">
                     <div class="content" >
                         <div class="grid1">
                             <div class="header">
-                                <h3>Men,s</h3>
+                                <h3>Pria</h3>
                             </div>
                             <div class="info-agile">
-                                <p> Free Pick_up</p>
-                                <p> Total Clothes</p>
-                                <p class="text"><span> 24/7</span> Support</p>
-                                <p> Free Delivery</p>
+                                <p> Penjemputan Gratis</p>
+                                <p> Total Pakaian</p>
+                                <p class="text"><span> 24/7</span> Mendukung</p>
+                                <p> Pengiriman Gratis</p>
                             </div>
                             <div class="submit">
-                                <a class=" sign-up popup-with-zoom-anim" data-toggle="modal" data-target="#myModal1">Order</a>
+                                <a class=" sign-up popup-with-zoom-anim" data-toggle="modal" data-target="#myModal1">Pesan</a>
                             </div>
                         </div>
 
 
                         <div class="grid2">
                             <div class="header">
-                                <h3>Woman</h3>
+                                <h3>Wanita</h3>
                             </div>
                             <div class="info-agile">
-                                <p> Free Pick_up</p>
-                                <p> Total Clothes</p>
-                                <p class="text"><span> 24/7</span> Support</p>
-                                <p> Free Delivery</p>
+                                <p> Penjemputan Gratis</p>
+                                <p> Total Pakaian</p>
+                                <p class="text"><span> 24/7</span> Mendukung</p>
+                                <p> Pengiriman Gratis</p>
                             </div>
                             <div class="submit">
-                                <a class=" sign-up popup-with-zoom-anim" data-toggle="modal" data-target="#myModal1">Order</a>
+                                <a class=" sign-up popup-with-zoom-anim" data-toggle="modal" data-target="#myModal1">Pesan</a>
                             </div>
                         </div>
 
                         <div class="grid3">
                             <div class="header">
-                                <h3>Children</h3>
+                                <h3>Anak-anak</h3>
                             </div>
                             <div class="info-agile">
-                                <p> Free Pick_up</p>
-                                <p> Total Clothes</p>
-                                <p class="text"><span> 24/7</span> Support</p>
-                                <p> Free Delivery</p>
+                                <p> Penjemputan Gratis</p>
+                                <p> Total Pakaian</p>
+                                <p class="text"><span> 24/7</span> Mendukung</p>
+                                <p> Pengiriman Gratis</p>
                             </div>
                             <div class="submit">
-                                <a class=" sign-up popup-with-zoom-anim" data-toggle="modal" data-target="#myModal1">Order</a>
+                                <a class=" sign-up popup-with-zoom-anim" data-toggle="modal" data-target="#myModal1">Pesan</a>
                             </div>
                         </div>
 
@@ -342,14 +342,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-4 hhh">
                     <div class="wthree_rt">
                         <i class="fa fa-american-sign-language-interpreting text-center" aria-hidden="true"></i>
-                        <h4>WASH & F0LD</h4>
+                        <h4>CUCI & LIPAT</h4>
                         <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting of the in industry.</p> -->
                     </div>
                 </div>
                 <div class="col-md-4 hhh">
                     <div class="wthree_rt text-center">
                         <i class="fa fa-assistive-listening-systems" aria-hidden="true"></i>
-                        <h4>DRY CLEANING</h4>
+                        <h4>Cuci Kering</h4>
                         <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting of the in industry.</p> -->
                     </div>
                 </div>
@@ -357,7 +357,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-4 hhh">
                     <div class="wthree_rt text-center">
                         <i class="fa fa-bolt" aria-hidden="true"></i>
-                        <h4>IRON/PRESS</h4>
+                        <h4>Setrika/tekan</h4>
                         <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting of the in industry.</p> -->
                     </div>
                 </div>
@@ -500,7 +500,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="testimonials" id="testimonials">
         <div class="container">
             <div class="tittle-agileinfo">
-                <h3>We Have Affordable Price </h3>
+                <h3>Kami Memiliki Harga Yang Terjangkau </h3>
             </div>
             <div class="sreen-gallery-cursual">
 
@@ -526,13 +526,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             <thead>
                                                 <tr align="text-center">
                                                     <th>
-                                                        <center><?php echo $row->Services_Name ?> Apparel</center>
+                                                        <center><?php echo $row->Services_Name ?> Pakaian</center>
                                                     </th>
                                                     <th>
-                                                        <center>Dry Clean</center>
+                                                        <center>Cuci Kering</center>
                                                     </th>
                                                     <th>
-                                                        <center>Laundry</center>
+                                                        <center>Cucian</center>
                                                     </th>
                                                 </tr>
                                             </thead>
@@ -627,18 +627,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="container">
             <div class="list">
                 <div class="col-md-3 wthree_fl">
-                    <a href="#">The Laundry</a>
+                    <a href="#">Berkah Laundry</a>
                 </div>
 
                 <div class="col-md-6 wthree_fc">
-                    <h6> Court Street 2 </h6>
-                    <h6> Lower Mall </h6>
-                    <h6> Lahore </h6>
+                    <h6> Jalan Kaliabang  </h6>
+                    <h6> BSI </h6>
+                    <h6> Bekasi  </h6>
                 </div>
 
                 <div class="col-md-3 wthree_fr">
-                    <h6>+92 308 4384589</h6>
-                    <h6><a href="mailto:service@decorate.com">Thelaundry@Gmail.com</a></h6>
+                    <h6>+62 812 9224 4317</h6>
+                    <h6><a href="mailto:service@decorate.com">Berkahlaundry@Gmail.com</a></h6>
                 </div>
             </div>
         </div>
