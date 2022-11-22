@@ -100,9 +100,9 @@
                     <div class="mb-3">
                         <?php
                         if ($transaksi->dibayar == "belum_dibayar") {
-                            echo "<span class='btn-diambil'>Belum Dibayar</span>";
+                            echo "<span class='btn-baru'>Belum Dibayar</span>";
                         } else {
-                            echo "<span class='btn-baru'>Dibayar</span>";
+                            echo "<span class='btn-diambil'>Dibayar</span>";
                         }
                         ?>
                     </div>

@@ -16,6 +16,14 @@
 ::after {
     box-sizing: border-box
 }
+.text-pink1{
+    color: var(--first-color)!important;
+}
+.active>.page-link,
+.page-link.active{
+    background-color: var(--first-color)!important;
+    border-color: var(--first-color)!important;
+}
 
 body {
     position: relative;
@@ -200,6 +208,7 @@ header span{
     font-size: 24px;
     text-transform: uppercase;
     font-weight: bold;
+    margin-bottom: 0px;
 }
 .table_header a{
     outline: none;

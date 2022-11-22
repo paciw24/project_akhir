@@ -53,7 +53,29 @@ class Admin extends CI_Controller
     public function keHalamanMember()
     {
         if ($this->session->username == TRUE) {
-            $data['member'] = $this->M_admin->getDataMember()->result();
+            // load library
+            $this->load->library('pagination');
+
+            // ambil data keyword
+            if($this->input->post('submit')){
+                $data['keyword'] = $this->input->post('keyword');
+                $this->session->set_userdata('keyword', $data['keyword']);
+            }else{
+                $data['keyword'] =$this->session->userdata('keyword');
+            }
+
+            // config
+            $this->db->like('nama', $data['keyword']);
+            $this->db->from('tb_member');
+            $config['total_rows'] = $this->db->count_all_results();
+            $data['total_rows'] = $config['total_rows'];
+            $config['per_page'] = 5;
+
+            // initialize
+            $this->pagination->initialize($config);
+
+            $data['start'] = $this->uri->segment(3);
+            $data['member'] = $this->M_admin->getDataMember($config['per_page'], $data['start'], $data['keyword']);
             $this->load->view('admin/member', $data);
         } else {
             redirect(base_url('login'));

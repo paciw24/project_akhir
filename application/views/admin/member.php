@@ -47,8 +47,13 @@
             <table class="table table-striped table-hover">
                 <div class="table_header">
                     <p>Pengaturan Member</p>
+                    <form action="<?= base_url('admin/member') ?>" method="post">
+                        <div class="input-group" style="width: 400px!important;">
+                            <input type="text" class="form-control" placeholder="Search" name="keyword" autocomplete="off" autofocus>
+                            <input class="btn btn-edit" type="submit" name="submit">
+                        </div>
+                    </form>
                     <div class="">
-                        <input type="text" id="cari" name="cari" placeholder="Cari">
                         <button class="add_new" id="myBtn" data-bs-toggle="modal" data-bs-target="#ModalTambah">+ Tambah Data</button>
                     </div>
                 </div>
@@ -64,31 +69,34 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $no = 1; ?>
                     <?php foreach ($member as $mem) { ?>
                         <tr>
-                            <td><?= $no++ ?></td>
-                            <td><?= $mem->nama ?></td>
-                            <td><?= $mem->username ?></td>
-                            <td><?= $mem->alamat ?></td>
+                            <td><?= ++$start ?></td>
+                            <td><?= $mem['nama'] ?></td>
+                            <td><?= $mem['username'] ?></td>
+                            <td><?= $mem['alamat'] ?></td>
                             <td>
                                 <?php
-                                if ($mem->jenis_kelamin == "P") {
+                                if ($mem['jenis_kelamin'] == "P") {
                                     echo "Perempuan";
                                 } else {
                                     echo "Laki - Laki";
                                 }
                                 ?>
                             </td>
-                            <td><?= $mem->telp ?></td>
+                            <td><?= $mem['telp'] ?></td>
                             <td>
-                                <a class="btn btn-sm btn-edit" href="<?= base_url('admin/member/ubah/' . $mem->id_member) ?>" id="btnEdit">Edit</a>
-                                <a onclick="HapusMenu(<?= $mem->id_member ?>);" class="btn btn-sm btn-danger">Hapus</a>
+                                <a class="btn btn-sm btn-edit" href="<?= base_url('admin/member/ubah/' . $mem['id_member']) ?>" id="btnEdit">Edit</a>
+                                <a onclick="HapusMenu(<?= $mem['id_member'] ?>);" class="btn btn-sm btn-danger">Hapus</a>
                             </td>
                         </tr>
                     <?php } ?>
                 </tbody>
             </table>
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="text-pink1 text-capitalize mb-3">Menampilkan 1 dari <?= $total_rows ?> data</span>
+                <?= $this->pagination->create_links(); ?>
+            </div>
         </div>
     </div>
     <!--Container Main end-->
@@ -179,7 +187,7 @@
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "<?= base_url('admin/member/hapusMember')?>/"+id;
+                    window.location.href = "<?= base_url('admin/member/hapusMember') ?>/" + id;
                 }
             })
         }

@@ -9,9 +9,15 @@ class M_admin extends CI_Model
     // Admin
 
     // Member
-    public function getDataMember()
+    public function getDataMember($limit, $start, $keyword = null)
     {
-        return $this->db->get('tb_member');
+        if($keyword){
+            $this->db->like('nama', $keyword);
+        }
+        return $this->db->get('tb_member', $limit, $start)->result_array();
+    }
+    public function countAllMember(){
+        return $this->db->get('tb_member')->num_rows();
     }
     public function tambahMem($data = null)
     {
