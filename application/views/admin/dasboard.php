@@ -104,14 +104,7 @@
                         <div>
                             <div class="number">
                                 <?php
-                                    $tgl = date_create($dayTotal->TANGGAL);
-                                    $tanggal = date_format($tgl, 'd-m-Y');
-                                    if($tanggal == date('d-m-Y')){
-                                        echo "Rp. " . number_format($dayTotal->TOTAL, 0, ',', '.');
-                                    }
-                                else{
-                                    echo "Rp. 0";
-                                } 
+                                echo "Rp. " . number_format($dayTotal->TOTAL, 0, ',', '.');
                                 ?>
                             </div>
                             <div class="cardName text-secondary">Penghasilan Hari ini</div>

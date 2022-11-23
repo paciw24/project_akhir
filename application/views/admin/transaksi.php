@@ -56,7 +56,6 @@
                         <th scope="col">No</th>
                         <th scope="col">Invoice</th>
                         <th scope="col">Nama Member</th>
-                        <th scope="col">Total Harga</th>
                         <th scope="col">Status</th>
                         <th scope="col">Dibayar</th>
                         <th scope="col">Bukti</th>
@@ -70,7 +69,6 @@
                             <td class="align-middle"><?= $no++ ?></td>
                             <td class="align-middle"><?= $tr->kode_invoice ?></td>
                             <td class="align-middle"><?= $tr->NAMA_MEMBER ?></td>
-                            <td class="align-middle"><?= "Rp. " . number_format($tr->TOTAL, 0, ',', '.') ?></td>
                             <td class="align-middle">
                                 <?php
                                 if ($tr->status == "baru") {
@@ -99,7 +97,19 @@
                                 </a>
                             </td>
                             <td class="align-middle">
-                                <a class="btn btn-sm btn-edit" href="<?= base_url('admin/transaksi/detail/' . $tr->id_transaksi) ?>" id="btnEdit">Lihat Detail</a>
+                                <?php 
+                                    if($tr->verifikasi_pembayaran == "setuju"){
+                                        echo "<a class='btn btn-sm btn-edit' href='transaksi/detail/$tr->id_transaksi' id='btnEdit'>Lihat Detail</a>";
+                                    }else if($tr->verifikasi_pembayaran == "tolak"){
+                                        echo "<span class='btn-selesai'>Verifikasi ditolak</span>";
+                                    }else{
+                                        echo "
+                                            <form met>
+                                                
+                                            </form>
+                                        ";
+                                    }
+                                ?>
                             </td>
                         </tr>
                     <?php } ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2022 at 05:35 AM
+-- Generation Time: Nov 23, 2022 at 11:12 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.26
 
@@ -31,18 +31,18 @@ CREATE TABLE `tb_detail_transaksi` (
   `id_transaksi` int(5) NOT NULL,
   `id_paket` int(5) NOT NULL,
   `qty` double NOT NULL,
-  `subtotal` int(11) NOT NULL,
-  `keterangan` text NOT NULL
+  `subtotal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_detail_transaksi`
 --
 
-INSERT INTO `tb_detail_transaksi` (`id_transaksi`, `id_paket`, `qty`, `subtotal`, `keterangan`) VALUES
-(1, 1, 3, 0, 'ok'),
-(1, 1, 3, 19500, 'ok'),
-(1, 1, 2, 1999, 'ok');
+INSERT INTO `tb_detail_transaksi` (`id_transaksi`, `id_paket`, `qty`, `subtotal`) VALUES
+(1, 1, 3, 0),
+(1, 1, 3, 19500),
+(1, 1, 2, 1999),
+(5, 8, 3, 19500);
 
 -- --------------------------------------------------------
 
@@ -67,7 +67,10 @@ CREATE TABLE `tb_member` (
 INSERT INTO `tb_member` (`id_member`, `nama`, `username`, `password`, `alamat`, `jenis_kelamin`, `telp`) VALUES
 (1, 'test', 'ok', 'ok', 'ok', 'L', '082190004060'),
 (2, 'farhan', 'farhan', 'farhan', 'bekasi', 'L', '081290004060'),
-(3, 'farhan', 'farhan', '123', 'bekasi', 'L', '081290004060');
+(6, 'farhan', 'okoer', 'akodawko', 'fadsas', 'L', '3128319'),
+(8, 'tio', 'faraha', 'adaiwh', 'aehra', 'L', 'haukwha'),
+(9, 'dnaukdka', 'ahudah', 'ahwukdhak', 'hdkuahwk', 'L', '128739719'),
+(10, 'test', 'teadsjad', 'awdiaw', 'dauw', 'L', '12391');
 
 -- --------------------------------------------------------
 
@@ -88,7 +91,8 @@ CREATE TABLE `tb_paket` (
 
 INSERT INTO `tb_paket` (`id_paket`, `jenis`, `nama_paket`, `harga`) VALUES
 (1, 'kiloan', 'Baju', 6500),
-(7, 'selimut', 'test', 1000);
+(7, 'selimut', 'test', 1000),
+(8, 'bed_cover', 'test', 1000);
 
 -- --------------------------------------------------------
 
@@ -100,11 +104,12 @@ CREATE TABLE `tb_transaksi` (
   `id_transaksi` int(5) NOT NULL,
   `kode_invoice` varchar(60) NOT NULL,
   `id_member` int(5) NOT NULL,
-  `tgl` datetime NOT NULL,
+  `tgl` date NOT NULL,
   `status` enum('baru','proses','selesai','diambil') NOT NULL,
   `dibayar` enum('dibayar','belum_dibayar') NOT NULL,
   `bukti` text NOT NULL,
   `verifikasi_pembayaran` enum('setuju','tolak') NOT NULL,
+  `komentar` text NOT NULL,
   `id_user` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -112,8 +117,9 @@ CREATE TABLE `tb_transaksi` (
 -- Dumping data for table `tb_transaksi`
 --
 
-INSERT INTO `tb_transaksi` (`id_transaksi`, `kode_invoice`, `id_member`, `tgl`, `status`, `dibayar`, `bukti`, `verifikasi_pembayaran`, `id_user`) VALUES
-(1, 'P001', 1, '2022-10-29 07:48:06', 'diambil', '', 'test', 'setuju', 1);
+INSERT INTO `tb_transaksi` (`id_transaksi`, `kode_invoice`, `id_member`, `tgl`, `status`, `dibayar`, `bukti`, `verifikasi_pembayaran`, `komentar`, `id_user`) VALUES
+(1, 'P001', 1, '2022-10-30', 'diambil', 'dibayar', 'test', 'setuju', 'oke', 1),
+(5, 'P002', 6, '2022-11-23', 'baru', 'belum_dibayar', 'testing', 'tolak', 'oke', 1);
 
 -- --------------------------------------------------------
 
@@ -181,19 +187,19 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_member`
 --
 ALTER TABLE `tb_member`
-  MODIFY `id_member` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_member` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tb_paket`
 --
 ALTER TABLE `tb_paket`
-  MODIFY `id_paket` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_paket` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tb_transaksi`
 --
 ALTER TABLE `tb_transaksi`
-  MODIFY `id_transaksi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_transaksi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tb_user`
