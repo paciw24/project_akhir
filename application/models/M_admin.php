@@ -19,6 +19,25 @@ class M_admin extends CI_Model
     public function countAllMember(){
         return $this->db->get('tb_member')->num_rows();
     }
+    public function countAllOrders(){
+        return $this->db->get('tb_transaksi')->num_rows();
+    }
+    public function countAllPaket(){
+        return $this->db->get('tb_paket')->num_rows();
+    }
+    public function sumTotal()
+    {
+        $this->db->select('SUM(subtotal) AS TOTAL');
+        $this->db->from('tb_detail_transaksi');
+        return $this->db->get();
+    }
+    public function sumDayTotal()
+    {
+        $this->db->select('tb_transaksi.tgl AS TANGGAL, SUM(tb_detail_transaksi.subtotal) AS TOTAL');
+        $this->db->from('tb_transaksi');
+        $this->db->join('tb_detail_transaksi', 'tb_transaksi.id_transaksi = tb_detail_transaksi.id_transaksi');
+        return $this->db->get();
+    }
     public function tambahMem($data = null)
     {
         $this->db->insert('tb_member', $data);

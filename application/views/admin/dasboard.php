@@ -48,7 +48,7 @@
                 <div class="card card-hover shadow-sm br-4">
                     <div class="card-body d-flex justify-content-between">
                         <div>
-                            <div class="number">4</div>
+                            <div class="number"><?= $paket ?></div>
                             <div class="cardName text-secondary">Paket</div>
                         </div>
                         <div class="iconBox">
@@ -62,10 +62,10 @@
                     <div class="card-body d-flex justify-content-between">
                         <div>
                             <div class="number">10</div>
-                            <div class="cardName text-secondary">Outlet</div>
+                            <div class="cardName text-secondary">Admin</div>
                         </div>
                         <div class="iconBox ">
-                            <ion-icon name="storefront-outline"></ion-icon>
+                            <ion-icon name="person-outline"></ion-icon>
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                 <div class="card card-hover shadow-sm br-4">
                     <div class="card-body d-flex justify-content-between">
                         <div>
-                            <div class="number">123</div>
+                            <div class="number"><?= $member ?></div>
                             <div class="cardName text-secondary">Member</div>
                         </div>
                         <div class="iconBox">
@@ -87,11 +87,50 @@
                 <div class="card card-hover shadow-sm br-4">
                     <div class="card-body d-flex justify-content-between">
                         <div>
-                            <div class="number">10</div>
+                            <div class="number"><?= $order ?></div>
                             <div class="cardName text-secondary">Orders</div>
                         </div>
                         <div class="iconBox">
                             <ion-icon name="cart-outline"></ion-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-hover shadow-sm br-4">
+                    <div class="card-body d-flex justify-content-between">
+                        <div>
+                            <div class="number">
+                                <?php
+                                    $tgl = date_create($dayTotal->TANGGAL);
+                                    $tanggal = date_format($tgl, 'd-m-Y');
+                                    if($tanggal == date('d-m-Y')){
+                                        echo "Rp. " . number_format($dayTotal->TOTAL, 0, ',', '.');
+                                    }
+                                else{
+                                    echo "Rp. 0";
+                                } 
+                                ?>
+                            </div>
+                            <div class="cardName text-secondary">Penghasilan Hari ini</div>
+                        </div>
+                        <div class="iconBox">
+                            <ion-icon name="card"></ion-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card card-hover shadow-sm br-4">
+                    <div class="card-body d-flex justify-content-between">
+                        <div>
+                            <div class="number"><?= "Rp. " . number_format($total->TOTAL, 0, ',', '.') ?></div>
+                            <div class="cardName text-secondary">Total Penghasilan</div>
+                        </div>
+                        <div class="iconBox">
+                            <ion-icon name="card"></ion-icon>
                         </div>
                     </div>
                 </div>

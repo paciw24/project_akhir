@@ -42,8 +42,13 @@ class Admin extends CI_Controller
     public function keHalamanDasboard()
     {
         if ($this->session->username == TRUE) {
+            $data['member'] = $this->M_admin->countAllMember();
+            $data['order'] = $this->M_admin->countAllOrders();
+            $data['paket'] = $this->M_admin->countAllPaket();
+            $data['total'] = $this->M_admin->sumTotal()->row();
+            $data['dayTotal'] = $this->M_admin->sumDayTotal()->row();
             $data['nama'] = $this->M_admin->cekLogin(['nama' => $this->session->userdata('nama')])->row_array();
-            $this->load->view('admin/dasboard');
+            $this->load->view('admin/dasboard', $data);
         } else {
             redirect(base_url('login'));
         }
