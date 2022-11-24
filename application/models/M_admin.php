@@ -63,9 +63,12 @@ class M_admin extends CI_Model
     }
 
     // Paket
-    public function getDataPaket()
+    public function getDataPaket($limit, $start, $keyword = null)
     {
-        return $this->db->get('tb_paket');
+        if($keyword){
+            $this->db->like('nama_paket', $keyword);
+        }
+        return $this->db->get('tb_paket', $limit, $start)->result_array();
     }
     public function tambahPaket($data = null)
     {

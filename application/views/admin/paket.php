@@ -47,8 +47,13 @@
             <table class="table table-striped table-hover">
                 <div class="table_header">
                     <p>Pengaturan Paket</p>
+                    <form action="<?= base_url('admin/paket') ?>" method="post">
+                        <div class="input-group" style="width: 400px!important;">
+                            <input type="text" class="form-control" placeholder="Search" name="keyword" autocomplete="off" autofocus>
+                            <input class="btn btn-edit" type="submit" name="submit">
+                        </div>
+                    </form>
                     <div class="">
-                        <input type="text" id="cari" name="cari" placeholder="Cari">
                         <button class="add_new" id="myBtn" data-bs-toggle="modal" data-bs-target="#ModalTambah">+ Tambah Data</button>
                     </div>
                 </div>
@@ -62,21 +67,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $no = 1; ?>
                     <?php foreach ($paket as $pt) { ?>
                         <tr>
-                            <td><?= $no++ ?></td>
-                            <td><?= $pt->jenis ?></td>
-                            <td><?= $pt->nama_paket ?></td>
-                            <td><?= $pt->harga ?></td>
+                            <td><?= ++$start ?></td>
+                            <td><?= $pt['jenis'] ?></td>
+                            <td><?= $pt['nama_paket'] ?></td>
+                            <td><?= $pt['harga'] ?></td>
                             <td>
-                                <a class="btn btn-sm btn-edit" href="<?= base_url('admin/paket/ubah/' . $pt->id_paket) ?>" id="btnEdit">Edit</a>
-                                <a onclick="HapusMenu(<?= $pt->id_paket ?>);" class="btn btn-sm btn-danger">Hapus</a>
+                                <a class="btn btn-sm btn-edit" href="<?= base_url('admin/paket/ubah/' . $pt['id_paket']) ?>" id="btnEdit">Edit</a>
+                                <a onclick="HapusMenu(<?= $pt['id_paket'] ?>);" class="btn btn-sm btn-danger">Hapus</a>
                             </td>
                         </tr>
                     <?php } ?>
                 </tbody>
             </table>
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="text-pink1 text-capitalize mb-3">Menampilkan 1 dari <?= $total_rows ?> data</span>
+                <?= $this->pagination->create_links(); ?>
+            </div>
         </div>
     </div>
     <!--Container Main end-->

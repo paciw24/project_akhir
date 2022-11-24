@@ -151,7 +151,29 @@ class Admin extends CI_Controller
     public function keHalamanPaket()
     {
         if ($this->session->username == TRUE) {
-            $data['paket'] = $this->M_admin->getDataPaket()->result();
+            // load library
+            $this->load->library('pagination');
+
+            // ambil data keyword
+            if($this->input->post('submit')){
+                $data['keyword'] = $this->input->post('keyword');
+                $this->session->set_userdata('keyword', $data['keyword']);
+            }else{
+                $data['keyword'] =$this->session->userdata('keyword');
+            }
+
+            // config
+            $this->db->like('nama_paket', $data['keyword']);
+            $this->db->from('tb_paket');
+            $config['total_rows'] = $this->db->count_all_results();
+            $data['total_rows'] = $config['total_rows'];
+            $config['per_page'] = 5;
+
+            // initialize
+            $this->pagination->initialize($config);
+
+            $data['start'] = $this->uri->segment(3);
+            $data['paket'] = $this->M_admin->getDataPaket($config['per_page'], $data['start'], $data['keyword']);
             $this->load->view('admin/paket', $data);
         } else {
             redirect(base_url('login'));
