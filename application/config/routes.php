@@ -32,7 +32,8 @@ $route['admin/transaksi'] = 'admin/keHalamanTransaksi';
 $route['admin/transaksi/detail/(:any)'] = 'admin/keHalamanDetailTransaksi/$1';
 $route['admin/transaksi/updateStatus'] = 'admin/updateStatus';
 $route['admin/transaksi/bayar'] = 'admin/updateBayar';
-
+$route['admin/verifikasi/setuju/(:any)'] = 'admin/verifikasiSetuju/$1';
+$route['admin/verifikasi/tolak/(:any)'] = 'admin/verifikasiTolak/$1';
 
 // Halaman Member
 

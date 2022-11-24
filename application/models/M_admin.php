@@ -134,4 +134,9 @@ class M_admin extends CI_Model
         $this->db->where($where);
         $this->db->update('tb_transaksi', $data);
     }
+    public function updateVerifikasi($data, $where)
+    {
+        $this->db->where($where);
+        $this->db->update('tb_transaksi', $data);
+    }
 }

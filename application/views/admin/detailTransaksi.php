@@ -43,7 +43,7 @@
     </div>
     <!--Container Main start-->
     <div class="height-100 bg-light">
-        <div class="card px-3 pt-3 shadow-sm">
+        <div class="card px-3 pt-3 shadow-sm mb-3">
             <div class="table_header px-3 p-0 m-0">
                 <p>Detail Pesanan</p>
                 <div class="d-flex">
@@ -93,11 +93,17 @@
                     </div>
                     <input type="text" value="<?= $transaksi->TELP ?>" name="notelp" id="notelp" readonly>
                 </div>
+                <div class="list">
+                    <div class="labelInfoTextarea">
+                        <label for="komen">Komentar</label>
+                    </div>
+                    <textarea name="komen" id="komen"  readonly><?= $transaksi->komentar ?></textarea>
+                </div>
             </div>
-            <table class="table table-striped table-hover">
-                <div class="table_header p-0 px-3 m-0">
+            <table class="table table-striped table-hover mt-5">
+                <div class="table_header p-0 px-3 m-0 mt-5">
                     <p>Rincian Pesanan</p>
-                    <div class="mb-3">
+                    <div class="mb-0">
                         <?php
                         if ($transaksi->dibayar == "belum_dibayar") {
                             echo "<span class='btn-baru'>Belum Dibayar</span>";

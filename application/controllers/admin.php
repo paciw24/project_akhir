@@ -62,11 +62,11 @@ class Admin extends CI_Controller
             $this->load->library('pagination');
 
             // ambil data keyword
-            if($this->input->post('submit')){
+            if ($this->input->post('submit')) {
                 $data['keyword'] = $this->input->post('keyword');
                 $this->session->set_userdata('keyword', $data['keyword']);
-            }else{
-                $data['keyword'] =$this->session->userdata('keyword');
+            } else {
+                $data['keyword'] = $this->session->userdata('keyword');
             }
 
             // config
@@ -245,6 +245,24 @@ class Admin extends CI_Controller
         $hasil = $cash - $total;
         $this->M_admin->updateByr($data, ['id_transaksi' => $this->input->post('id')]);
         $this->session->set_flashdata('kembalian', $hasil);
+        redirect(base_url('admin/transaksi'));
+    }
+    public function verifikasiSetuju($id)
+    {
+        $data = array(
+            'verifikasi_pembayaran' => $this->input->post('setuju', true)
+        );
+        $this->M_admin->updateVerifikasi($data, ['id_transaksi' => $this->input->post('id')]);
+        $this->session->set_flashdata('success', 'berhasil');
+        redirect(base_url('admin/transaksi'));
+    }
+    public function verifikasiTolak($id)
+    {
+        $data = array(
+            'verifikasi_pembayaran' => $this->input->post('tolak', true)
+        );
+        $this->M_admin->updateVerifikasi($data, ['id_transaksi' => $this->input->post('id')]);
+        $this->session->set_flashdata('delete', 'berhasil');
         redirect(base_url('admin/transaksi'));
     }
 }

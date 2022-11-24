@@ -97,18 +97,27 @@
                                 </a>
                             </td>
                             <td class="align-middle">
-                                <?php 
-                                    if($tr->verifikasi_pembayaran == "setuju"){
-                                        echo "<a class='btn btn-sm btn-edit' href='transaksi/detail/$tr->id_transaksi' id='btnEdit'>Lihat Detail</a>";
-                                    }else if($tr->verifikasi_pembayaran == "tolak"){
-                                        echo "<span class='btn-selesai'>Verifikasi ditolak</span>";
-                                    }else{
-                                        echo "
-                                            <form met>
-                                                
+                                <?php
+                                if ($tr->verifikasi_pembayaran == "setuju") {
+                                    echo "<a class='btn btn-sm btn-edit' href='transaksi/detail/$tr->id_transaksi' id='btnEdit'>Lihat Detail</a>";
+                                } else if ($tr->verifikasi_pembayaran == "tolak") {
+                                    echo "<span class='btn-selesai'>Verifikasi ditolak</span>";
+                                } else {
+                                    echo "
+                                            <div class='d-flex'>
+                                            <form class='me-2' action='verifikasi/setuju/$tr->id_transaksi' method='post'>
+                                                <input type='hidden' name='id' value='$tr->id_transaksi'>
+                                                <input type='hidden' name='setuju' value='setuju'>
+                                                <button class='btn btn-sm btn-success d-flex align-items-center'><ion-icon name='checkmark-outline' class='me-2'></ion-icon> <span>Setuju</span></button>
                                             </form>
+                                            <form action='verifikasi/tolak/$tr->id_transaksi' method='post'>
+                                                <input type='hidden' name='id' value='$tr->id_transaksi'>
+                                                <input type='hidden' name='tolak' value='tolak'>
+                                                <button class='btn btn-sm btn-danger d-flex align-items-center'><ion-icon name='close-outline' class='me-2'></ion-icon> <span>Tolak</span></button>
+                                            </form>
+                                            </div>
                                         ";
-                                    }
+                                }
                                 ?>
                             </td>
                         </tr>
@@ -133,6 +142,21 @@
             Swal.fire({
                 title: 'Kembalian',
                 text: '<?= "Rp. " . number_format($this->session->flashdata('kembalian'), 0, ',', '.') ?>',
+            })
+        <?php } ?>
+        <?php if ($this->session->flashdata('delete')) { ?>
+            Swal.fire(
+                'Berhasil Ditolak!',
+                'Data yang ditolak tidak bisa dikembalikan.',
+                'success'
+            )
+        <?php } ?>
+        <?php if ($this->session->flashdata('setuju')) { ?>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil Disimpan',
+                showConfirmButton: false,
+                timer: 2000
             })
         <?php } ?>
     </script>
