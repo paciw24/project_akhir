@@ -19,6 +19,10 @@ $route['admin/member/hapusMember/(:any)'] = 'admin/hapus_member/$1';
 
     // User
 $route['admin/user'] = 'admin/keHalamanAdmin';
+$route['admin/user/tambah'] = 'admin/tambahAdmin';
+$route['admin/user/ubah/(:any)'] = 'admin/editAdmin/$1';
+$route['admin/user/edit'] = 'admin/ubahAdmin';
+$route['admin/user/hapusUser/(:any)'] = 'admin/hapus_Admin/$1';
 
     // Paket
 $route['admin/paket'] = 'admin/keHalamanPaket';

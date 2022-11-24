@@ -140,12 +140,81 @@ class Admin extends CI_Controller
     public function keHalamanAdmin()
     {
         if ($this->session->username == TRUE) {
-            $this->load->view('admin/user');
+            // load library
+            $this->load->library('pagination');
+
+            // ambil data keyword
+            if($this->input->post('submit')){
+                $data['keyword'] = $this->input->post('keyword');
+                $this->session->set_userdata('keyword', $data['keyword']);
+            }else{
+                $data['keyword'] =$this->session->userdata('keyword');
+            }
+
+            // config
+            $this->db->like('nama', $data['keyword']);
+            $this->db->from('tb_user');
+            $config['total_rows'] = $this->db->count_all_results();
+            $data['total_rows'] = $config['total_rows'];
+            $config['per_page'] = 5;
+
+            // initialize
+            $this->pagination->initialize($config);
+
+            $data['start'] = $this->uri->segment(3);
+            $data['user'] = $this->M_admin->getDataAdmin($config['per_page'], $data['start'], $data['keyword']);
+            $this->load->view('admin/admin', $data);
         } else {
             redirect(base_url('login'));
         }
     }
-
+    public function tambahAdmin()
+    {
+        $data = array(
+            'nama' => $this->input->post('nama', true),
+            'username' => $this->input->post('username', true),
+            'password' => $this->input->post('password', true),
+            'email' => $this->input->post('email', true),
+            'notelp' => $this->input->post('telp', true)
+        );
+        $this->M_admin->tambahAdmin($data);
+        $this->session->set_flashdata(
+            'success',
+            'Berhasil'
+        );
+        redirect('admin/user');
+    }
+    public function editAdmin($id)
+    {
+        if ($this->session->username == TRUE) {
+            $data['ubah'] = $this->M_admin->getDataUbahAdmin($id)->row();
+            $this->load->view('admin/ubahAdmin', $data);
+        } else {
+            redirect(base_url('login'));
+        }
+    }
+    public function ubahAdmin()
+    {
+        $data = array(
+            'nama' => $this->input->post('nama', true),
+            'username' => $this->input->post('username', true),
+            'password' => $this->input->post('password', true),
+            'email' => $this->input->post('email', true),
+            'notelp' => $this->input->post('telp', true)
+        );
+        $this->M_admin->updateAdmin($data, ['id_user' => $this->input->post('id')]);
+        $this->session->set_flashdata('success', 'berhasil');
+        redirect(base_url('admin/user'));
+    }
+    public function hapus_Admin($id)
+    {
+        $this->M_admin->hapusAdmin($id);
+        $this->session->set_flashdata(
+            'delete',
+            'Berhasil'
+        );
+        redirect(base_url('admin/user'));
+    }
 
     // Paket
     public function keHalamanPaket()
