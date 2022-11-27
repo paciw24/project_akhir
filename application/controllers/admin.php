@@ -15,7 +15,7 @@ class Admin extends CI_Controller
         $user = $this->M_admin->cekLogin(['username' => $username])->row_array();
 
         if ($user) {
-            if ($password == $user['password']) {
+            if (password_verify($password, $user['password'])) {
                 $data = [
                     'username' => $user['username'],
                     'nama' => $user['nama']
@@ -91,9 +91,9 @@ class Admin extends CI_Controller
         $data = array(
             'nama' => $this->input->post('nama', true),
             'username' => $this->input->post('username', true),
-            'password' => $this->input->post('password', true),
+            'password' => password_hash($this->input->post('password', true), PASSWORD_DEFAULT),
             'alamat' => $this->input->post('alamat', true),
-            'jenis_kelamin' => $this->input->post('jenis_kelamin', true),
+            'email' => $this->input->post('email', true),
             'telp' => $this->input->post('telp', true)
         );
         $this->M_admin->tambahMem($data);
@@ -117,9 +117,9 @@ class Admin extends CI_Controller
         $data = array(
             'nama' => $this->input->post('nama', true),
             'username' => $this->input->post('username', true),
-            'password' => $this->input->post('password', true),
+            'password' => password_hash($this->input->post('password', true), PASSWORD_DEFAULT),
             'alamat' => $this->input->post('alamat', true),
-            'jenis_kelamin' => $this->input->post('jenis_kelamin', true),
+            'email' => $this->input->post('email', true),
             'telp' => $this->input->post('telp', true)
         );
         $this->M_admin->updateMember($data, ['id_member' => $this->input->post('id')]);
@@ -144,11 +144,11 @@ class Admin extends CI_Controller
             $this->load->library('pagination');
 
             // ambil data keyword
-            if($this->input->post('submit')){
+            if ($this->input->post('submit')) {
                 $data['keyword'] = $this->input->post('keyword');
                 $this->session->set_userdata('keyword', $data['keyword']);
-            }else{
-                $data['keyword'] =$this->session->userdata('keyword');
+            } else {
+                $data['keyword'] = $this->session->userdata('keyword');
             }
 
             // config
@@ -173,7 +173,7 @@ class Admin extends CI_Controller
         $data = array(
             'nama' => $this->input->post('nama', true),
             'username' => $this->input->post('username', true),
-            'password' => $this->input->post('password', true),
+            'password' => password_hash($this->input->post('password', true), PASSWORD_DEFAULT),
             'email' => $this->input->post('email', true),
             'notelp' => $this->input->post('telp', true)
         );
@@ -198,7 +198,7 @@ class Admin extends CI_Controller
         $data = array(
             'nama' => $this->input->post('nama', true),
             'username' => $this->input->post('username', true),
-            'password' => $this->input->post('password', true),
+            'password' => password_hash($this->input->post('password', true), PASSWORD_DEFAULT),
             'email' => $this->input->post('email', true),
             'notelp' => $this->input->post('telp', true)
         );
@@ -224,11 +224,11 @@ class Admin extends CI_Controller
             $this->load->library('pagination');
 
             // ambil data keyword
-            if($this->input->post('submit')){
+            if ($this->input->post('submit')) {
                 $data['keyword'] = $this->input->post('keyword');
                 $this->session->set_userdata('keyword', $data['keyword']);
-            }else{
-                $data['keyword'] =$this->session->userdata('keyword');
+            } else {
+                $data['keyword'] = $this->session->userdata('keyword');
             }
 
             // config

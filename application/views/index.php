@@ -33,7 +33,7 @@
             <a href="#review">review</a>
             <a href="#pricing">pesan</a>
             <a href="#contact">kontak</a>
-            <a href="#" class="btn-login">Login</a>
+            <a href="<?= base_url('member/login') ?>" class="btn-login">Login</a>
         </nav>
 
     </header>
@@ -47,7 +47,7 @@
         <div class="content">
             <h3>Berkah<span> Laundry</span></h3>
             <p>Berkah Laundry menyajikan pencucian cepat, bersih, dan tahan lama. diberkah laundry juga dapat dipesan melalui website dan akan diantarkan sesuai pemesanan</p>
-            <a href="#" class="btn">Pesan Sekarang</a>
+            <a href="<?= base_url('member/login') ?>" class="btn">Pesan Sekarang</a>
         </div>
 
         <div class="image">
@@ -207,7 +207,7 @@
                     <li> <i class="fas fa-check"></i> 24/7 Pelayanan </li>
                     <li> <i class="fas fa-check"></i> Pengantaran Gratis </li>
                 </ul>
-                <a href="#" class="btn">Pesan Sekarang</a>
+                <a href="<?= base_url('member/login') ?>" class="btn">Pesan Sekarang</a>
             </div>
             <div class="box">
                 <h3 class="title">Wanita</h3>
@@ -217,7 +217,7 @@
                     <li> <i class="fas fa-check"></i> 24/7 Pelayanan </li>
                     <li> <i class="fas fa-check"></i> Pengantaran Gratis </li>
                 </ul>
-                <a href="#" class="btn">Pesan Sekarang</a>
+                <a href="<?= base_url('member/login') ?>" class="btn">Pesan Sekarang</a>
             </div>
             <div class="box">
                 <h3 class="title">Anak - Anak</h3>
@@ -227,7 +227,7 @@
                     <li> <i class="fas fa-check"></i> 24/7 Pelayanan </li>
                     <li> <i class="fas fa-check"></i> Pengantaran Gratis </li>
                 </ul>
-                <a href="#" class="btn">Pesan Sekarang</a>
+                <a href="<?= base_url('member/login') ?>" class="btn">Pesan Sekarang</a>
             </div>
 
         </div>
@@ -330,4 +330,5 @@
 
     <!-- footer section ends -->
 </body>
+
 </html>

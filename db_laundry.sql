@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2022 at 11:12 AM
+-- Generation Time: Nov 27, 2022 at 05:00 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.26
 
@@ -42,7 +42,8 @@ INSERT INTO `tb_detail_transaksi` (`id_transaksi`, `id_paket`, `qty`, `subtotal`
 (1, 1, 3, 0),
 (1, 1, 3, 19500),
 (1, 1, 2, 1999),
-(5, 8, 3, 19500);
+(5, 8, 3, 19500),
+(7, 1, 2, 20000);
 
 -- --------------------------------------------------------
 
@@ -108,7 +109,7 @@ CREATE TABLE `tb_transaksi` (
   `status` enum('baru','proses','selesai','diambil') NOT NULL,
   `dibayar` enum('dibayar','belum_dibayar') NOT NULL,
   `bukti` text NOT NULL,
-  `verifikasi_pembayaran` enum('setuju','tolak') NOT NULL,
+  `verifikasi_pembayaran` enum('setuju','tolak') DEFAULT NULL,
   `komentar` text NOT NULL,
   `id_user` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -119,7 +120,9 @@ CREATE TABLE `tb_transaksi` (
 
 INSERT INTO `tb_transaksi` (`id_transaksi`, `kode_invoice`, `id_member`, `tgl`, `status`, `dibayar`, `bukti`, `verifikasi_pembayaran`, `komentar`, `id_user`) VALUES
 (1, 'P001', 1, '2022-10-30', 'diambil', 'dibayar', 'test', 'setuju', 'oke', 1),
-(5, 'P002', 6, '2022-11-23', 'baru', 'belum_dibayar', 'testing', 'tolak', 'oke', 1);
+(5, 'P002', 6, '2022-11-23', 'baru', 'belum_dibayar', 'testing', 'tolak', 'oke', 1),
+(6, 'P003', 8, '2022-11-24', 'baru', 'dibayar', 'test', 'setuju', 'oke', 1),
+(7, 'P003', 2, '2022-11-24', 'baru', 'dibayar', 'test', 'tolak', 'ok', 1);
 
 -- --------------------------------------------------------
 
@@ -132,15 +135,16 @@ CREATE TABLE `tb_user` (
   `nama` varchar(60) NOT NULL,
   `username` varchar(30) NOT NULL,
   `password` text NOT NULL,
-  `role` enum('admin','kasir','owner') NOT NULL
+  `email` varchar(35) NOT NULL,
+  `notelp` varchar(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_user`
 --
 
-INSERT INTO `tb_user` (`id_user`, `nama`, `username`, `password`, `role`) VALUES
-(1, 'Farhan', 'admin', 'admin', 'admin');
+INSERT INTO `tb_user` (`id_user`, `nama`, `username`, `password`, `email`, `notelp`) VALUES
+(1, 'Farhan', 'admin', '$2y$10$jA6Co.LhY8TRtX47hEJStO5ydqGv5MAoTURlBnelsIKMhHWGHAqBa', '8813farhan@gmail.com', '081290004060');
 
 --
 -- Indexes for dumped tables
@@ -199,7 +203,7 @@ ALTER TABLE `tb_paket`
 -- AUTO_INCREMENT for table `tb_transaksi`
 --
 ALTER TABLE `tb_transaksi`
-  MODIFY `id_transaksi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_transaksi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tb_user`

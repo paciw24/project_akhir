@@ -40,6 +40,7 @@ $route['admin/verifikasi/setuju/(:any)'] = 'admin/verifikasiSetuju/$1';
 $route['admin/verifikasi/tolak/(:any)'] = 'admin/verifikasiTolak/$1';
 
 // Halaman Member
+$route['member/login'] = 'member/keHalamanLogin';
 
 
 //eror

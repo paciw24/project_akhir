@@ -16,8 +16,19 @@
     <header class="header position-relative bg-white shadow-sm" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
         <div class="d-flex align-items-center">
-            <span class="me-3"><?= $this->session->userdata('nama') ?></span>
-            <div class="avatar" data-label="FR"></div>
+            <div class="profile" onclick="menu()" style="cursor: pointer;">
+                <span class="me-3"><?= $this->session->userdata('nama') ?></span>
+                <img src="<?= base_url('assets/img/avatar.png') ?>" width="40px" height="40px">
+            </div>
+            <div class="menu shadow">
+                <h3><?= $this->session->userdata('nama') ?><br><span><?= $this->session->userdata('username') ?></span></h3>
+                <ul>
+                    <li>
+                        <ion-icon name="person-circle-outline"></ion-icon></i><a href="<?= base_url('admin/profile') ?>">Ubah Profil</a>
+                    </li>
+                    <li><i class='bx bx-log-out nav_icon'></i><a href="<?= base_url('logout') ?>">Logout</a></li>
+                </ul>
+            </div>
         </div>
     </header>
     <div class="l-navbar" id="nav-bar">
@@ -63,7 +74,7 @@
                         <th scope="col">Nama</th>
                         <th scope="col">Nama Pengguna</th>
                         <th scope="col">Alamat</th>
-                        <th scope="col">Jenis Kelamin</th>
+                        <th scope="col">Email</th>
                         <th scope="col">Telp</th>
                         <th scope="col">Aksi</th>
                     </tr>
@@ -75,15 +86,7 @@
                             <td><?= $mem['nama'] ?></td>
                             <td><?= $mem['username'] ?></td>
                             <td><?= $mem['alamat'] ?></td>
-                            <td>
-                                <?php
-                                if ($mem['jenis_kelamin'] == "P") {
-                                    echo "Perempuan";
-                                } else {
-                                    echo "Laki - Laki";
-                                }
-                                ?>
-                            </td>
+                            <td><?= $mem['email'] ?></td>
                             <td><?= $mem['telp'] ?></td>
                             <td>
                                 <a class="btn btn-sm btn-edit" href="<?= base_url('admin/member/ubah/' . $mem['id_member']) ?>" id="btnEdit">Edit</a>
@@ -128,18 +131,8 @@
                             <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan Alamat" required>
                         </div>
                         <div class="mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jenis_kelamin" id="lk" value="L" <?= set_radio('jenis_kelamin', 'L'); ?> checked>
-                                <label class="form-check-label" for="lk">
-                                    Laki - laki
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="jenis_kelamin" value="P" <?= set_radio('jenis_kelamin', 'P'); ?> id="pr">
-                                <label class="form-check-label" for="pr">
-                                    Perempuan
-                                </label>
-                            </div>
+                            <label for="email" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="email" name="email" placeholder="Masukkan Email" required>
                         </div>
                         <div class="mb-3">
                             <label for="telp" class="form-label">Telp</label>
@@ -158,6 +151,14 @@
     <!-- Modal Tambah End -->
     <!-- Javascript -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        function menu() {
+            const menuToggle = document.querySelector('.menu');
+            const profileToggle = document.querySelector('.profile');
+            menuToggle.classList.toggle('active');
+            profileToggle.classList.toggle('active');
+        }
+    </script>
     <script type="text/javascript">
         <?php if ($this->session->flashdata('success')) { ?>
             Swal.fire({
