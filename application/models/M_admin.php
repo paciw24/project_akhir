@@ -7,6 +7,34 @@ class M_admin extends CI_Model
         return $this->db->get_where('tb_user', $data);
     }
     // Admin
+    public function getDataAdmin($limit, $start, $keyword = null)
+    {
+        if($keyword){
+            $this->db->like('nama', $keyword);
+        }
+        return $this->db->get('tb_user', $limit, $start)->result_array();
+    }
+    public function tambahAdmin($data = null)
+    {
+        $this->db->insert('tb_user', $data);
+    }
+    public function getDataUbahAdmin($id)
+    {
+        $data = array(
+            'id_user' => $id
+        );
+        return $this->db->get_where('tb_user', $data);
+    }
+    public function updateAdmin($data, $where)
+    {
+        $this->db->where($where);
+        $this->db->update('tb_user', $data);
+    }
+    public function hapusAdmin($id)
+    {
+        $this->db->where('id_user', $id);
+        return $this->db->delete('tb_user');
+    }
 
     // Member
     public function getDataMember($limit, $start, $keyword = null)
@@ -63,9 +91,12 @@ class M_admin extends CI_Model
     }
 
     // Paket
-    public function getDataPaket()
+    public function getDataPaket($limit, $start, $keyword = null)
     {
-        return $this->db->get('tb_paket');
+        if($keyword){
+            $this->db->like('nama_paket', $keyword);
+        }
+        return $this->db->get('tb_paket', $limit, $start)->result_array();
     }
     public function tambahPaket($data = null)
     {

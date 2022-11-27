@@ -29,8 +29,8 @@
                 <div class="nav_list">
                     <a href="<?= base_url('admin/dasboard') ?>" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a>
                     <a href="<?= base_url('admin/user') ?>" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Admin</span> </a>
-                    <a href="<?= base_url('admin/member') ?>" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Member</span> </a>
-                    <a href="<?= base_url('admin/paket') ?>" class="nav_link active">
+                    <a href="<?= base_url('admin/member') ?>" class="nav_link active"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Member</span> </a>
+                    <a href="<?= base_url('admin/paket') ?>" class="nav_link">
                         <ion-icon name="briefcase-outline" class="nav_icon"></ion-icon><span class="nav_name">Paket</span>
                     </a>
                     <a href="<?= base_url('admin/transaksi') ?>" class="nav_link">
@@ -46,8 +46,8 @@
         <div class="card px-3 shadow-sm">
             <table class="table table-striped table-hover">
                 <div class="table_header">
-                    <p>Pengaturan Paket</p>
-                    <form action="<?= base_url('admin/paket') ?>" method="post">
+                    <p>Pengaturan Admin</p>
+                    <form action="<?= base_url('admin/user') ?>" method="post">
                         <div class="input-group" style="width: 400px!important;">
                             <input type="text" class="form-control" placeholder="Search" name="keyword" autocomplete="off" autofocus>
                             <input class="btn btn-edit" type="submit" name="submit">
@@ -60,22 +60,25 @@
                 <thead class="bg-pink">
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Jenis</th>
-                        <th scope="col">Nama Paket</th>
-                        <th scope="col">Harga</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Nama Pengguna</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Telp</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($paket as $pt) { ?>
+                    <?php $no = 1; ?>
+                    <?php foreach ($user as $us) { ?>
                         <tr>
-                            <td><?= ++$start ?></td>
-                            <td><?= $pt['jenis'] ?></td>
-                            <td><?= $pt['nama_paket'] ?></td>
-                            <td><?= $pt['harga'] ?></td>
+                            <td><?= $no++ ?></td>
+                            <td><?= $us['nama'] ?></td>
+                            <td><?= $us['username'] ?></td>
+                            <td><?= $us['email'] ?></td>
+                            <td><?= $us['notelp'] ?></td>
                             <td>
-                                <a class="btn btn-sm btn-edit" href="<?= base_url('admin/paket/ubah/' . $pt['id_paket']) ?>" id="btnEdit">Edit</a>
-                                <a onclick="HapusMenu(<?= $pt['id_paket'] ?>);" class="btn btn-sm btn-danger">Hapus</a>
+                                <a class="btn btn-sm btn-edit" href="<?= base_url('admin/user/ubah/' . $us['id_user']) ?>" id="btnEdit">Edit</a>
+                                <a onclick="HapusMenu(<?= $us['id_user'] ?>);" class="btn btn-sm btn-danger">Hapus</a>
                             </td>
                         </tr>
                     <?php } ?>
@@ -94,29 +97,30 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content" style=" border:none!important;">
                 <div class="modal-header" style="background: #FF758F;">
-                    <h1 class="modal-title fs-5 text-uppercase fw-bold" style="color: #fff;" id="exampleModalLabel">Tambah Paket</h1>
+                    <h1 class="modal-title fs-5 text-uppercase fw-bold" style="color: #fff;" id="exampleModalLabel">Tambah Member</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?= base_url('admin/paket/tambah') ?>" method="post">
+                    <form action="<?= base_url('admin/user/tambah') ?>" method="post">
                         <div class="mb-3">
-                            <label for="jenis" class="form-label">jenis</label>
-                            <select class="form-select" aria-label="jenis" name="jenis" id="jenis">
-                                <option selected>Pilih Jenis</option>
-                                <option value="kiloan">kiloan</option>
-                                <option value="selimut">Selimut</option>
-                                <option value="bed_cover">Bed Cover</option>
-                                <option value="kaos">Kaos</option>
-                                <option value="lain">lain</option>
-                            </select>
+                            <label for="nama" class="form-label">Nama</label>
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama" required>
                         </div>
                         <div class="mb-3">
-                            <label for="nama_paket" class="form-label">Nama Paket</label>
-                            <input type="text" class="form-control" id="nmpaket" name="nmpaket" placeholder="Masukan Nama Paket" required>
+                            <label for="username" class="form-label">Nama Pengguna</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan Username" required>
                         </div>
                         <div class="mb-3">
-                            <label for="harga" class="form-label">Harga</label>
-                            <input type="number" class="form-control" id="harga" name="Harga" placeholder="Harga" required>
+                            <label for="password" class="form-label">Kata Sandi</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">email</label>
+                            <input type="text" class="form-control" id="email" name="email" placeholder="Masukkan Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="telp" class="form-label">Telp</label>
+                            <input type="text" class="form-control" id="telp" name="telp" placeholder="Masukkan Telp" required>
                         </div>
                         <div class="mb-3 d-flex justify-content-end">
                             <button class="add_new" data-bs-dismiss="modal">Simpan</button>
@@ -142,24 +146,25 @@
         <?php } ?>
         <?php if ($this->session->flashdata('delete')) { ?>
             Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
+                'Berhasil Dihapus!',
+                'Data yang terhapus tidak bisa dikembalikan.',
                 'success'
             )
         <?php } ?>
 
         function HapusMenu(id) {
             Swal.fire({
-                title: 'yakin lu?',
-                text: "Ga bisa ulang lho!",
-                icon: 'Warnig',
+                title: 'Apakah anda yakin?',
+                text: "Data yang dihapus tidak bisa dikembalikan!",
+                icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Yakin!',
+                cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "<?= base_url('admin/paket/hapusPaket')?>/"+id;
+                    window.location.href = "<?= base_url('admin/user/hapusUser')?>/"+id;
                 }
             })
         }
