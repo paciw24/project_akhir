@@ -72,7 +72,7 @@
                 <div class="card card-hover shadow-sm br-4">
                     <div class="card-body d-flex justify-content-between">
                         <div>
-                            <div class="number">10</div>
+                            <div class="number"><?= $admin ?></div>
                             <div class="cardName text-secondary">Admin</div>
                         </div>
                         <div class="iconBox ">

@@ -47,6 +47,9 @@ class M_admin extends CI_Model
     public function countAllMember(){
         return $this->db->get('tb_member')->num_rows();
     }
+    public function countAllAdmin(){
+        return $this->db->get('tb_user')->num_rows();
+    }
     public function countAllOrders(){
         return $this->db->get('tb_transaksi')->num_rows();
     }

@@ -43,6 +43,7 @@ class Admin extends CI_Controller
     {
         if ($this->session->username == TRUE) {
             $data['member'] = $this->M_admin->countAllMember();
+            $data['admin'] = $this->M_admin->countAllAdmin();
             $data['order'] = $this->M_admin->countAllOrders();
             $data['paket'] = $this->M_admin->countAllPaket();
             $data['total'] = $this->M_admin->sumTotal()->row();
