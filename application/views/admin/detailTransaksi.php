@@ -105,6 +105,18 @@
                     <input type="text" value="<?= $transaksi->TELP ?>" name="notelp" id="notelp" readonly>
                 </div>
                 <div class="list">
+                    <div class="labelInfo">
+                        <label for="pengiriman">Pengiriman</label>
+                    </div>
+                    <?php
+                        if($transaksi->pengiriman == 1){
+                            echo "<input type='text' value='Ya' name='pengiriman' id='pengiriman' readonly>";
+                        }else{
+                            echo "<input type='text' value='Tidak' name='pengiriman' id='pengiriman' readonly>";
+                        }
+                    ?>
+                </div>
+                <div class="list">
                     <div class="labelInfoTextarea">
                         <label for="komen">Komentar</label>
                     </div>
@@ -151,8 +163,21 @@
                         </tr>
                     <?php } ?>
                     <tr>
+                        <?php
+                            if($transaksi->pengiriman == 1){
+                                $total = $transaksi->TOTAL + 10000;
+                                echo "<th scope='col' colspan='5' class='bg-secondary text-white'>Harga Pengiriman</th>";
+                                echo "<th scope='col'>Rp. " . number_format(10000, 0, ',', '.') . "</th>";
+                            }else{
+                                $total = $transaksi->TOTAL;
+                            }
+                        ?>
+                    </tr>
+                    <tr>
+                        <?php
+                        ?>
                         <th scope="col" colspan="5" style="background: #FF758F!important; color: #fff!important;">Total Harga</th>
-                        <th scope="col"><?= "Rp. " . number_format($transaksi->TOTAL, 0, ',', '.') ?></th>
+                        <th scope="col"><?= "Rp. " . number_format($total, 0, ',', '.') ?></th>
                     </tr>
                 </tbody>
             </table>

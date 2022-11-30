@@ -5,7 +5,11 @@ class Admin extends CI_Controller
     // Login
     public function keHalamanLogin()
     {
-        $this->load->view('admin/login');
+        if ($this->session->username == TRUE) {
+            redirect(base_url('admin/dasboard'));
+        } else {
+            $this->load->view('admin/login');
+        }
     }
     public function prosesLogin()
     {
@@ -301,7 +305,29 @@ class Admin extends CI_Controller
     public function keHalamanTransaksi()
     {
         if ($this->session->username == TRUE) {
-            $data['transaksi'] = $this->M_admin->getDataTransaksi()->result();
+            // load library
+            $this->load->library('pagination');
+
+            // ambil data keyword
+            if ($this->input->post('submit')) {
+                $data['keyword'] = $this->input->post('keyword');
+                $this->session->set_userdata('keyword', $data['keyword']);
+            } else {
+                $data['keyword'] = $this->session->userdata('keyword');
+            }
+
+            // config
+            $this->db->like('id_transaksi', $data['keyword']);
+            $this->db->from('tb_transaksi');
+            $config['total_rows'] = $this->db->count_all_results();
+            $data['total_rows'] = $config['total_rows'];
+            $config['per_page'] = 5;
+
+            // initialize
+            $this->pagination->initialize($config);
+
+            $data['start'] = $this->uri->segment(3);
+            $data['transaksi'] = $this->M_admin->getDataTransaksi($config['per_page'], $data['start'], $data['keyword']);
             $this->load->view('admin/transaksi', $data);
         } else {
             redirect(base_url('login'));

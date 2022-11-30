@@ -39,8 +39,8 @@
                 </a>
                 <div class="nav_list">
                     <a href="<?= base_url('admin/dasboard') ?>" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a>
-                    <a href="<?= base_url('admin/user') ?>" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Admin</span> </a>
-                    <a href="<?= base_url('admin/member') ?>" class="nav_link active"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Member</span> </a>
+                    <a href="<?= base_url('admin/user') ?>" class="nav_link active"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Admin</span> </a>
+                    <a href="<?= base_url('admin/member') ?>" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Member</span> </a>
                     <a href="<?= base_url('admin/paket') ?>" class="nav_link">
                         <ion-icon name="briefcase-outline" class="nav_icon"></ion-icon><span class="nav_name">Paket</span>
                     </a>

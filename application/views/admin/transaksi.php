@@ -58,9 +58,12 @@
             <table class="table table-striped table-hover">
                 <div class="table_header">
                     <p>Pengaturan Transaksi</p>
-                    <div class="">
-                        <input type="text" id="cari" name="cari" placeholder="Cari">
-                    </div>
+                    <form action="<?= base_url('admin/transaksi') ?>" method="post">
+                        <div class="input-group" style="width: 400px!important;">
+                            <input type="text" class="form-control" placeholder="Search" name="keyword" autocomplete="off" autofocus>
+                            <input class="btn btn-edit" type="submit" name="submit">
+                        </div>
+                    </form>
                 </div>
                 <thead class="bg-pink">
                     <tr>
@@ -68,6 +71,7 @@
                         <th scope="col">Invoice</th>
                         <th scope="col">Nama Member</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Pengiriman</th>
                         <th scope="col">Dibayar</th>
                         <th scope="col">Bukti</th>
                         <th scope="col">Aksi</th>
@@ -78,15 +82,15 @@
                     <?php foreach ($transaksi as $tr) { ?>
                         <tr>
                             <td class="align-middle"><?= $no++ ?></td>
-                            <td class="align-middle"><?= $tr->kode_invoice ?></td>
-                            <td class="align-middle"><?= $tr->NAMA_MEMBER ?></td>
+                            <td class="align-middle"><?= $tr['kode_invoice'] ?></td>
+                            <td class="align-middle"><?= $tr['NAMA_MEMBER'] ?></td>
                             <td class="align-middle">
                                 <?php
-                                if ($tr->status == "baru") {
+                                if ($tr['status'] == "baru") {
                                     echo "<span class='btn-baru'>Baru</span>";
-                                } elseif ($tr->status == "proses") {
+                                } elseif ($tr['status'] == "proses") {
                                     echo "<span class='btn-proses'>Proses</span>";
-                                } elseif ($tr->status == "selesai") {
+                                } elseif ($tr['status'] == "selesai") {
                                     echo "<span class='btn-selesai'>Selesai</span>";
                                 } else {
                                     echo "<span class='btn-diambil'>Diambil</span>";
@@ -95,7 +99,16 @@
                             </td>
                             <td class="align-middle">
                                 <?php
-                                if ($tr->dibayar == "belum_dibayar") {
+                                if ($tr['pengiriman'] == "1") {
+                                    echo "<span'>Ya</span>";
+                                } else {
+                                    echo "<span>Tidak</span>";
+                                }
+                                ?>
+                            </td>
+                            <td class="align-middle">
+                                <?php
+                                if ($tr['dibayar'] == "belum_dibayar") {
                                     echo "<span class='btn-baru'>Belum Dibayar</span>";
                                 } else {
                                     echo "<span class='btn-diambil'>Dibayar</span>";
@@ -109,20 +122,20 @@
                             </td>
                             <td class="align-middle">
                                 <?php
-                                if ($tr->verifikasi_pembayaran == "setuju") {
-                                    echo "<a class='btn btn-sm btn-edit' href='transaksi/detail/$tr->id_transaksi' id='btnEdit'>Lihat Detail</a>";
-                                } else if ($tr->verifikasi_pembayaran == "tolak") {
+                                if ($tr['verifikasi_pembayaran'] == "setuju") {
+                                    echo "<a class='btn btn-sm btn-edit' href='transaksi/detail/$tr[id_transaksi]' id='btnEdit'>Lihat Detail</a>";
+                                } else if ($tr['verifikasi_pembayaran'] == "tolak") {
                                     echo "<span class='btn-selesai'>Verifikasi ditolak</span>";
                                 } else {
                                     echo "
                                             <div class='d-flex'>
-                                            <form class='me-2' action='verifikasi/setuju/$tr->id_transaksi' method='post'>
-                                                <input type='hidden' name='id' value='$tr->id_transaksi'>
+                                            <form class='me-2' action='verifikasi/setuju/$tr[id_transaksi]' method='post'>
+                                                <input type='hidden' name='id' value='$tr[id_transaksi]'>
                                                 <input type='hidden' name='setuju' value='setuju'>
                                                 <button class='btn btn-sm btn-success d-flex align-items-center'><ion-icon name='checkmark-outline' class='me-2'></ion-icon> <span>Setuju</span></button>
                                             </form>
-                                            <form action='verifikasi/tolak/$tr->id_transaksi' method='post'>
-                                                <input type='hidden' name='id' value='$tr->id_transaksi'>
+                                            <form action='verifikasi/tolak/$tr[id_transaksi]' method='post'>
+                                                <input type='hidden' name='id' value='$tr[id_transaksi]'>
                                                 <input type='hidden' name='tolak' value='tolak'>
                                                 <button class='btn btn-sm btn-danger d-flex align-items-center'><ion-icon name='close-outline' class='me-2'></ion-icon> <span>Tolak</span></button>
                                             </form>
@@ -135,6 +148,10 @@
                     <?php } ?>
                 </tbody>
             </table>
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="text-pink1 text-capitalize mb-3">Menampilkan 1 dari <?= $total_rows ?> data</span>
+                <?= $this->pagination->create_links(); ?>
+            </div>
         </div>
     </div>
     <!--Container Main end-->

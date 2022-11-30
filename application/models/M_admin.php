@@ -9,7 +9,7 @@ class M_admin extends CI_Model
     // Admin
     public function getDataAdmin($limit, $start, $keyword = null)
     {
-        if($keyword){
+        if ($keyword) {
             $this->db->like('nama', $keyword);
         }
         return $this->db->get('tb_user', $limit, $start)->result_array();
@@ -39,21 +39,25 @@ class M_admin extends CI_Model
     // Member
     public function getDataMember($limit, $start, $keyword = null)
     {
-        if($keyword){
+        if ($keyword) {
             $this->db->like('nama', $keyword);
         }
         return $this->db->get('tb_member', $limit, $start)->result_array();
     }
-    public function countAllMember(){
+    public function countAllMember()
+    {
         return $this->db->get('tb_member')->num_rows();
     }
-    public function countAllAdmin(){
+    public function countAllAdmin()
+    {
         return $this->db->get('tb_user')->num_rows();
     }
-    public function countAllOrders(){
+    public function countAllOrders()
+    {
         return $this->db->get('tb_transaksi')->num_rows();
     }
-    public function countAllPaket(){
+    public function countAllPaket()
+    {
         return $this->db->get('tb_paket')->num_rows();
     }
     public function sumTotal()
@@ -63,7 +67,7 @@ class M_admin extends CI_Model
         return $this->db->get();
     }
     public function sumDayTotal()
-    {   
+    {
         $date = date('Y-m-d');
         $this->db->select('SUM(tb_detail_transaksi.subtotal) AS TOTAL');
         $this->db->from('tb_transaksi');
@@ -96,7 +100,7 @@ class M_admin extends CI_Model
     // Paket
     public function getDataPaket($limit, $start, $keyword = null)
     {
-        if($keyword){
+        if ($keyword) {
             $this->db->like('nama_paket', $keyword);
         }
         return $this->db->get('tb_paket', $limit, $start)->result_array();
@@ -124,13 +128,15 @@ class M_admin extends CI_Model
     }
 
     // Transaksi
-    public function getDataTransaksi()
+    public function getDataTransaksi($limit, $start, $keyword = null)
     {
+        if ($keyword) {
+            $this->db->like('tb_member.nama', $keyword);
+        }
         $this->db->select('tb_transaksi.*, tb_member.nama AS NAMA_MEMBER, tb_user.nama AS NAMA_USER');
-        $this->db->from('tb_transaksi');
         $this->db->join('tb_member', 'tb_transaksi.id_member = tb_member.id_member');
         $this->db->join('tb_user', 'tb_transaksi.id_user = tb_user.id_user');
-        return $this->db->get();
+        return $this->db->get('tb_transaksi', $limit, $start)->result_array();
     }
     public function getDataDetailTransaksi($id)
     {
