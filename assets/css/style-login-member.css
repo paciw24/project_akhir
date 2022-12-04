@@ -10,8 +10,11 @@ body,
 input {
     font-family: "Poppins", sans-serif;
 }
-
-.container {
+.text-danger{
+    color: #f00;
+    width: 200px;
+}
+.container-view {
     position: relative;
     width: 100%;
     background-color: #fff;
@@ -102,7 +105,7 @@ form.sign-in-form {
     font-weight: 500;
 }
 
-.btn {
+.btn-oke {
     width: 150px;
     background-color: #F83292;
     border: none;
@@ -117,7 +120,7 @@ form.sign-in-form {
     transition: 0.5s;
 }
 
-.btn:hover {
+.btn-oke:hover {
     background-color: #814096;
 }
 
@@ -131,7 +134,7 @@ form.sign-in-form {
     grid-template-columns: repeat(2, 1fr);
 }
 
-.container:before {
+.container-view:before {
     content: "";
     position: absolute;
     height: 2000px;
@@ -187,7 +190,7 @@ form.sign-in-form {
     padding: 0.7rem 0;
 }
 
-.btn.transparent {
+.btn-oke.transparent {
     margin: 0;
     background: none;
     border: 2px solid #fff;
@@ -204,45 +207,45 @@ form.sign-in-form {
 
 /* ANIMATION */
 
-.container.sign-up-mode:before {
+.container-view.sign-up-mode:before {
     transform: translate(100%, -50%);
     right: 52%;
 }
 
-.container.sign-up-mode .left-panel .image,
-.container.sign-up-mode .left-panel .content {
+.container-view.sign-up-mode .left-panel .image,
+.container-view.sign-up-mode .left-panel .content {
     transform: translateX(-800px);
 }
 
-.container.sign-up-mode .signin-signup {
+.container-view.sign-up-mode .signin-signup {
     left: 25%;
 }
 
-.container.sign-up-mode form.sign-up-form {
+.container-view.sign-up-mode form.sign-up-form {
     opacity: 1;
     z-index: 2;
 }
 
-.container.sign-up-mode form.sign-in-form {
+.container-view.sign-up-mode form.sign-in-form {
     opacity: 0;
     z-index: 1;
 }
 
-.container.sign-up-mode .right-panel .image,
-.container.sign-up-mode .right-panel .content {
+.container-view.sign-up-mode .right-panel .image,
+.container-view.sign-up-mode .right-panel .content {
     transform: translateX(0%);
 }
 
-.container.sign-up-mode .left-panel {
+.container-view.sign-up-mode .left-panel {
     pointer-events: none;
 }
 
-.container.sign-up-mode .right-panel {
+.container-view.sign-up-mode .right-panel {
     pointer-events: all;
 }
 
 @media (max-width: 870px) {
-    .container {
+    .container-view {
         min-height: 800px;
         height: 100vh;
     }
@@ -255,7 +258,7 @@ form.sign-in-form {
     }
 
     .signin-signup,
-    .container.sign-up-mode .signin-signup {
+    .container-view.sign-up-mode .signin-signup {
         left: 50%;
     }
 
@@ -301,13 +304,13 @@ form.sign-in-form {
         padding: 0.5rem 0;
     }
 
-    .btn.transparent {
+    .btn-oke.transparent {
         width: 110px;
         height: 35px;
         font-size: 0.7rem;
     }
 
-    .container:before {
+    .container-view:before {
         width: 1500px;
         height: 1500px;
         transform: translateX(-50%);
@@ -318,19 +321,19 @@ form.sign-in-form {
         transition: 2s ease-in-out;
     }
 
-    .container.sign-up-mode:before {
+    .container-view.sign-up-mode:before {
         transform: translate(-50%, 100%);
         bottom: 32%;
         right: initial;
     }
 
-    .container.sign-up-mode .left-panel .image,
-    .container.sign-up-mode .left-panel .content {
+    .container-view.sign-up-mode .left-panel .image,
+    .container-view.sign-up-mode .left-panel .content {
         transform: translateY(-300px);
     }
 
-    .container.sign-up-mode .right-panel .image,
-    .container.sign-up-mode .right-panel .content {
+    .container-view.sign-up-mode .right-panel .image,
+    .container-view.sign-up-mode .right-panel .content {
         transform: translateY(0px);
     }
 
@@ -339,7 +342,7 @@ form.sign-in-form {
         transform: translateY(300px);
     }
 
-    .container.sign-up-mode .signin-signup {
+    .container-view.sign-up-mode .signin-signup {
         top: 5%;
         transform: translate(-50%, 0);
     }
@@ -358,16 +361,16 @@ form.sign-in-form {
         padding: 0.5rem 1rem;
     }
 
-    .container {
+    .container-view {
         padding: 1.5rem;
     }
 
-    .container:before {
+    .container-view:before {
         bottom: 72%;
         left: 50%;
     }
 
-    .container.sign-up-mode:before {
+    .container-view.sign-up-mode:before {
         bottom: 28%;
         left: 50%;
     }

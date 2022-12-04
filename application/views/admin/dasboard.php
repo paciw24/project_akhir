@@ -115,7 +115,12 @@
                         <div>
                             <div class="number">
                                 <?php
-                                echo "Rp. " . number_format($dayTotal->TOTAL, 0, ',', '.');
+                                    if($dayTotal->TOTAL == null){
+                                        $totalDay = 0;
+                                    }else{
+                                        $totalDay = $dayTotal->TOTAL;
+                                    }
+                                    echo "Rp. " . number_format($totalDay, 0, ',', '.')
                                 ?>
                             </div>
                             <div class="cardName text-secondary">Penghasilan Hari ini</div>
