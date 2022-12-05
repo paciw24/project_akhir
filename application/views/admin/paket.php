@@ -111,23 +111,12 @@
                 <div class="modal-body">
                     <form action="<?= base_url('admin/paket/tambah') ?>" method="post">
                         <div class="mb-3">
-                            <label for="jenis" class="form-label">jenis</label>
-                            <select class="form-select" aria-label="jenis" name="jenis" id="jenis">
-                                <option selected>Pilih Jenis</option>
-                                <option value="kiloan">kiloan</option>
-                                <option value="selimut">Selimut</option>
-                                <option value="bed_cover">Bed Cover</option>
-                                <option value="kaos">Kaos</option>
-                                <option value="lain">lain</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
                             <label for="nama_paket" class="form-label">Nama Paket</label>
                             <input type="text" class="form-control" id="nmpaket" name="nmpaket" placeholder="Masukan Nama Paket" required>
                         </div>
                         <div class="mb-3">
-                            <label for="harga" class="form-label">Harga</label>
-                            <input type="number" class="form-control" id="harga" name="Harga" placeholder="Harga" required>
+                            <label for="gambar" class="form-label">gambar</label>
+                            <input type="file" class="form-control" id="harga" name="Harga" placeholder="Harga" required>
                         </div>
                         <div class="mb-3 d-flex justify-content-end">
                             <button class="add_new" data-bs-dismiss="modal">Simpan</button>

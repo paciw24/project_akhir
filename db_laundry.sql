@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Nov 2022 pada 05.43
+-- Waktu pembuatan: 05 Des 2022 pada 09.45
 -- Versi server: 10.4.22-MariaDB
--- Versi PHP: 7.4.26
+-- Versi PHP: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -71,7 +71,8 @@ INSERT INTO `tb_member` (`id_member`, `nama`, `username`, `password`, `alamat`, 
 (6, 'farhan', 'okoer', 'akodawko', 'fadsas', 'L', '3128319'),
 (8, 'tio', 'faraha', 'adaiwh', 'aehra', 'L', 'haukwha'),
 (9, 'dnaukdka', 'ahudah', 'ahwukdhak', 'hdkuahwk', 'L', '128739719'),
-(10, 'test', 'teadsjad', 'awdiaw', 'dauw', 'L', '12391');
+(10, 'test', 'teadsjad', 'awdiaw', 'dauw', 'L', '12391'),
+(11, 'Revita Aunurachmani', 'revita', '$2y$10$.5U7TV0EKYdS.R0caKygPu9tw4tfzNOAraytTAVeq.34xMaWgHkOa', 'bekasi', 'revita@gmail.com', '083123131231');
 
 -- --------------------------------------------------------
 
@@ -81,19 +82,19 @@ INSERT INTO `tb_member` (`id_member`, `nama`, `username`, `password`, `alamat`, 
 
 CREATE TABLE `tb_paket` (
   `id_paket` int(5) NOT NULL,
-  `jenis` enum('kiloan','selimut','bed_cover','kaos','lain') NOT NULL,
   `nama_paket` varchar(60) NOT NULL,
-  `harga` int(11) NOT NULL
+  `harga` int(11) NOT NULL,
+  `gambar` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `tb_paket`
 --
 
-INSERT INTO `tb_paket` (`id_paket`, `jenis`, `nama_paket`, `harga`) VALUES
-(1, 'kiloan', 'Baju', 6500),
-(7, 'selimut', 'test', 1000),
-(8, 'bed_cover', 'test', 1000);
+INSERT INTO `tb_paket` (`id_paket`, `nama_paket`, `harga`, `gambar`) VALUES
+(1, 'Baju', 6500, ''),
+(7, 'test', 1000, ''),
+(8, 'test', 1000, '');
 
 -- --------------------------------------------------------
 
@@ -192,7 +193,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT untuk tabel `tb_member`
 --
 ALTER TABLE `tb_member`
-  MODIFY `id_member` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_member` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_paket`

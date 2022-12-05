@@ -39,6 +39,7 @@
                 </a>
                 <div class="nav_list">
                     <a href="<?= base_url('member/dashboard') ?>" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a>
+                    <a href="<?= base_url('member/layanan') ?>" class="nav_link"> <ion-icon name="layers-outline"></ion-icon> <span class="nav_name">Layanan</span> </a>
                     <a href="<?= base_url('member/pesanan') ?>" class="nav_link"> <ion-icon name="cart-outline" class="nav_icon"></ion-icon> <span class="nav_name">Pesanan Saya</span> </a>
                 </div>
             </div>
@@ -47,7 +48,9 @@
     </div>
     <!--Container Main start-->
     <div class="height-100 bg-light">
-        
+        <div class="card px-3 shadow-sm justify-content-center align-items-center text-pink1" style="height: 83vh!important; cursor: default;">
+            <h2 class="fw-bold">Selamat Datang Di Berkah Laundry</h2>
+        </div>
     </div>
     <!--Container Main end-->
     <script>
