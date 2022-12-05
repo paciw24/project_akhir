@@ -43,6 +43,8 @@ $route['admin/verifikasi/tolak/(:any)'] = 'admin/verifikasiTolak/$1';
 $route['member/login'] = 'member/keHalamanLogin';
 $route['member/prosesLogin'] = 'member/prosesLogin';
 $route['register'] = 'member/registrasi';
+$route['member/dashboard'] = 'member/keHalamanDashboard';
+$route['member/logout'] = 'member/logout';
 
 
 //eror

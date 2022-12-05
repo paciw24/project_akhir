@@ -43,7 +43,7 @@ class Member extends CI_Controller
     public function logout()
     {
         session_destroy();
-        redirect(base_url('login'));
+        redirect(base_url('member/login'));
     }
     // Registrasi
     public function registrasi()
@@ -89,6 +89,13 @@ class Member extends CI_Controller
             ];
             $this->M_member->SimpanData($data);
             redirect('member/login');
+        }
+    }
+    public function keHalamanDashboard(){
+        if ($this->session->username == TRUE) {
+            $this->load->view('member/dashboard');
+        } else {
+            redirect(base_url('login'));
         }
     }
 }
