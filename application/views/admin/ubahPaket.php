@@ -58,46 +58,9 @@
          <div class="table_header p-0 px-3 m-0">
             <p>Ubah Paket</p>
          </div>
-         <form action="<?= base_url('admin/paket/edit') ?>" method="post">
+         <form action="<?= base_url('admin/paket/edit') ?>" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $ubah->id_paket ?>">
-            <div class="mb-3">
-               <label for="jenis" class="form-label">jenis</label>
-               <select class="form-select" aria-label="jenis" name="jenis" id="jenis">
-                  <?php
-                  if ($ubah->jenis == 'kiloan') {
-                     echo "<option value='kiloan' selected >kiloan</option>";
-                     echo "<option value='selimut'>Selimut</option>";
-                     echo "<option value='bed_cover'>Bed Cover</option>";
-                     echo "<option value='kaos'>Kaos</option>";
-                     echo "<option value='lain'>lain</option>";
-                  } elseif ($ubah->jenis == 'selimut') {
-                     echo "<option value='kiloan' >kiloan</option>";
-                     echo "<option value='selimut' selected >Selimut</option>";
-                     echo "<option value='bed_cover'>Bed Cover</option>";
-                     echo "<option value='kaos'>Kaos</option>";
-                     echo "<option value='lain'>lain</option>";
-                  } elseif ($ubah->jenis == 'bed_cover') {
-                     echo "<option value='kiloan'>kiloan</option>";
-                     echo "<option value='selimut'>Selimut</option>";
-                     echo "<option value='bed_cover' selected >Bed Cover</option>";
-                     echo "<option value='kaos'>Kaos</option>";
-                     echo "<option value='lain'>lain</option>";
-                  } elseif ($ubah->jenis == 'kaos') {
-                     echo "<option value='kiloan'>kiloan</option>";
-                     echo "<option value='selimut'>Selimut</option>";
-                     echo "<option value='bed_cover'>Bed Cover</option>";
-                     echo "<option value='kaos' selected >Kaos</option>";
-                     echo "<option value='lain'>lain</option>";
-                  } else {
-                     echo "<option value='kiloan'>kiloan</option>";
-                     echo "<option value='selimut'>Selimut</option>";
-                     echo "<option value='bed_cover'>Bed Cover</option>";
-                     echo "<option value='kaos'>Kaos</option>";
-                     echo "<option value='lain' selected >lain</option>";
-                  }
-                  ?>
-               </select>
-            </div>
+
             <div class="mb-3">
                <label for="nama_paket" class="form-label">Nama Paket</label>
                <input type="text" value="<?= $ubah->nama_paket ?>" class="form-control" id="nmpaket" name="nmpaket" placeholder="Masukan Nama Paket" required>
@@ -105,6 +68,12 @@
             <div class="mb-3">
                <label for="harga" class="form-label">Harga</label>
                <input type="number" value="<?= $ubah->harga ?>" class="form-control" id="harga" name="Harga" placeholder="Harga" required>
+            </div>
+            <div class="mb-3 gambar">
+               <p>Gambar</p>
+               <label for="gambar" id="pilihGambar"><?= $ubah->gambar ?></label>
+               <input type="file" id="gambar" name="gambar" size="20" style="display: none;" value="<?= $ubah->gambar ?>">
+               <input type="hidden" id="old_image" name="old_image" size="20" style="display: none;" value="<?= $ubah->gambar ?>">
             </div>
             <div class="mb-3 d-flex justify-content-between">
                <a href="<?= base_url('admin/paket') ?>" class="btn btn-back">Kembali</a>
@@ -117,6 +86,17 @@
    <!-- Javascript -->
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
    <script>
+      let file = document.getElementById('gambar');
+      file.oninput = () => {
+         let filename = file.files[0].name;
+         let extension = filename.split('.').pop();
+         let filesize = file.files[0].name;
+         if (filesize <= 3000) {
+            filesize = (filesize / 1000).toFixed(2) + 'kb';
+         }
+         document.getElementById('pilihGambar').innerText = filename;
+      }
+
       function menu() {
          const menuToggle = document.querySelector('.menu');
          const profileToggle = document.querySelector('.profile');

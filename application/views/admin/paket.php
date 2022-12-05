@@ -71,9 +71,9 @@
                 <thead class="bg-pink">
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Jenis</th>
                         <th scope="col">Nama Paket</th>
                         <th scope="col">Harga</th>
+                        <th scope="col">Gambar</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
@@ -81,9 +81,13 @@
                     <?php foreach ($paket as $pt) { ?>
                         <tr>
                             <td><?= ++$start ?></td>
-                            <td><?= $pt['jenis'] ?></td>
                             <td><?= $pt['nama_paket'] ?></td>
                             <td><?= $pt['harga'] ?></td>
+                            <td>
+                                <a href="<?= base_url('assets/gambar/' . $pt['gambar']) ?>" target="_blank">
+                                    <img src="<?= base_url('assets/gambar/' . $pt['gambar']) ?>" width="150px" alt="">
+                                </a>
+                            </td>
                             <td>
                                 <a class="btn btn-sm btn-edit" href="<?= base_url('admin/paket/ubah/' . $pt['id_paket']) ?>" id="btnEdit">Edit</a>
                                 <a onclick="HapusMenu(<?= $pt['id_paket'] ?>);" class="btn btn-sm btn-danger">Hapus</a>
@@ -109,14 +113,19 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?= base_url('admin/paket/tambah') ?>" method="post">
+                    <form action="<?= base_url('admin/paket/tambah') ?>" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="nama_paket" class="form-label">Nama Paket</label>
                             <input type="text" class="form-control" id="nmpaket" name="nmpaket" placeholder="Masukan Nama Paket" required>
                         </div>
                         <div class="mb-3">
-                            <label for="gambar" class="form-label">gambar</label>
-                            <input type="file" class="form-control" id="harga" name="Harga" placeholder="Harga" required>
+                            <label for="harga" class="form-label">Harga</label>
+                            <input type="number" class="form-control" id="harga" name="Harga" placeholder="Harga" required>
+                        </div>
+                        <div class="mb-3 gambar">
+                            <p>Gambar</p>
+                            <label for="gambar" id="pilihGambar">Pilih Gambar</label>
+                            <input type="file" id="gambar" name="gambar" size="20" style="display: none;">
                         </div>
                         <div class="mb-3 d-flex justify-content-end">
                             <button class="add_new" data-bs-dismiss="modal">Simpan</button>
@@ -131,6 +140,17 @@
     <!-- Modal Tambah End -->
     <!-- Javascript -->
     <script>
+        let file = document.getElementById('gambar');
+        file.oninput = () => {
+            let filename = file.files[0].name;
+            let extension = filename.split('.').pop();
+            let filesize = file.files[0].name;
+            if (filesize <= 3000) {
+                filesize = (filesize / 1000).toFixed(2) + 'kb';
+            }
+            document.getElementById('pilihGambar').innerText = filename;
+        }
+
         function menu() {
             const menuToggle = document.querySelector('.menu');
             const profileToggle = document.querySelector('.profile');

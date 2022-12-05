@@ -258,17 +258,32 @@ class Admin extends CI_Controller
     }
     public function tambahPaket()
     {
-        $data = array(
-            'jenis' => $this->input->post('jenis', true),
-            'nama_paket' => $this->input->post('nmpaket', true),
-            'harga' => $this->input->post('Harga', true),
-        );
-        $this->M_admin->tambahpaket($data);
-        $this->session->set_flashdata(
-            'success',
-            'Berhasil'
-        );
-        redirect('admin/paket');
+        $config['upload_path']          = './assets/gambar/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = '3000';
+        $config['max_width']            = '3000';
+        $config['max_height']           = '3000';
+        $config['file_name']            = 'paket' . time();
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('gambar')) {
+            $image = $this->upload->data();
+            $gambar = $image['file_name'];
+            $data = [
+                'nama_paket' => $this->input->post('nmpaket', true),
+                'harga' => $this->input->post('Harga', true),
+                'gambar' => $gambar
+            ];
+            $this->M_admin->tambahpaket($data);
+            $this->session->set_flashdata(
+                'success',
+                'Berhasil'
+            );
+            redirect('admin/paket');
+        } else {
+            echo 'eror';
+        }
     }
     public function editPaket($id)
     {
@@ -281,17 +296,42 @@ class Admin extends CI_Controller
     }
     public function ubahPaket()
     {
-        $data = array(
-            'jenis' => $this->input->post('jenis', true),
-            'nama_paket' => $this->input->post('nmpaket', true),
-            'harga' => $this->input->post('Harga', true),
-        );
-        $this->M_admin->updatePaket($data, ['id_paket' => $this->input->post('id')]);
-        $this->session->set_flashdata('success', 'berhasil');
-        redirect(base_url('admin/paket'));
+        $config['upload_path']          = './assets/gambar/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = '3000';
+        $config['max_width']            = '3000';
+        $config['max_height']           = '3000';
+        $config['file_name']            = 'paket' . time();
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('gambar')) {
+            $image = $this->upload->data();
+            unlink('./assets/gambar/' . $this->input->post('old_image', true));
+            $gambar = $image['file_name'];
+            $data = [
+                'nama_paket' => $this->input->post('nmpaket', true),
+                'harga' => $this->input->post('Harga', true),
+                'gambar' => $gambar
+            ];
+            $this->M_admin->updatePaket($data, ['id_paket' => $this->input->post('id')]);
+            $this->session->set_flashdata('success', 'berhasil');
+            redirect(base_url('admin/paket'));
+        } else {
+            $data = [
+                'nama_paket' => $this->input->post('nmpaket', true),
+                'harga' => $this->input->post('Harga', true),
+                'gambar' => $this->input->post('old_image', true)
+            ];
+            $this->M_admin->updatePaket($data, ['id_paket' => $this->input->post('id')]);
+            $this->session->set_flashdata('success', 'berhasil');
+            redirect(base_url('admin/paket'));
+        }
     }
     public function hapus_paket($id)
     {
+        $_id = $this->db->get_where('tb_paket', ['id_paket' => $id])->row();
+        unlink('./assets/gambar/' . $_id->gambar);
         $this->M_admin->hapusPaket($id);
         $this->session->set_flashdata(
             'delete',
