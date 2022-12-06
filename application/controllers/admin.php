@@ -316,7 +316,7 @@ class Admin extends CI_Controller
             ];
             $this->M_admin->updatePaket($data, ['id_paket' => $this->input->post('id')]);
             $this->session->set_flashdata('success', 'berhasil');
-            redirect(base_url('admin/paket'));
+            redirect(base_url('admin/paket'), 'refresh');
         } else {
             $data = [
                 'nama_paket' => $this->input->post('nmpaket', true),
@@ -325,7 +325,7 @@ class Admin extends CI_Controller
             ];
             $this->M_admin->updatePaket($data, ['id_paket' => $this->input->post('id')]);
             $this->session->set_flashdata('success', 'berhasil');
-            redirect(base_url('admin/paket'));
+            redirect(base_url('admin/paket'), 'refresh');
         }
     }
     public function hapus_paket($id)

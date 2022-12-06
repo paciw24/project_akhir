@@ -45,6 +45,7 @@ $route['member/prosesLogin'] = 'member/prosesLogin';
 $route['register'] = 'member/registrasi';
 $route['member/dashboard'] = 'member/keHalamanDashboard';
 $route['member/logout'] = 'member/logout';
+$route['member/layanan'] = 'member/keHalamanLayanan';
 
 
 //eror

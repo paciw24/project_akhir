@@ -9,4 +9,7 @@ class M_member extends CI_Model
     {
         return $this->db->get_where('tb_member', $data);
     }
+    public function getDatalayanan(){
+        return $this->db->get('tb_paket');
+    }
 }

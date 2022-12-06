@@ -69,10 +69,8 @@
                <label for="harga" class="form-label">Harga</label>
                <input type="number" value="<?= $ubah->harga ?>" class="form-control" id="harga" name="Harga" placeholder="Harga" required>
             </div>
-            <div class="mb-3 gambar">
-               <p>Gambar</p>
-               <label for="gambar" id="pilihGambar"><?= $ubah->gambar ?></label>
-               <input type="file" id="gambar" name="gambar" size="20" style="display: none;" value="<?= $ubah->gambar ?>">
+            <div class="input-group mb-3">
+               <input type="file" class="form-control" name="gambar" id="gambar" value="<?= $ubah->gambar ?>">
                <input type="hidden" id="old_image" name="old_image" size="20" style="display: none;" value="<?= $ubah->gambar ?>">
             </div>
             <div class="mb-3 d-flex justify-content-between">
@@ -103,16 +101,6 @@
          menuToggle.classList.toggle('active');
          profileToggle.classList.toggle('active');
       }
-   </script>
-   <script type="text/javascript">
-      <?php if ($this->session->flashdata('success')) { ?>
-         Swal.fire({
-            icon: 'success',
-            title: 'Berhasil Disimpan',
-            showConfirmButton: false,
-            timer: 2000
-         })
-      <?php } ?>
    </script>
    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

@@ -275,9 +275,33 @@ header span{
 }
 .bg-pink{
     background-color: var(--first-color)!important;
-    color: #fff;
+    color: #fff!important;
 }
-
+.format-harga{
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--first-color);
+}
+.format-nama{
+    margin-bottom: 0px;
+    font-size: 18px;
+    font-weight: 500;
+}
+.btn-keranjang{
+    width: 100%;
+    background: var(--first-color);
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn-keranjang:hover{
+    background-color: #ff4d6d;
+}
 .table_header{
     display: flex;
     justify-content: space-between;
@@ -313,6 +337,7 @@ header span{
 .add_new:hover{
     background-color: #ff4d6d;
 }
+
 .btn-edit{
     background-color: var(--first-color)!important;
     color: #fff!important;

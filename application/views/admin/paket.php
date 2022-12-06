@@ -80,15 +80,15 @@
                 <tbody>
                     <?php foreach ($paket as $pt) { ?>
                         <tr>
-                            <td><?= ++$start ?></td>
-                            <td><?= $pt['nama_paket'] ?></td>
-                            <td><?= $pt['harga'] ?></td>
+                            <td class="align-middle"><?= ++$start ?></td>
+                            <td class="align-middle"><?= $pt['nama_paket'] ?></td>
+                            <td class="align-middle"><?= "Rp. " . number_format($pt['harga'], 0, ',', '.'); ?></td>
                             <td>
                                 <a href="<?= base_url('assets/gambar/' . $pt['gambar']) ?>" target="_blank">
                                     <img src="<?= base_url('assets/gambar/' . $pt['gambar']) ?>" width="150px" alt="">
                                 </a>
                             </td>
-                            <td>
+                            <td class="align-middle">
                                 <a class="btn btn-sm btn-edit" href="<?= base_url('admin/paket/ubah/' . $pt['id_paket']) ?>" id="btnEdit">Edit</a>
                                 <a onclick="HapusMenu(<?= $pt['id_paket'] ?>);" class="btn btn-sm btn-danger">Hapus</a>
                             </td>
@@ -122,10 +122,8 @@
                             <label for="harga" class="form-label">Harga</label>
                             <input type="number" class="form-control" id="harga" name="Harga" placeholder="Harga" required>
                         </div>
-                        <div class="mb-3 gambar">
-                            <p>Gambar</p>
-                            <label for="gambar" id="pilihGambar">Pilih Gambar</label>
-                            <input type="file" id="gambar" name="gambar" size="20" style="display: none;">
+                        <div class="input-group mb-3">
+                            <input type="file" class="form-control" id="gambar" name="gambar" required>
                         </div>
                         <div class="mb-3 d-flex justify-content-end">
                             <button class="add_new" data-bs-dismiss="modal">Simpan</button>
@@ -167,24 +165,27 @@
                 showConfirmButton: false,
                 timer: 2000
             })
+            unset($_SESSION['success']);
         <?php } ?>
         <?php if ($this->session->flashdata('delete')) { ?>
             Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
+                'Berhasil Dihapus!',
+                'Data yang terhapus tidak bisa dikembalikan.',
                 'success'
             )
+            unset($_SESSION['delete']);
         <?php } ?>
 
         function HapusMenu(id) {
             Swal.fire({
-                title: 'yakin lu?',
-                text: "Ga bisa ulang lho!",
-                icon: 'Warnig',
+                title: 'Apakah anda yakin?',
+                text: "Data yang dihapus tidak bisa dikembalikan!",
+                icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Yakin!',
+                cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href = "<?= base_url('admin/paket/hapusPaket') ?>/" + id;

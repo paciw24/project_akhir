@@ -98,4 +98,13 @@ class Member extends CI_Controller
             redirect(base_url('login'));
         }
     }
+    public function keHalamanLayanan()
+    {
+        if ($this->session->username == TRUE) {
+            $data['layanan'] = $this->M_member->getDatalayanan()->result();
+            $this->load->view('member/layanan', $data);
+        } else {
+            redirect(base_url('login'));
+        }
+    }
 }
