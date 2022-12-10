@@ -54,6 +54,7 @@
     </div>
     <!--Container Main start-->
     <div class="height-100 bg-light">
+        <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash') ?>"></div>
         <div class="card px-3 shadow-sm">
             <table class="table table-striped table-hover">
                 <div class="table_header">
@@ -89,7 +90,7 @@
                             <td><?= $us['notelp'] ?></td>
                             <td>
                                 <a class="btn btn-sm btn-edit" href="<?= base_url('admin/user/ubah/' . $us['id_user']) ?>" id="btnEdit">Edit</a>
-                                <a onclick="HapusMenu(<?= $us['id_user'] ?>);" class="btn btn-sm btn-danger">Hapus</a>
+                                <a class="btn btn-sm btn-danger tombol-hapus" href="<?= base_url('admin/user/hapusUser/' . $us['id_user']) ?>">Hapus</a>
                             </td>
                         </tr>
                     <?php } ?>
@@ -145,6 +146,7 @@
     </div>
     <!-- Modal Tambah End -->
     <!-- Javascript -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
         function menu() {
@@ -153,25 +155,20 @@
             menuToggle.classList.toggle('active');
             profileToggle.classList.toggle('active');
         }
-    </script>
-    <script type="text/javascript">
-        <?php if ($this->session->flashdata('success')) { ?>
+
+        const flashData = $('.flash-data').data('flashdata');
+        if (flashData) {
             Swal.fire({
                 icon: 'success',
-                title: 'Berhasil Disimpan',
+                title: 'Berhasil ' + flashData,
                 showConfirmButton: false,
                 timer: 2000
-            })
-        <?php } ?>
-        <?php if ($this->session->flashdata('delete')) { ?>
-            Swal.fire(
-                'Berhasil Dihapus!',
-                'Data yang terhapus tidak bisa dikembalikan.',
-                'success'
-            )
-        <?php } ?>
-
-        function HapusMenu(id) {
+            });
+        }
+        // Button hapus
+        $('.tombol-hapus').on('click', function(e) {
+            e.preventDefault();
+            const href = $(this).attr('href');
             Swal.fire({
                 title: 'Apakah anda yakin?',
                 text: "Data yang dihapus tidak bisa dikembalikan!",
@@ -179,17 +176,18 @@
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yakin!',
+                confirmButtonText: 'Hapus Data!',
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "<?= base_url('admin/user/hapusUser') ?>/" + id;
+                    document.location.href = href;
                 }
             })
-        }
+        });
     </script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script type="text/javascript" src="<?= base_url('assets/js/jquery.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/script.js') ?>"></script>
     <!-- Javascript End -->

@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 // Halaman Admin
+$route['default_controller'] = 'member';
 
     // Login
 $route['prosesLogin'] = 'Admin/prosesLogin';
@@ -46,9 +47,17 @@ $route['register'] = 'member/registrasi';
 $route['member/dashboard'] = 'member/keHalamanDashboard';
 $route['member/logout'] = 'member/logout';
 $route['member/layanan'] = 'member/keHalamanLayanan';
-
+$route['member/pesanan'] = 'member/keHalamanPesanan';
+$route['member/layanan/tambahKeranjang/(:any)'] = 'member/tambahKeranjang/$1';
+$route['member/layanan/hapusKeranjang'] = 'member/hapusKeranjang';
+$route['member/layanan/checkout'] = 'member/keHalamanCheckout';
+$route['member/layanan/invoice'] = 'member/keHalamanInvoice';
+$route['member/layanan/invoice/proses-pembayaran'] = 'member/prosesBukti';
+$route['member/layanan/proses-pembayaran'] = 'member/prosesPembayaran';
+$route['member/pesanan/detail/(:any)'] = 'member/keHalamandetailPesanan/$1';
+$route['member/pesanan/pembayaran/(:any)'] = 'member/keHalamandetailPembayaran/$1';
+$route['member/pesanan/prosesPembayaran'] = 'member/prosesBuktiPemesanan';
 
 //eror
-$route['default_controller'] = 'member';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

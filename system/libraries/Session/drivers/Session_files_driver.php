@@ -410,7 +410,6 @@ class CI_Session_files_driver extends CI_Session_driver implements SessionHandle
 	 * @param	string	$id
 	 * @return	bool
 	 */
-	#[\ReturnTypeWillChange]
 	public function validateSessionId($id)
 	{
 		$result = is_file($this->_file_path.$id);
@@ -426,7 +425,6 @@ class CI_Session_files_driver extends CI_Session_driver implements SessionHandle
 	 * @param	string	$str
 	 * @return	int
 	 */
-	#[\ReturnTypeWillChange]
 	protected static function strlen($str)
 	{
 		return (self::$func_overload)

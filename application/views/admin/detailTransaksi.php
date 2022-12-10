@@ -109,11 +109,11 @@
                         <label for="pengiriman">Pengiriman</label>
                     </div>
                     <?php
-                        if($transaksi->pengiriman == 1){
-                            echo "<input type='text' value='Ya' name='pengiriman' id='pengiriman' readonly>";
-                        }else{
-                            echo "<input type='text' value='Tidak' name='pengiriman' id='pengiriman' readonly>";
-                        }
+                    if ($transaksi->pengiriman == "bayar_ditempat") {
+                        echo "<input type='text' value='Ya' name='pengiriman' id='pengiriman' readonly>";
+                    } else {
+                        echo "<input type='text' value='Tidak' name='pengiriman' id='pengiriman' readonly>";
+                    }
                     ?>
                 </div>
                 <div class="list">
@@ -140,7 +140,7 @@
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Nama Paket</th>
-                        <th scope="col">Jenis</th>
+                        <th scope="col">gambar</th>
                         <th scope="col">Harga Satuan</th>
                         <th scope="col">Qty</th>
                         <th scope="col">Sub Total</th>
@@ -152,8 +152,12 @@
                         <tr>
                             <td class="align-middle"><?= $no++ ?></td>
                             <td class="align-middle"><?= $dt->nama_paket ?></td>
-                            <td class="align-middle"><?= $dt->jenis ?></td>
-                            <td class="align-middle"><?php echo "Rp. " . number_format($dt->harga, 0, ',', '.'); ?></td>
+                            <td class="align-middle">
+                                <a href="<?= base_url('assets/gambar/' . $dt->gambar) ?>" target="_blank">
+                                    <img src="<?= base_url('assets/gambar/' . $dt->gambar) ?>" class="img-bukti" alt="Gambar Bukti">
+                                </a>
+                            </td>
+                            <td class="align-middle">Rp.<?php number_format($dt->harga, 0, ',', '.'); ?></td>
                             <td class="align-middle"><?= $dt->qty ?></td>
                             <td class="align-middle">
                                 <?php
@@ -162,23 +166,23 @@
                             </td>
                         </tr>
                     <?php } ?>
-                    <tr>
-                        <?php
-                            if($transaksi->pengiriman == 1){
-                                $total = $transaksi->TOTAL + 10000;
-                                echo "<th scope='col' colspan='5' class='bg-secondary text-white'>Harga Pengiriman</th>";
-                                echo "<th scope='col'>Rp. " . number_format(10000, 0, ',', '.') . "</th>";
-                            }else{
-                                $total = $transaksi->TOTAL;
-                            }
-                        ?>
-                    </tr>
-                    <tr>
-                        <?php
-                        ?>
-                        <th scope="col" colspan="5" style="background: #FF758F!important; color: #fff!important;">Total Harga</th>
-                        <th scope="col"><?= "Rp. " . number_format($total, 0, ',', '.') ?></th>
-                    </tr>
+                    <?php
+                    if ($transaksi->pengiriman == "Pengantaran") {
+                        $total = $transaksi->TOTAL + 10000; ?>
+                        <tr>
+                            <th scope='col' colspan='5' class='bg-secondary text-white'>Harga Pengiriman</th>
+                            <th scope='col'><?= "Rp. " . number_format(10000, 0, ',', '.') ?></th>
+                        </tr>
+                        <tr>
+                            <th scope="col" colspan="5" style="background: #FF758F!important; color: #fff!important;">Total Harga</th>
+                            <th scope="col"><?= "Rp. " . number_format($total, 0, ',', '.') ?></th>
+                        </tr>
+                    <?php } else { ?>
+                        <tr>
+                            <th scope="col" colspan="5" style="background: #FF758F!important; color: #fff!important;">Total Harga</th>
+                            <th scope="col">Rp. <?= number_format($transaksi->TOTAL, 0, ',', '.') ?></th>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
             <div class="d-flex mb-3 justify-content-between">
@@ -186,7 +190,7 @@
                 <div class="d-flex">
                     <div class="me-2">
                         <form action="<?= base_url('admin/transaksi/updateStatus') ?>" method='post'>
-                            <input type='hidden' value='<?= $transaksi->id_transaksi ?>' name='id'>
+                            <input type='hidden' value='<?= $transaksi->kode_invoice ?>' name='id'>
                             <?php
                             if ($transaksi->status == "baru") {
                                 echo "<input type='hidden' value='proses' name='status'>";
@@ -223,7 +227,7 @@
             <div class="modal-content" style=" border:none!important;">
                 <div class="modal-body">
                     <form action="<?= base_url('admin/transaksi/bayar') ?>" method="post">
-                        <input type="hidden" name="id" value="<?= $transaksi->id_transaksi ?>">
+                        <input type="hidden" name="id" value="<?= $transaksi->kode_invoice ?>">
                         <input type="hidden" name="bayar" value="dibayar">
                         <div class="mb-3">
                             <label for="total" class="form-label">Total Bayar</label>

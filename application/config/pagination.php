@@ -1,6 +1,6 @@
 <?php
 // Config
-$config['base_url'] = 'http://localhost/Laundry-app/admin/keHalamanMember/';
+$config['num_links'] = '5';
 
 
 // Styling

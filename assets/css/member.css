@@ -277,7 +277,7 @@ header span{
     background-color: var(--first-color)!important;
     color: #fff!important;
 }
-.format-harga{
+.harga{
     font-size: 24px;
     font-weight: 800;
     color: var(--first-color);
@@ -288,16 +288,8 @@ header span{
     font-weight: 500;
 }
 .btn-keranjang{
-    width: 100%;
-    background: var(--first-color);
-    height: 45px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: 600;
-    cursor: pointer;
+    background-color: var(--first-color)!important;
+    color: #fff!important;
 }
 .btn-keranjang:hover{
     background-color: #ff4d6d;

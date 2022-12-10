@@ -52,72 +52,67 @@
     </div>
     <!--Container Main start-->
     <div class="height-100 bg-light">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="row">
-                    <?php foreach ($layanan as $ly) { ?>
-                        <div class="col-md-6 mb-3">
-                            <div class="card shadow-sm">
-                                <div class="card-body p-0 d-flex justify-content-center flex-column align-items-center">
-                                    <img src="<?= base_url('assets/gambar/' . $ly->gambar) ?>" height="150px" class="format-img">
-                                    <p class="format-nama"><?= $ly->nama_paket ?></p>
-                                    <p class=" harga">Rp. <span class="format-harga"><?= number_format($ly->harga, 0, ',', '.') ?></span></p>
-                                    <?= anchor('member/layanan/tambahKeranjang/' . $ly->id_paket, '<div class="btn btn-edit mb-3">Masukkan Keranjang</div>') ?>
-                                    <!-- <button type="button" class="tambah btn-keranjang" style="border: none!important;" data-action="add-to-cart">Masukkan Keranjang</button> -->
-                                </div>
-
-                            </div>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card px-3">
-                    <h4 class="badge-pill badge-light mt-3 mb-3 p-2 text-center">Keranjang</h4>
-                    <div class="cart">
-                        <?php foreach ($this->cart->contents() as $items) { ?>
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex flex-row align-items-center">
-                                            <div>
-                                                <img src="<?= base_url('assets/gambar/' . $items['image']) ?>" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                                            </div>
-                                            <div class="ms-3 d-flex align-items-center">
-                                                <h5 class="mb-0"><?= $items['name'] ?></h5>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex flex-row align-items-center">
-                                            <div style="width: 150px;">
-                                                <h5 class="fw-normal mb-0"><?= $items['qty'] ?> Kg</h5>
-                                            </div>
-                                            <div style="width: 120px;">
-                                                <h5 class="mb-0">Rp. <?= number_format($items['subtotal'], 0, ',', '.') ?></h5>
-                                            </div>
-                                            <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php } ?>
-                        <div class="card mb-3">
-                            <div class="card-body d-flex justify-content-between px-5 bg-pink">
-                                <h5 class="pb-0">Total </h5>
-                                <h5 class="pb-0">Rp. <?= number_format($this->cart->total(), 0, ',', '.') ?></h5>
-                            </div>
+        <?php if ($this->session->flashdata('invoice') === null) { ?>
+            <div class="container-fluid">
+                <div class="row justify-content-center my-5">
+                    <div class="col-md-5">
+                        <div class="alert alert-danger">
+                            <h4>Anda Telah MeRefresh Halaman !!</h4>
+                            <p>Silahkan Lakukan Pemesanan Kembali Jika Belum Mendapatkan Kode Pembayaran</p>
                         </div>
                     </div>
-                    <?php
-                    if (!$this->cart->total_items() == 0) {
-                        echo "<div class='p-2 mb-3'>
-                                <a class='btn btn-back' href='layanan/hapusKeranjang'>Hapus Keranjang</a>
-                                <a class='btn btn-edit' href='layanan/checkout'>Checkout</a>
-                            </div>";
-                    }
-                    ?>
                 </div>
             </div>
-        </div>
+        <?php } else {  ?>
+            <div class="row justify-content-center my-5">
+                <div class="col-md-5">
+                    <div class="alert alert-danger">
+                        <h4>PERINGATAN!<br> JANGAN REFRESH HALAMAN INI !</h4>
+                        <p>Untuk Menghindari Kegagalan Sistem.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="text-success text-center">Selamat!</h1>
+                            <h4 class="text-center">Anda Berhasil Melakukan Pemesanan di Berkah Laundry</h4>
+                            <hr>
+                            <h6 class="text-danger text-center">Silahkan Lakukan Pembayaran Sesuai Detail Berikut.</h6>
+                            <br>
+                            <h4 class="text-center">A00219301920139</h4>
+                            <p class="text-center font-weight-bold mb-0">a/n Berkah Laundry</p>
+                            <p class="text-center">BNI Syariah Kode Bank : 002</p>
+                            <hr>
+                            <?php if ($this->session->flashdata('pengiriman') === "Pengantaran") {
+                                $total = $this->session->flashdata('total') + 10000 ?>
+                                <h5 class="text-center">Total Yang Harus Dibayar</h5>
+                                <h2 class="text-center">Rp. <?= number_format($total, 0, ',', '.') ?></h2>
+                                <h6 class="text-danger text-center">*Harga termasuk biaya pengiriman</h6>
+                            <?php } else { ?>
+                                <h5 class="text-center">Total Yang Harus Dibayar</h5>
+                                <h2 class="text-center">Rp. <?= number_format($this->session->flashdata('total'), 0, ',', '.') ?></h2>
+                            <?php } ?>
+                            <br>
+                            <h5 class="text-center">Kode Pembayaran Anda</h5>
+                            <h2 class="text-center"><?= $this->session->flashdata('invoice') ?></h2>
+                            <hr>
+                            <form action="<?= base_url('member/layanan/invoice/proses-pembayaran') ?>" method="post" enctype="multipart/form-data">
+                                <label for="gambar">Bukti Transaksi</label>
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <input type="hidden" name="id" value="<?= $this->session->flashdata('invoice') ?>">
+                                        <input type="file" class="form-control" id="gambar" name="gambar" required>
+                                    </div>
+                                    <div class="col-md-2 p-0">
+                                        <button class="btn btn-primary">Kirim</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <br>
+                            <h4 class="text-center text-success">TERIMA KASIH</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
     </div>
     <!--Container Main end-->
     <script>

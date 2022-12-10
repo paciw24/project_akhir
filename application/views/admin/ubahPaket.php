@@ -69,6 +69,7 @@
                <label for="harga" class="form-label">Harga</label>
                <input type="number" value="<?= $ubah->harga ?>" class="form-control" id="harga" name="Harga" placeholder="Harga" required>
             </div>
+            <img src="<?= base_url('assets/gambar/'. $ubah->gambar) ?>" width="100px">
             <div class="input-group mb-3">
                <input type="file" class="form-control" name="gambar" id="gambar" value="<?= $ubah->gambar ?>">
                <input type="hidden" id="old_image" name="old_image" size="20" style="display: none;" value="<?= $ubah->gambar ?>">

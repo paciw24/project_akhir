@@ -56,7 +56,7 @@
    <div class="height-100 bg-light">
       <div class="card p-3">
          <div class="table_header p-0 px-3 m-0">
-            <p>Ubah Member</p>
+            <p>Ubah Admin</p>
          </div>
          <form action="<?= base_url('admin/user/edit') ?>" method="post">
             <input type="hidden" name="id" value="<?= $ubah->id_user ?>">
@@ -72,6 +72,7 @@
             <div class="mb-3">
                <label for="password" class="form-label">Kata Sandi</label>
                <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Password" value="<?= $ubah->password ?>" required>
+               <input type="hidden" class="form-control" id="password" name="passwordlama" placeholder="Masukkan Password" value="<?= $ubah->password ?>" required>
             </div>
             <div class="mb-3">
                <label for="email" class="form-label">Email</label>
@@ -98,16 +99,6 @@
          menuToggle.classList.toggle('active');
          profileToggle.classList.toggle('active');
       }
-   </script>
-   <script type="text/javascript">
-      <?php if ($this->session->flashdata('success')) { ?>
-         Swal.fire({
-            icon: 'success',
-            title: 'Berhasil Disimpan',
-            showConfirmButton: false,
-            timer: 2000
-         })
-      <?php } ?>
    </script>
    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

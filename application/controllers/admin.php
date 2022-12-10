@@ -21,6 +21,7 @@ class Admin extends CI_Controller
         if ($user) {
             if (password_verify($password, $user['password'])) {
                 $data = [
+                    'id_user' => $user['id_user'],
                     'username' => $user['username'],
                     'nama' => $user['nama']
                 ];
@@ -77,6 +78,7 @@ class Admin extends CI_Controller
             // config
             $this->db->like('nama', $data['keyword']);
             $this->db->from('tb_member');
+            $config['base_url'] = 'http://localhost/Laundry-app/admin/keHalamanMember/';
             $config['total_rows'] = $this->db->count_all_results();
             $data['total_rows'] = $config['total_rows'];
             $config['per_page'] = 5;
@@ -119,17 +121,32 @@ class Admin extends CI_Controller
     }
     public function ubahMember()
     {
-        $data = array(
-            'nama' => $this->input->post('nama', true),
-            'username' => $this->input->post('username', true),
-            'password' => password_hash($this->input->post('password', true), PASSWORD_DEFAULT),
-            'alamat' => $this->input->post('alamat', true),
-            'email' => $this->input->post('email', true),
-            'telp' => $this->input->post('telp', true)
-        );
-        $this->M_admin->updateMember($data, ['id_member' => $this->input->post('id')]);
-        $this->session->set_flashdata('success', 'berhasil');
-        redirect(base_url('admin/member'));
+        $password = $this->input->post('password', true);
+        if ($password === $this->input->post('passwordlama', true)) {
+            $data = array(
+                'nama' => $this->input->post('nama', true),
+                'username' => $this->input->post('username', true),
+                'password' => $this->input->post('passwordlama', true),
+                'alamat' => $this->input->post('alamat', true),
+                'email' => $this->input->post('email', true),
+                'telp' => $this->input->post('telp', true)
+            );
+            $this->M_admin->updateMember($data, ['id_member' => $this->input->post('id')]);
+            $this->session->set_flashdata('success', 'berhasil');
+            redirect(base_url('admin/member'));
+        } else {
+            $data = array(
+                'nama' => $this->input->post('nama', true),
+                'username' => $this->input->post('username', true),
+                'password' => password_hash($this->input->post('password', true), PASSWORD_DEFAULT),
+                'alamat' => $this->input->post('alamat', true),
+                'email' => $this->input->post('email', true),
+                'telp' => $this->input->post('telp', true)
+            );
+            $this->M_admin->updateMember($data, ['id_member' => $this->input->post('id')]);
+            $this->session->set_flashdata('success', 'berhasil');
+            redirect(base_url('admin/member'));
+        }
     }
     public function hapus_member($id)
     {
@@ -159,6 +176,7 @@ class Admin extends CI_Controller
             // config
             $this->db->like('nama', $data['keyword']);
             $this->db->from('tb_user');
+            $config['base_url'] = 'http://localhost/Laundry-app/admin/keHalamanAdmin/';
             $config['total_rows'] = $this->db->count_all_results();
             $data['total_rows'] = $config['total_rows'];
             $config['per_page'] = 5;
@@ -184,8 +202,8 @@ class Admin extends CI_Controller
         );
         $this->M_admin->tambahAdmin($data);
         $this->session->set_flashdata(
-            'success',
-            'Berhasil'
+            'flash',
+            'Ditambahkan'
         );
         redirect('admin/user');
     }
@@ -200,23 +218,37 @@ class Admin extends CI_Controller
     }
     public function ubahAdmin()
     {
-        $data = array(
-            'nama' => $this->input->post('nama', true),
-            'username' => $this->input->post('username', true),
-            'password' => password_hash($this->input->post('password', true), PASSWORD_DEFAULT),
-            'email' => $this->input->post('email', true),
-            'notelp' => $this->input->post('telp', true)
-        );
-        $this->M_admin->updateAdmin($data, ['id_user' => $this->input->post('id')]);
-        $this->session->set_flashdata('success', 'berhasil');
-        redirect(base_url('admin/user'));
+        $password = $this->input->post('password', true);
+        if ($password === $this->input->post('passwordlama', true)) {
+            $data = array(
+                'nama' => $this->input->post('nama', true),
+                'username' => $this->input->post('username', true),
+                'password' => $this->input->post('passwordlama', true),
+                'email' => $this->input->post('email', true),
+                'notelp' => $this->input->post('telp', true)
+            );
+            $this->M_admin->updateAdmin($data, ['id_user' => $this->input->post('id')]);
+            $this->session->set_flashdata('flash', 'Diubah');
+            redirect(base_url('admin/user'));
+        } else {
+            $data = array(
+                'nama' => $this->input->post('nama', true),
+                'username' => $this->input->post('username', true),
+                'password' => password_hash($this->input->post('password', true), PASSWORD_DEFAULT),
+                'email' => $this->input->post('email', true),
+                'notelp' => $this->input->post('telp', true)
+            );
+            $this->M_admin->updateAdmin($data, ['id_user' => $this->input->post('id')]);
+            $this->session->set_flashdata('flash', 'Diubah');
+            redirect(base_url('admin/user'));
+        }
     }
     public function hapus_Admin($id)
     {
         $this->M_admin->hapusAdmin($id);
         $this->session->set_flashdata(
-            'delete',
-            'Berhasil'
+            'flash',
+            'Dihapus'
         );
         redirect(base_url('admin/user'));
     }
@@ -239,6 +271,7 @@ class Admin extends CI_Controller
             // config
             $this->db->like('nama_paket', $data['keyword']);
             $this->db->from('tb_paket');
+            $config['base_url'] = 'http://localhost/Laundry-app/admin/keHalamanPaket/';
             $config['total_rows'] = $this->db->count_all_results();
             $data['total_rows'] = $config['total_rows'];
             $config['per_page'] = 5;
@@ -357,8 +390,9 @@ class Admin extends CI_Controller
             }
 
             // config
-            $this->db->like('id_transaksi', $data['keyword']);
+            $this->db->like('kode_invoice', $data['keyword']);
             $this->db->from('tb_transaksi');
+            $config['base_url'] = 'http://localhost/Laundry-app/admin/keHalamanTransaksi/';
             $config['total_rows'] = $this->db->count_all_results();
             $data['total_rows'] = $config['total_rows'];
             $config['per_page'] = 5;
@@ -389,7 +423,7 @@ class Admin extends CI_Controller
             'status' => $this->input->post('status', true)
         );
 
-        $this->M_admin->updateStat($data, ['id_transaksi' => $this->input->post('id')]);
+        $this->M_admin->updateStat($data, ['kode_invoice' => $this->input->post('id')]);
         $this->session->set_flashdata('success', 'berhasil');
         redirect(base_url('admin/transaksi'));
     }
@@ -401,25 +435,27 @@ class Admin extends CI_Controller
         $total = $this->input->post('total', true);
         $cash = $this->input->post('cash', true);
         $hasil = $cash - $total;
-        $this->M_admin->updateByr($data, ['id_transaksi' => $this->input->post('id')]);
+        $this->M_admin->updateByr($data, ['kode_invoice' => $this->input->post('id')]);
         $this->session->set_flashdata('kembalian', $hasil);
         redirect(base_url('admin/transaksi'));
     }
     public function verifikasiSetuju($id)
     {
         $data = array(
+            'id_user' => $this->session->userdata('id_user'),
             'verifikasi_pembayaran' => $this->input->post('setuju', true)
         );
-        $this->M_admin->updateVerifikasi($data, ['id_transaksi' => $this->input->post('id')]);
+        $this->M_admin->updateVerifikasi($data, ['kode_invoice' => $this->input->post('id')]);
         $this->session->set_flashdata('success', 'berhasil');
         redirect(base_url('admin/transaksi'));
     }
     public function verifikasiTolak($id)
     {
         $data = array(
+            'id_user' => $this->session->userdata('id_user'),
             'verifikasi_pembayaran' => $this->input->post('tolak', true)
         );
-        $this->M_admin->updateVerifikasi($data, ['id_transaksi' => $this->input->post('id')]);
+        $this->M_admin->updateVerifikasi($data, ['kode_invoice' => $this->input->post('id')]);
         $this->session->set_flashdata('delete', 'berhasil');
         redirect(base_url('admin/transaksi'));
     }

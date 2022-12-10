@@ -26,8 +26,11 @@ class Member extends CI_Controller
         if ($user) {
             if (password_verify($password, $user['password'])) {
                 $data = [
+                    'id' => $user['id_member'],
                     'username' => $user['username'],
-                    'nama' => $user['nama']
+                    'nama' => $user['nama'],
+                    'alamat' => $user['alamat'],
+                    'telp' => $user['telp']
                 ];
                 $this->session->set_userdata($data);
                 redirect('member/dashboard');
@@ -48,7 +51,7 @@ class Member extends CI_Controller
     // Registrasi
     public function registrasi()
     {
-        if ($this->session->username == TRUE)  {
+        if ($this->session->username == TRUE) {
             redirect(base_url('member/dashboard'));
         }
         $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required', [
@@ -91,7 +94,8 @@ class Member extends CI_Controller
             redirect('member/login');
         }
     }
-    public function keHalamanDashboard(){
+    public function keHalamanDashboard()
+    {
         if ($this->session->username == TRUE) {
             $this->load->view('member/dashboard');
         } else {
@@ -103,6 +107,150 @@ class Member extends CI_Controller
         if ($this->session->username == TRUE) {
             $data['layanan'] = $this->M_member->getDatalayanan()->result();
             $this->load->view('member/layanan', $data);
+        } else {
+            redirect(base_url('login'));
+        }
+    }
+    public function tambahKeranjang($id)
+    {
+        $pesanan = $this->M_member->find($id);
+
+        $data = array(
+            'id' => $pesanan->id_paket,
+            'qty' => 1,
+            'price' => $pesanan->harga,
+            'name' => $pesanan->nama_paket,
+            'image' => $pesanan->gambar
+
+        );
+
+        $this->cart->insert($data);
+        redirect('member/layanan');
+    }
+    public function hapusKeranjang()
+    {
+        $this->cart->destroy();
+        redirect('member/layanan');
+    }
+    public function keHalamanCheckout()
+    {
+        if ($this->session->username == TRUE) {
+            $cek = $this->M_member->getData()->num_rows() + 1;
+            $data['kode_invoice'] = 'P00' . $cek;
+            $this->load->view('member/checkout', $data);
+        } else {
+            redirect(base_url('login'));
+        }
+    }
+    public function prosesPembayaran()
+    {
+        $invoice = $this->input->post('invoice');
+        $total = $this->cart->total();
+        $pengiriman = $this->input->post('pengiriman');
+        $is_processed = $this->M_member->pembayaran();
+        if ($is_processed) {
+            $this->session->set_flashdata('invoice', $invoice);
+            $this->session->set_flashdata('total', $total);
+            $this->session->set_flashdata('pengiriman', $pengiriman);
+            $this->cart->destroy();
+            redirect(base_url('member/layanan/invoice'));
+        } else {
+            echo "Maaf Pesanan Anda Gagal diProses";
+        }
+    }
+    public function prosesBukti()
+    {
+        $config['upload_path']          = './assets/bukti/';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['max_size']             = '3000';
+        $config['max_width']            = '3000';
+        $config['max_height']           = '3000';
+        $config['file_name']            = 'bukti' . time();
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('gambar')) {
+            $image = $this->upload->data();
+            $gambar = $image['file_name'];
+            $data = array(
+                'dibayar' => 'dibayar',
+                'bukti' => $gambar
+            );
+            $this->M_member->bukti($data, ['kode_invoice' => $this->input->post('id')]);
+            redirect('member/layanan');
+        } else {
+            echo 'eror';
+        }
+    }
+    public function prosesBuktiPemesanan()
+    {
+        $config['upload_path']          = './assets/bukti/';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['max_size']             = '3000';
+        $config['max_width']            = '3000';
+        $config['max_height']           = '3000';
+        $config['file_name']            = 'bukti' . time();
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('gambar')) {
+            $image = $this->upload->data();
+            $gambar = $image['file_name'];
+            $data = array(
+                'verifikasi_pembayaran' => null,
+                'dibayar' => 'dibayar',
+                'bukti' => $gambar
+            );
+            $this->M_member->bukti($data, ['kode_invoice' => $this->input->post('id')]);
+            redirect('member/pesanan');
+        } else {
+            echo 'eror';
+        }
+    }
+    public function keHalamanInvoice()
+    {
+        if ($this->session->username == TRUE) {
+            $this->load->view('member/invoice');
+        } else {
+            redirect(base_url('login'));
+        }
+    }
+    public function keHalamanPesanan()
+    {
+        if ($this->session->username == TRUE) {
+            $id = $this->session->userdata('id');
+            // load library
+            $this->load->library('pagination');
+            
+            $config['base_url'] = 'http://localhost/Laundry-app/member/keHalamanPesanan/';
+            $config['total_rows'] = $this->M_member->countAllPesanan($id);
+            $data['total_rows'] = $config['total_rows'];
+            $config['per_page'] = 10;
+            
+            // initialize
+            $this->pagination->initialize($config);
+            
+            $data['start'] = $this->uri->segment(3);
+            $data['pesanan'] = $this->M_member->getDataPesanan($config['per_page'], $data['start'], $id);
+            $this->load->view('member/pesanan', $data);
+        } else {
+            redirect(base_url('login'));
+        }
+    }
+    public function keHalamandetailPesanan($id)
+    {
+        if ($this->session->username == TRUE) {
+            $data['detail'] = $this->M_member->getDataDetails($id)->result();
+            $this->load->view('member/detailPesanan', $data);
+        } else {
+            redirect(base_url('login'));
+        }
+    }
+    public function keHalamandetailPembayaran($id)
+    {
+        if ($this->session->username == TRUE) {
+            $data['pembayaran'] = $this->M_member->getDataPembayaran($id)->row();
+            $this->load->view('member/pembayaran', $data);
         } else {
             redirect(base_url('login'));
         }

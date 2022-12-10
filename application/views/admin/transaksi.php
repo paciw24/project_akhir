@@ -99,7 +99,7 @@
                             </td>
                             <td class="align-middle">
                                 <?php
-                                if ($tr['pengiriman'] == "1") {
+                                if ($tr['pengiriman'] == "Pengiriman") {
                                     echo "<span'>Ya</span>";
                                 } else {
                                     echo "<span>Tidak</span>";
@@ -116,33 +116,34 @@
                                 ?>
                             </td>
                             <td class="align-middle">
-                                <a href="<?= base_url('assets/img/logo.png') ?>" target="_blank">
-                                    <img src="<?= base_url('assets/img/logo.png') ?>" class="img-bukti" alt="Gambar Bukti">
+                                <a href="<?= base_url('assets/bukti/' . $tr['bukti']) ?>" target="_blank">
+                                    <img src="<?= base_url('assets/bukti/' . $tr['bukti']) ?>" class="img-bukti" alt="Gambar Bukti">
                                 </a>
                             </td>
                             <td class="align-middle">
                                 <?php
-                                if ($tr['verifikasi_pembayaran'] == "setuju") {
-                                    echo "<a class='btn btn-sm btn-edit' href='transaksi/detail/$tr[id_transaksi]' id='btnEdit'>Lihat Detail</a>";
-                                } else if ($tr['verifikasi_pembayaran'] == "tolak") {
-                                    echo "<span class='btn-selesai'>Verifikasi ditolak</span>";
-                                } else {
-                                    echo "
-                                            <div class='d-flex'>
-                                            <form class='me-2' action='verifikasi/setuju/$tr[id_transaksi]' method='post'>
-                                                <input type='hidden' name='id' value='$tr[id_transaksi]'>
-                                                <input type='hidden' name='setuju' value='setuju'>
-                                                <button class='btn btn-sm btn-success d-flex align-items-center'><ion-icon name='checkmark-outline' class='me-2'></ion-icon> <span>Setuju</span></button>
-                                            </form>
-                                            <form action='verifikasi/tolak/$tr[id_transaksi]' method='post'>
-                                                <input type='hidden' name='id' value='$tr[id_transaksi]'>
-                                                <input type='hidden' name='tolak' value='tolak'>
-                                                <button class='btn btn-sm btn-danger d-flex align-items-center'><ion-icon name='close-outline' class='me-2'></ion-icon> <span>Tolak</span></button>
-                                            </form>
-                                            </div>
-                                        ";
-                                }
-                                ?>
+                                if ($tr['verifikasi_pembayaran'] == "setuju") { ?>
+                                    <a class='btn btn-sm btn-edit' href="<?= base_url('admin/transaksi/detail/' . $tr['kode_invoice']) ?>" id='btnEdit'>Lihat Detail</a>
+                                <?php } else if ($tr['verifikasi_pembayaran'] == "tolak") { ?>
+                                    <span class='btn-selesai'>Verifikasi ditolak</span>
+                                <?php } else { ?>
+                                    <div class='d-flex'>
+                                        <form class='me-2' action="<?= base_url('admin/verifikasi/setuju/' . $tr['kode_invoice']) ?>" method='post'>
+                                            <input type='hidden' name='id' value='<?= $tr['kode_invoice'] ?>'>
+                                            <input type='hidden' name='setuju' value='setuju'>
+                                            <button class='btn btn-sm btn-success d-flex align-items-center'>
+                                                <ion-icon name="checkmark-outline" class='me-2'></ion-icon> <span>Setuju</span>
+                                            </button>
+                                        </form>
+                                        <form action=<?= base_url('admin/verifikasi/tolak/' . $tr['kode_invoice']) ?> method='post'>
+                                            <input type='hidden' name='id' value='<?= $tr['kode_invoice'] ?>'>
+                                            <input type='hidden' name='tolak' value='tolak'>
+                                            <button class='btn btn-sm btn-danger d-flex align-items-center'>
+                                                <ion-icon name='close-outline' class='me-2'></ion-icon> <span>Tolak</span>
+                                            </button>
+                                        </form>
+                                    </div>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php } ?>

@@ -71,7 +71,8 @@
             </div>
             <div class="mb-3">
                <label for="password" class="form-label">Kata Sandi</label>
-               <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Password" value="<?= password_verify($ubah->password, $ubah->password) ?>" required>
+               <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Password" value="<?= $ubah->password ?>" required>
+               <input type="hidden" class="form-control" id="password" name="passwordlama" placeholder="Masukkan Password" value="<?= $ubah->password ?>" required>
             </div>
             <div class="mb-3">
                <label for="alamat" class="form-label">Alamat</label>

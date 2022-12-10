@@ -72,7 +72,7 @@ class M_admin extends CI_Model
         $this->db->select('SUM(tb_detail_transaksi.subtotal) AS TOTAL');
         $this->db->from('tb_transaksi');
         $this->db->where('tb_transaksi.tgl = ', $date);
-        $this->db->join('tb_detail_transaksi', 'tb_transaksi.id_transaksi = tb_detail_transaksi.id_transaksi');
+        $this->db->join('tb_detail_transaksi', 'tb_transaksi.kode_invoice = tb_detail_transaksi.kode_invoice');
         return $this->db->get();
     }
     public function tambahMem($data = null)
@@ -128,39 +128,37 @@ class M_admin extends CI_Model
     }
 
     // Transaksi
-    public function getDataTransaksi($limit, $start, $keyword = null)
+    public function getDataTransaksi($limit, $start, $keyword)
     {
         if ($keyword) {
-            $this->db->like('tb_member.nama', $keyword);
+            $this->db->like('kode_invoice', $keyword);
         }
-        $this->db->select('tb_transaksi.*, tb_member.nama AS NAMA_MEMBER, tb_user.nama AS NAMA_USER');
+        $this->db->order_by('tgl', 'desc');
+        $this->db->select('tb_transaksi.kode_invoice, tb_transaksi.tgl, tb_member.nama AS NAMA_MEMBER, tb_transaksi.status, tb_transaksi.pengiriman, tb_transaksi.dibayar, tb_transaksi.bukti, tb_transaksi.verifikasi_pembayaran');
         $this->db->join('tb_member', 'tb_transaksi.id_member = tb_member.id_member');
-        $this->db->join('tb_user', 'tb_transaksi.id_user = tb_user.id_user');
         return $this->db->get('tb_transaksi', $limit, $start)->result_array();
     }
     public function getDataDetailTransaksi($id)
     {
         $data = array(
-            'tb_transaksi.id_transaksi' => $id
+            'tb_transaksi.kode_invoice' => $id
         );
-        $this->db->select('tb_transaksi.*, tb_member.nama AS NAMA_MEMBER, tb_member.alamat AS ALAMAT, tb_member.telp AS TELP, tb_user.nama AS NAMA_USER, tb_detail_transaksi.*, tb_paket.*, SUM(tb_detail_transaksi.subtotal) AS TOTAL');
+        $this->db->select('tb_transaksi.kode_invoice, tb_transaksi.tgl, tb_transaksi.status, tb_transaksi.dibayar, tb_transaksi.pengiriman, tb_transaksi.komentar, tb_member.nama AS NAMA_MEMBER, tb_member.alamat AS ALAMAT, tb_member.telp AS TELP, tb_detail_transaksi.*, SUM(tb_detail_transaksi.subtotal) AS TOTAL');
         $this->db->from('tb_transaksi');
         $this->db->where($data);
         $this->db->join('tb_member', 'tb_transaksi.id_member = tb_member.id_member');
-        $this->db->join('tb_user', 'tb_transaksi.id_user = tb_user.id_user');
-        $this->db->join('tb_detail_transaksi', 'tb_transaksi.id_transaksi = tb_detail_transaksi.id_transaksi');
-        $this->db->join('tb_paket', 'tb_detail_transaksi.id_paket = tb_paket.id_paket');
+        $this->db->join('tb_detail_transaksi', 'tb_transaksi.kode_invoice = tb_detail_transaksi.kode_invoice');
         return $this->db->get();
     }
     public function getDataDetails($id)
     {
         $data = array(
-            'tb_transaksi.id_transaksi' => $id
+            'tb_transaksi.kode_invoice' => $id
         );
-        $this->db->select('tb_transaksi.id_transaksi, tb_detail_transaksi.*, tb_paket.*');
+        $this->db->select('tb_transaksi.kode_invoice, tb_detail_transaksi.*, tb_paket.*');
         $this->db->from('tb_transaksi');
         $this->db->where($data);
-        $this->db->join('tb_detail_transaksi', 'tb_transaksi.id_transaksi = tb_detail_transaksi.id_transaksi', 'left');
+        $this->db->join('tb_detail_transaksi', 'tb_transaksi.kode_invoice = tb_detail_transaksi.kode_invoice');
         $this->db->join('tb_paket', 'tb_detail_transaksi.id_paket = tb_paket.id_paket');
         return $this->db->get();
     }
