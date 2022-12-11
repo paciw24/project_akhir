@@ -425,8 +425,8 @@ class Admin extends CI_Controller
                 'gambar' => $gambar
             ];
             $this->M_admin->updatePaket($data, ['id_paket' => $this->input->post('id')]);
-            $this->session->set_flashdata('success', 'berhasil');
-            redirect(base_url('admin/paket'), 'refresh');
+            $this->session->set_flashdata('flash', 'diubah');
+            redirect(base_url('admin/paket'));
         } else {
             $data = [
                 'nama_paket' => $this->input->post('nmpaket', true),
@@ -435,7 +435,7 @@ class Admin extends CI_Controller
             ];
             $this->M_admin->updatePaket($data, ['id_paket' => $this->input->post('id')]);
             $this->session->set_flashdata('flash', 'Diubah');
-            redirect(base_url('admin/paket'), 'refresh');
+            redirect(base_url('admin/paket'));
         }
     }
     public function hapus_paket($id)

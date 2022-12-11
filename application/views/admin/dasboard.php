@@ -70,7 +70,7 @@
                     <div class="card-body d-flex justify-content-between">
                         <div>
                             <div class="number"><?= $order ?></div>
-                            <div class="cardName text-secondary">Orders</div>
+                            <div class="cardName text-secondary">Pesanan</div>
                         </div>
                         <div class="iconBox">
                             <ion-icon name="cart-outline"></ion-icon>
