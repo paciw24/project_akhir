@@ -6,12 +6,24 @@ class M_admin extends CI_Model
     {
         return $this->db->get_where('tb_user', $data);
     }
-    // Admin
-    public function getDataAdmin($limit, $start, $keyword = null)
+    public function getDataProfile($id)
     {
-        if ($keyword) {
-            $this->db->like('nama', $keyword);
-        }
+        $this->db->where('id_user', $id);
+        return $this->db->get('tb_user')->row();
+    }
+    public function updatePassword($pass, $id){
+        $this->db->set('password', $pass);
+        $this->db->where('id_user', $id);
+        $this->db->update('tb_user');
+    }
+    public function updateProfile($data, $id){
+        $this->db->where('id_user', $id);
+        $this->db->update('tb_user', $data);
+    }
+
+    // Admin
+    public function getDataAdmin($limit, $start)
+    {
         return $this->db->get('tb_user', $limit, $start)->result_array();
     }
     public function tambahAdmin($data = null)
@@ -37,11 +49,8 @@ class M_admin extends CI_Model
     }
 
     // Member
-    public function getDataMember($limit, $start, $keyword = null)
+    public function getDataMember($limit, $start)
     {
-        if ($keyword) {
-            $this->db->like('nama', $keyword);
-        }
         return $this->db->get('tb_member', $limit, $start)->result_array();
     }
     public function countAllMember()
@@ -128,11 +137,8 @@ class M_admin extends CI_Model
     }
 
     // Transaksi
-    public function getDataTransaksi($limit, $start, $keyword)
+    public function getDataTransaksi($limit, $start)
     {
-        if ($keyword) {
-            $this->db->like('kode_invoice', $keyword);
-        }
         $this->db->order_by('tgl', 'desc');
         $this->db->select('tb_transaksi.kode_invoice, tb_transaksi.tgl, tb_member.nama AS NAMA_MEMBER, tb_transaksi.status, tb_transaksi.pengiriman, tb_transaksi.dibayar, tb_transaksi.bukti, tb_transaksi.verifikasi_pembayaran');
         $this->db->join('tb_member', 'tb_transaksi.id_member = tb_member.id_member');
@@ -176,5 +182,19 @@ class M_admin extends CI_Model
     {
         $this->db->where($where);
         $this->db->update('tb_transaksi', $data);
+    }
+
+    // Laporan
+    public function getLaporan($limit, $start){
+        $this->db->order_by('tgl', 'desc');
+        $this->db->select('tb_transaksi.kode_invoice, tb_transaksi.tgl, tb_member.nama AS NAMA_MEMBER, tb_transaksi.status, tb_transaksi.pengiriman, tb_transaksi.dibayar, tb_transaksi.bukti, tb_transaksi.verifikasi_pembayaran');
+        $this->db->join('tb_member', 'tb_transaksi.id_member = tb_member.id_member');
+        return $this->db->get('tb_transaksi', $limit, $start)->result_array();
+    }
+    public function getLaporanExport(){
+        $this->db->order_by('tgl', 'desc');
+        $this->db->select('tb_transaksi.kode_invoice, tb_transaksi.tgl, tb_member.nama AS NAMA_MEMBER, tb_transaksi.status, tb_transaksi.pengiriman, tb_transaksi.dibayar, tb_transaksi.bukti, tb_transaksi.verifikasi_pembayaran');
+        $this->db->join('tb_member', 'tb_transaksi.id_member = tb_member.id_member');
+        return $this->db->get('tb_transaksi')->result_array();
     }
 }

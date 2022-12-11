@@ -10,6 +10,9 @@ $route['logout'] = 'admin/logout';
 
 // Dashboard
 $route['admin/dasboard'] = 'admin/keHalamanDasboard';
+$route['admin/profile'] = 'admin/keHalamanUbahProfile';
+$route['admin/ubahProfile/ubah'] = 'admin/ubahProfile';
+$route['admin/ubahProfile/ubahPassword'] = 'admin/ubahPassword';
 
 // Member
 $route['admin/member'] = 'admin/keHalamanMember';
@@ -40,8 +43,16 @@ $route['admin/transaksi/bayar'] = 'admin/updateBayar';
 $route['admin/verifikasi/setuju/(:any)'] = 'admin/verifikasiSetuju/$1';
 $route['admin/verifikasi/tolak/(:any)'] = 'admin/verifikasiTolak/$1';
 
+// Laporan
+$route['admin/laporan'] = 'admin/laporan';
+$route['admin/laporan/export'] = 'admin/export';
+$route['admin/laporan/exportExcel'] = 'admin/exportExcel';
+
 // Halaman Member
 $route['member/login'] = 'member/keHalamanLogin';
+$route['member/ubahProfile'] = 'member/keHalamanProfile';
+$route['member/ubahProfile/ubah'] = 'member/ubahProfile';
+$route['member/ubahProfile/ubahPassword'] = 'member/ubahPassword';
 $route['member/prosesLogin'] = 'member/prosesLogin';
 $route['register'] = 'member/registrasi';
 $route['member/dashboard'] = 'member/keHalamanDashboard';

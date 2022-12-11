@@ -98,4 +98,18 @@ class M_member extends CI_Model
         $this->db->join('tb_detail_transaksi', 'tb_transaksi.kode_invoice = tb_detail_transaksi.kode_invoice');
         return $this->db->get();
     }
+    public function getDataProfile($id)
+    {
+        $this->db->where('id_member', $id);
+        return $this->db->get('tb_member')->row();
+    }
+    public function updatePassword($pass, $id){
+        $this->db->set('password', $pass);
+        $this->db->where('id_member', $id);
+        $this->db->update('tb_member');
+    }
+    public function updateProfile($data, $id){
+        $this->db->where('id_member', $id);
+        $this->db->update('tb_member', $data);
+    }
 }

@@ -29,6 +29,7 @@ class Member extends CI_Controller
                     'id' => $user['id_member'],
                     'username' => $user['username'],
                     'nama' => $user['nama'],
+                    'password' => $user['password'],
                     'alamat' => $user['alamat'],
                     'telp' => $user['telp']
                 ];
@@ -97,7 +98,10 @@ class Member extends CI_Controller
     public function keHalamanDashboard()
     {
         if ($this->session->username == TRUE) {
+            $this->load->view('member/template/header');
+            $this->load->view('member/template/topbar');
             $this->load->view('member/dashboard');
+            $this->load->view('member/template/footer');
         } else {
             redirect(base_url('login'));
         }
@@ -106,7 +110,10 @@ class Member extends CI_Controller
     {
         if ($this->session->username == TRUE) {
             $data['layanan'] = $this->M_member->getDatalayanan()->result();
+            $this->load->view('member/template/header');
+            $this->load->view('member/template/topbar');
             $this->load->view('member/layanan', $data);
+            $this->load->view('member/template/footer');
         } else {
             redirect(base_url('login'));
         }
@@ -137,7 +144,10 @@ class Member extends CI_Controller
         if ($this->session->username == TRUE) {
             $cek = $this->M_member->getData()->num_rows() + 1;
             $data['kode_invoice'] = 'P00' . $cek;
+            $this->load->view('member/template/header');
+            $this->load->view('member/template/topbar');
             $this->load->view('member/checkout', $data);
+            $this->load->view('member/template/footer');
         } else {
             redirect(base_url('login'));
         }
@@ -148,6 +158,10 @@ class Member extends CI_Controller
         $total = $this->cart->total();
         $pengiriman = $this->input->post('pengiriman');
         $is_processed = $this->M_member->pembayaran();
+        if ($pengiriman === "bayar_ditempat") {
+            $this->session->set_flashdata('flash', 'Berhasil');
+            redirect(base_url('member/layanan'));
+        }
         if ($is_processed) {
             $this->session->set_flashdata('invoice', $invoice);
             $this->session->set_flashdata('total', $total);
@@ -177,6 +191,7 @@ class Member extends CI_Controller
                 'bukti' => $gambar
             );
             $this->M_member->bukti($data, ['kode_invoice' => $this->input->post('id')]);
+            $this->session->set_flashdata('flash', 'Berhasil');
             redirect('member/layanan');
         } else {
             echo 'eror';
@@ -202,6 +217,7 @@ class Member extends CI_Controller
                 'bukti' => $gambar
             );
             $this->M_member->bukti($data, ['kode_invoice' => $this->input->post('id')]);
+            $this->session->set_flashdata('flash', 'Berhasil');
             redirect('member/pesanan');
         } else {
             echo 'eror';
@@ -210,7 +226,10 @@ class Member extends CI_Controller
     public function keHalamanInvoice()
     {
         if ($this->session->username == TRUE) {
+            $this->load->view('member/template/header');
+            $this->load->view('member/template/topbar');
             $this->load->view('member/invoice');
+            $this->load->view('member/template/footer');
         } else {
             redirect(base_url('login'));
         }
@@ -221,18 +240,21 @@ class Member extends CI_Controller
             $id = $this->session->userdata('id');
             // load library
             $this->load->library('pagination');
-            
+
             $config['base_url'] = 'http://localhost/Laundry-app/member/keHalamanPesanan/';
             $config['total_rows'] = $this->M_member->countAllPesanan($id);
             $data['total_rows'] = $config['total_rows'];
             $config['per_page'] = 10;
-            
+
             // initialize
             $this->pagination->initialize($config);
-            
+
             $data['start'] = $this->uri->segment(3);
             $data['pesanan'] = $this->M_member->getDataPesanan($config['per_page'], $data['start'], $id);
+            $this->load->view('member/template/header');
+            $this->load->view('member/template/topbar');
             $this->load->view('member/pesanan', $data);
+            $this->load->view('member/template/footer');
         } else {
             redirect(base_url('login'));
         }
@@ -241,7 +263,10 @@ class Member extends CI_Controller
     {
         if ($this->session->username == TRUE) {
             $data['detail'] = $this->M_member->getDataDetails($id)->result();
+            $this->load->view('member/template/header');
+            $this->load->view('member/template/topbar');
             $this->load->view('member/detailPesanan', $data);
+            $this->load->view('member/template/footer');
         } else {
             redirect(base_url('login'));
         }
@@ -250,9 +275,99 @@ class Member extends CI_Controller
     {
         if ($this->session->username == TRUE) {
             $data['pembayaran'] = $this->M_member->getDataPembayaran($id)->row();
+            $this->load->view('member/template/header');
+            $this->load->view('member/template/topbar');
             $this->load->view('member/pembayaran', $data);
+            $this->load->view('member/template/footer');
         } else {
             redirect(base_url('login'));
+        }
+    }
+    public function keHalamanProfile()
+    {
+        if ($this->session->username == TRUE) {
+            $id = $this->session->userdata('id');
+            $data['profile'] = $this->M_member->getDataProfile($id);
+            $this->load->view('member/template/header');
+            $this->load->view('member/template/topbar');
+            $this->load->view('member/ubahProfile', $data);
+            $this->load->view('member/template/footer');
+        } else {
+            redirect(base_url('login'));
+        }
+    }
+    public function ubahProfile()
+    {
+        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|min_length[3]|trim', [
+            'required' => "Nama Lengkap Harus diisi!",
+            'min_length' => 'Nama Terlalu Pendek'
+        ]);
+        $this->form_validation->set_rules('telp', 'No Telp', 'required|min_length[3]|trim', [
+            'required' => "No Telepon Harus Diisi!",
+            'min_length' => 'No Telepon Terlalu Pendek'
+        ]);
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required|min_length[3]|trim', [
+            'required' => "Alamat Harus Diisi!",
+            'min_length' => 'alamat Terlalu Pendek'
+        ]);
+        if ($this->form_validation->run() == false) {
+            $id = $this->session->userdata('id');
+            $data['profile'] = $this->M_member->getDataProfile($id);
+            $this->load->view('member/template/header');
+            $this->load->view('member/template/topbar');
+            $this->load->view('member/ubahProfile', $data);
+            $this->load->view('member/template/footer');
+        } else {
+            $data = array(
+                'nama' => $this->input->post('nama'),
+                'telp' => $this->input->post('telp'),
+                'alamat' => $this->input->post('alamat')
+            );
+            $this->M_member->updateProfile($data, $this->session->userdata('id'));
+            $this->session->set_flashdata('berhasil', 'Profile');
+            redirect('member/dashboard');
+        }
+    }
+    public function ubahPassword()
+    {
+        $this->form_validation->set_rules('passwordlama', 'Password Lama', 'required|trim', [
+            'required' => "Password Harus Diisi!",
+            'min_length' => 'Password Terlalu Pendek'
+        ]);
+        $this->form_validation->set_rules('password', 'Password Baru', 'required|trim|min_length[3]|matches[password2]', [
+            'required' => "Password Baru Harus Diisi!",
+            'min_length' => 'Password Terlalu Pendek',
+            'matches' => 'Password Tidak Sama'
+        ]);
+        $this->form_validation->set_rules('password2', 'Ulangi Pasword', 'required|trim|min_length[3]|matches[password]', [
+            'required' => "password Harus Diisi"
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $id = $this->session->userdata('id');
+            $data['profile'] = $this->M_member->getDataProfile($id);
+            $this->load->view('member/template/header');
+            $this->load->view('member/template/topbar');
+            $this->load->view('member/ubahProfile', $data);
+            $this->load->view('member/template/footer');
+        } else {
+            $passwordlama = $this->input->post('passwordlama');
+            $password = $this->input->post('password');
+            if (!password_verify($passwordlama, $this->session->userdata('password'))) {
+                $this->session->set_flashdata('message', 'Password Lama Tidak Sesuai');
+                redirect('member/ubahProfile');
+            } else {
+                if ($passwordlama == $password) {
+                    $this->session->set_flashdata('message', 'Password Baru Tidak Boleh Sama dengan Password Lama');
+                    redirect('member/ubahProfile');
+                } else {
+                    // Password OKE
+                    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+                    $this->M_member->updatePassword($password_hash, $this->session->userdata('id'));
+                    $this->session->set_flashdata('berhasil', 'Password');
+                    redirect('member/dashboard');
+                }
+            }
         }
     }
 }

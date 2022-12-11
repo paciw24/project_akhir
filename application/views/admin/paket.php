@@ -1,36 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DASHBOARD | BERKAH LAUNDRY</title>
-    <link rel="icon" type="image/x-icon" href="<?= base_url('assets/img/logo.png') ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/css/admin.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
-    <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
-</head>
-
-<body id="body-pd" class="bg-light">
-    <header class="header position-relative bg-white shadow-sm" id="header">
-        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-        <div class="d-flex align-items-center">
-            <div class="profile" onclick="menu()" style="cursor: pointer;">
-                <span class="me-3"><?= $this->session->userdata('nama') ?></span>
-                <img src="<?= base_url('assets/img/avatar.png') ?>" width="40px" height="40px">
-            </div>
-            <div class="menu shadow">
-                <h3><?= $this->session->userdata('nama') ?><br><span><?= $this->session->userdata('username') ?></span></h3>
-                <ul>
-                    <li>
-                        <ion-icon name="person-circle-outline"></ion-icon></i><a href="<?= base_url('admin/profile') ?>">Ubah Profil</a>
-                    </li>
-                    <li><i class='bx bx-log-out nav_icon'></i><a href="<?= base_url('logout') ?>">Logout</a></li>
-                </ul>
-            </div>
-        </div>
-    </header>
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div>
@@ -47,23 +14,20 @@
                     <a href="<?= base_url('admin/transaksi') ?>" class="nav_link">
                         <ion-icon name="cart-outline" class="nav_icon"></ion-icon> <span class="nav_name">Transaksi</span>
                     </a>
+                    <a href="<?= base_url('admin/laporan') ?>" class="nav_link">
+                        <ion-icon name="reader-outline"></ion-icon> <span class="nav_name">Laporan</span>
+                    </a>
                 </div>
             </div>
             <a href="<?= base_url('logout') ?>" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Sign Out</span> </a>
         </nav>
     </div>
     <!--Container Main start-->
-    <div class="height-100 bg-light">
+    <div class="height-100 bg-light mb-4">
         <div class="card px-3 shadow-sm">
             <table class="table table-striped table-hover">
                 <div class="table_header">
                     <p>Pengaturan Paket</p>
-                    <form action="<?= base_url('admin/paket') ?>" method="post">
-                        <div class="input-group" style="width: 400px!important;">
-                            <input type="text" class="form-control" placeholder="Search" name="keyword" autocomplete="off" autofocus>
-                            <input class="btn btn-edit" type="submit" name="submit">
-                        </div>
-                    </form>
                     <div class="">
                         <button class="add_new" id="myBtn" data-bs-toggle="modal" data-bs-target="#ModalTambah">+ Tambah Data</button>
                     </div>
@@ -90,7 +54,7 @@
                             </td>
                             <td class="align-middle">
                                 <a class="btn btn-sm btn-edit" href="<?= base_url('admin/paket/ubah/' . $pt['id_paket']) ?>" id="btnEdit">Edit</a>
-                                <a onclick="HapusMenu(<?= $pt['id_paket'] ?>);" class="btn btn-sm btn-danger">Hapus</a>
+                                <a class="btn btn-sm btn-danger tombol-hapus" href=" <?= base_url('admin/paket/hapusPaket/' . $pt['id_paket']) ?>">Hapus</a>
                             </td>
                         </tr>
                     <?php } ?>
@@ -108,11 +72,9 @@
     <div class="modal fade" id="ModalTambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content" style=" border:none!important;">
-                <div class="modal-header" style="background: #FF758F;">
-                    <h1 class="modal-title fs-5 text-uppercase fw-bold" style="color: #fff;" id="exampleModalLabel">Tambah Paket</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
                 <div class="modal-body">
+                <h4 class="text-center">Tambah Paket</h4>
+                <hr>
                     <form action="<?= base_url('admin/paket/tambah') ?>" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="nama_paket" class="form-label">Nama Paket</label>
@@ -130,74 +92,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer" style="background: #FF758F; height:60px">
-                </div>
             </div>
         </div>
     </div>
     <!-- Modal Tambah End -->
-    <!-- Javascript -->
-    <script>
-        let file = document.getElementById('gambar');
-        file.oninput = () => {
-            let filename = file.files[0].name;
-            let extension = filename.split('.').pop();
-            let filesize = file.files[0].name;
-            if (filesize <= 3000) {
-                filesize = (filesize / 1000).toFixed(2) + 'kb';
-            }
-            document.getElementById('pilihGambar').innerText = filename;
-        }
-
-        function menu() {
-            const menuToggle = document.querySelector('.menu');
-            const profileToggle = document.querySelector('.profile');
-            menuToggle.classList.toggle('active');
-            profileToggle.classList.toggle('active');
-        }
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script type="text/javascript">
-        <?php if ($this->session->flashdata('success')) { ?>
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil Disimpan',
-                showConfirmButton: false,
-                timer: 2000
-            })
-            unset($_SESSION['success']);
-        <?php } ?>
-        <?php if ($this->session->flashdata('delete')) { ?>
-            Swal.fire(
-                'Berhasil Dihapus!',
-                'Data yang terhapus tidak bisa dikembalikan.',
-                'success'
-            )
-            unset($_SESSION['delete']);
-        <?php } ?>
-
-        function HapusMenu(id) {
-            Swal.fire({
-                title: 'Apakah anda yakin?',
-                text: "Data yang dihapus tidak bisa dikembalikan!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yakin!',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "<?= base_url('admin/paket/hapusPaket') ?>/" + id;
-                }
-            })
-        }
-    </script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
-    <script src="<?= base_url('assets/js/script.js') ?>"></script>
-    <!-- Javascript End -->
-</body>
-
-</html>

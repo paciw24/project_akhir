@@ -1,4 +1,4 @@
-    <div class="l-navbar" id="nav-bar">
+<div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div>
                 <a href="#" class="nav_logo">
@@ -11,10 +11,10 @@
                     <a href="<?= base_url('admin/paket') ?>" class="nav_link">
                         <ion-icon name="briefcase-outline" class="nav_icon"></ion-icon><span class="nav_name">Paket</span>
                     </a>
-                    <a href="<?= base_url('admin/transaksi') ?>" class="nav_link active">
+                    <a href="<?= base_url('admin/transaksi') ?>" class="nav_link">
                         <ion-icon name="cart-outline" class="nav_icon"></ion-icon> <span class="nav_name">Transaksi</span>
                     </a>
-                    <a href="<?= base_url('admin/laporan') ?>" class="nav_link">
+                    <a href="<?= base_url('admin/laporan') ?>" class="nav_link active">
                         <ion-icon name="reader-outline"></ion-icon> <span class="nav_name">Laporan</span>
                     </a>
                 </div>
@@ -27,7 +27,11 @@
         <div class="card px-3 shadow-sm">
             <table class="table table-striped table-hover">
                 <div class="table_header">
-                    <p>Pengaturan Transaksi</p>
+                    <p>Laporan Transaksi</p>
+                    <div class="">
+                        <a href="<?= base_url('admin/laporan/exportExcel') ?>" class="btn btn-back">Export Excel</a>
+                        <a href="<?= base_url('admin/laporan/export') ?>" class="btn btn-edit">Print</a>
+                    </div>
                 </div>
                 <thead class="bg-pink">
                     <tr>
@@ -37,8 +41,6 @@
                         <th scope="col">Status</th>
                         <th scope="col">Pengiriman</th>
                         <th scope="col">Dibayar</th>
-                        <th scope="col">Bukti</th>
-                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -78,36 +80,6 @@
                                     echo "<span class='btn-diambil'>Dibayar</span>";
                                 }
                                 ?>
-                            </td>
-                            <td class="align-middle">
-                                <a href="<?= base_url('assets/bukti/' . $tr['bukti']) ?>" target="_blank">
-                                    <img src="<?= base_url('assets/bukti/' . $tr['bukti']) ?>" class="img-bukti" alt="Gambar Bukti">
-                                </a>
-                            </td>
-                            <td class="align-middle">
-                                <?php
-                                if ($tr['verifikasi_pembayaran'] == "setuju") { ?>
-                                    <a class='btn btn-sm btn-edit' href="<?= base_url('admin/transaksi/detail/' . $tr['kode_invoice']) ?>" id='btnEdit'>Lihat Detail</a>
-                                <?php } else if ($tr['verifikasi_pembayaran'] == "tolak") { ?>
-                                    <span class='btn-selesai'>Verifikasi ditolak</span>
-                                <?php } else { ?>
-                                    <div class='d-flex'>
-                                        <form class='me-2' action="<?= base_url('admin/verifikasi/setuju/' . $tr['kode_invoice']) ?>" method='post'>
-                                            <input type='hidden' name='id' value='<?= $tr['kode_invoice'] ?>'>
-                                            <input type='hidden' name='setuju' value='setuju'>
-                                            <button class='btn btn-sm btn-success d-flex align-items-center'>
-                                                <ion-icon name="checkmark-outline" class='me-2'></ion-icon> <span>Setuju</span>
-                                            </button>
-                                        </form>
-                                        <form action=<?= base_url('admin/verifikasi/tolak/' . $tr['kode_invoice']) ?> method='post'>
-                                            <input type='hidden' name='id' value='<?= $tr['kode_invoice'] ?>'>
-                                            <input type='hidden' name='tolak' value='tolak'>
-                                            <button class='btn btn-sm btn-danger d-flex align-items-center'>
-                                                <ion-icon name='close-outline' class='me-2'></ion-icon> <span>Tolak</span>
-                                            </button>
-                                        </form>
-                                    </div>
-                                <?php } ?>
                             </td>
                         </tr>
                     <?php } ?>

@@ -23,7 +23,8 @@ class Admin extends CI_Controller
                 $data = [
                     'id_user' => $user['id_user'],
                     'username' => $user['username'],
-                    'nama' => $user['nama']
+                    'nama' => $user['nama'],
+                    'password' => $user['password'],
                 ];
                 $this->session->set_userdata($data);
                 redirect('admin/dasboard');
@@ -54,9 +55,95 @@ class Admin extends CI_Controller
             $data['total'] = $this->M_admin->sumTotal()->row();
             $data['dayTotal'] = $this->M_admin->sumDayTotal()->row();
             $data['nama'] = $this->M_admin->cekLogin(['nama' => $this->session->userdata('nama')])->row_array();
+            $this->load->view('admin/template/header');
+            $this->load->view('admin/template/topbar');
             $this->load->view('admin/dasboard', $data);
+            $this->load->view('admin/template/footer');
         } else {
             redirect(base_url('login'));
+        }
+    }
+    public function keHalamanUbahProfile()
+    {
+        if ($this->session->username == TRUE) {
+            $id = $this->session->userdata('id_user');
+            $data['profile'] = $this->M_admin->getDataProfile($id);
+            $this->load->view('admin/template/header');
+            $this->load->view('admin/template/topbar');
+            $this->load->view('admin/ubahProfile', $data);
+            $this->load->view('admin/template/footer');
+        } else {
+            redirect(base_url('login'));
+        }
+    }
+
+    public function ubahProfile()
+    {
+        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|min_length[3]|trim', [
+            'required' => "Nama Lengkap Harus diisi!",
+            'min_length' => 'Nama Terlalu Pendek'
+        ]);
+        $this->form_validation->set_rules('telp', 'No Telp', 'required|min_length[3]|trim', [
+            'required' => "No Telepon Harus Diisi!",
+            'min_length' => 'No Telepon Terlalu Pendek'
+        ]);
+        if ($this->form_validation->run() == false) {
+            $id = $this->session->userdata('id_user');
+            $data['profile'] = $this->M_admin->getDataProfile($id);
+            $this->load->view('admin/template/header');
+            $this->load->view('admin/template/topbar');
+            $this->load->view('admin/ubahProfile', $data);
+            $this->load->view('admin/template/footer');
+        } else {
+            $data = array(
+                'nama' => $this->input->post('nama'),
+                'notelp' => $this->input->post('telp')
+            );
+            $this->M_admin->updateProfile($data, $this->session->userdata('id'));
+            $this->session->set_flashdata('berhasil', 'Profile');
+            redirect('admin/dasboard');
+        }
+    }
+    public function ubahPassword()
+    {
+        $this->form_validation->set_rules('passwordlama', 'Password Lama', 'required|trim', [
+            'required' => "Password Harus Diisi!",
+            'min_length' => 'Password Terlalu Pendek'
+        ]);
+        $this->form_validation->set_rules('password', 'Password Baru', 'required|trim|min_length[3]|matches[password2]', [
+            'required' => "Password Baru Harus Diisi!",
+            'min_length' => 'Password Terlalu Pendek',
+            'matches' => 'Password Tidak Sama'
+        ]);
+        $this->form_validation->set_rules('password2', 'Ulangi Pasword', 'required|trim|min_length[3]|matches[password]', [
+            'required' => "password Harus Diisi"
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $id = $this->session->userdata('id_user');
+            $data['profile'] = $this->M_admin->getDataProfile($id);
+            $this->load->view('admin/template/header');
+            $this->load->view('admin/template/topbar');
+            $this->load->view('admin/ubahProfile', $data);
+            $this->load->view('admin/template/footer');
+        } else {
+            $passwordlama = $this->input->post('passwordlama');
+            $password = $this->input->post('password');
+            if (!password_verify($passwordlama, $this->session->userdata('password'))) {
+                $this->session->set_flashdata('message', 'Password Lama Tidak Sesuai');
+                redirect('admin/profile');
+            } else {
+                if ($passwordlama == $password) {
+                    $this->session->set_flashdata('message', 'Password Baru Tidak Boleh Sama dengan Password Lama');
+                    redirect('admin/profile');
+                } else {
+                    // Password OKE
+                    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+                    $this->M_admin->updatePassword($password_hash, $this->session->userdata('id'));
+                    $this->session->set_flashdata('berhasil', 'Password');
+                    redirect('admin/dasboard');
+                }
+            }
         }
     }
 
@@ -64,31 +151,24 @@ class Admin extends CI_Controller
     public function keHalamanMember()
     {
         if ($this->session->username == TRUE) {
+            $id = $this->session->userdata('id');
             // load library
             $this->load->library('pagination');
 
-            // ambil data keyword
-            if ($this->input->post('submit')) {
-                $data['keyword'] = $this->input->post('keyword');
-                $this->session->set_userdata('keyword', $data['keyword']);
-            } else {
-                $data['keyword'] = $this->session->userdata('keyword');
-            }
-
-            // config
-            $this->db->like('nama', $data['keyword']);
-            $this->db->from('tb_member');
             $config['base_url'] = 'http://localhost/Laundry-app/admin/keHalamanMember/';
-            $config['total_rows'] = $this->db->count_all_results();
+            $config['total_rows'] = $this->M_admin->countAllMember($id);
             $data['total_rows'] = $config['total_rows'];
-            $config['per_page'] = 5;
+            $config['per_page'] = 8;
 
             // initialize
             $this->pagination->initialize($config);
 
             $data['start'] = $this->uri->segment(3);
-            $data['member'] = $this->M_admin->getDataMember($config['per_page'], $data['start'], $data['keyword']);
+            $data['member'] = $this->M_admin->getDataMember($config['per_page'], $data['start']);
+            $this->load->view('admin/template/header');
+            $this->load->view('admin/template/topbar');
             $this->load->view('admin/member', $data);
+            $this->load->view('admin/template/footer');
         } else {
             redirect(base_url('login'));
         }
@@ -105,8 +185,8 @@ class Admin extends CI_Controller
         );
         $this->M_admin->tambahMem($data);
         $this->session->set_flashdata(
-            'success',
-            'Berhasil'
+            'flash',
+            'Ditambahkan'
         );
         redirect('admin/member');
     }
@@ -114,7 +194,10 @@ class Admin extends CI_Controller
     {
         if ($this->session->username == TRUE) {
             $data['ubah'] = $this->M_admin->getDataUbah($id)->row();
+            $this->load->view('admin/template/header');
+            $this->load->view('admin/template/topbar');
             $this->load->view('admin/ubahMember', $data);
+            $this->load->view('admin/template/footer');
         } else {
             redirect(base_url('login'));
         }
@@ -132,7 +215,7 @@ class Admin extends CI_Controller
                 'telp' => $this->input->post('telp', true)
             );
             $this->M_admin->updateMember($data, ['id_member' => $this->input->post('id')]);
-            $this->session->set_flashdata('success', 'berhasil');
+            $this->session->set_flashdata('flash', 'Diubah');
             redirect(base_url('admin/member'));
         } else {
             $data = array(
@@ -144,7 +227,7 @@ class Admin extends CI_Controller
                 'telp' => $this->input->post('telp', true)
             );
             $this->M_admin->updateMember($data, ['id_member' => $this->input->post('id')]);
-            $this->session->set_flashdata('success', 'berhasil');
+            $this->session->set_flashdata('flash', 'Diubah');
             redirect(base_url('admin/member'));
         }
     }
@@ -152,8 +235,8 @@ class Admin extends CI_Controller
     {
         $this->M_admin->hapusMember($id);
         $this->session->set_flashdata(
-            'delete',
-            'Berhasil'
+            'flash',
+            'Dihapus'
         );
         redirect(base_url('admin/member'));
     }
@@ -162,31 +245,25 @@ class Admin extends CI_Controller
     public function keHalamanAdmin()
     {
         if ($this->session->username == TRUE) {
+            $id = $this->session->userdata('id');
+
             // load library
             $this->load->library('pagination');
 
-            // ambil data keyword
-            if ($this->input->post('submit')) {
-                $data['keyword'] = $this->input->post('keyword');
-                $this->session->set_userdata('keyword', $data['keyword']);
-            } else {
-                $data['keyword'] = $this->session->userdata('keyword');
-            }
-
-            // config
-            $this->db->like('nama', $data['keyword']);
-            $this->db->from('tb_user');
             $config['base_url'] = 'http://localhost/Laundry-app/admin/keHalamanAdmin/';
-            $config['total_rows'] = $this->db->count_all_results();
+            $config['total_rows'] = $this->M_admin->countAllAdmin($id);
             $data['total_rows'] = $config['total_rows'];
-            $config['per_page'] = 5;
+            $config['per_page'] = 8;
 
             // initialize
             $this->pagination->initialize($config);
 
             $data['start'] = $this->uri->segment(3);
-            $data['user'] = $this->M_admin->getDataAdmin($config['per_page'], $data['start'], $data['keyword']);
+            $data['user'] = $this->M_admin->getDataAdmin($config['per_page'], $data['start']);
+            $this->load->view('admin/template/header');
+            $this->load->view('admin/template/topbar');
             $this->load->view('admin/admin', $data);
+            $this->load->view('admin/template/footer');
         } else {
             redirect(base_url('login'));
         }
@@ -205,13 +282,16 @@ class Admin extends CI_Controller
             'flash',
             'Ditambahkan'
         );
-        redirect('admin/user');
+        redirect(base_url('admin/user'));
     }
     public function editAdmin($id)
     {
         if ($this->session->username == TRUE) {
             $data['ubah'] = $this->M_admin->getDataUbahAdmin($id)->row();
+            $this->load->view('admin/template/header');
+            $this->load->view('admin/template/topbar');
             $this->load->view('admin/ubahAdmin', $data);
+            $this->load->view('admin/template/footer');
         } else {
             redirect(base_url('login'));
         }
@@ -257,31 +337,25 @@ class Admin extends CI_Controller
     public function keHalamanPaket()
     {
         if ($this->session->username == TRUE) {
+            $id = $this->session->userdata('id');
+
             // load library
             $this->load->library('pagination');
 
-            // ambil data keyword
-            if ($this->input->post('submit')) {
-                $data['keyword'] = $this->input->post('keyword');
-                $this->session->set_userdata('keyword', $data['keyword']);
-            } else {
-                $data['keyword'] = $this->session->userdata('keyword');
-            }
-
-            // config
-            $this->db->like('nama_paket', $data['keyword']);
-            $this->db->from('tb_paket');
             $config['base_url'] = 'http://localhost/Laundry-app/admin/keHalamanPaket/';
-            $config['total_rows'] = $this->db->count_all_results();
+            $config['total_rows'] = $this->M_admin->countAllPaket($id);
             $data['total_rows'] = $config['total_rows'];
-            $config['per_page'] = 5;
+            $config['per_page'] = 3;
 
             // initialize
             $this->pagination->initialize($config);
 
             $data['start'] = $this->uri->segment(3);
-            $data['paket'] = $this->M_admin->getDataPaket($config['per_page'], $data['start'], $data['keyword']);
+            $data['paket'] = $this->M_admin->getDataPaket($config['per_page'], $data['start']);
+            $this->load->view('admin/template/header');
+            $this->load->view('admin/template/topbar');
             $this->load->view('admin/paket', $data);
+            $this->load->view('admin/template/footer');
         } else {
             redirect(base_url('login'));
         }
@@ -310,8 +384,8 @@ class Admin extends CI_Controller
             ];
             $this->M_admin->tambahpaket($data);
             $this->session->set_flashdata(
-                'success',
-                'Berhasil'
+                'flash',
+                'Ditambahkan'
             );
             redirect('admin/paket');
         } else {
@@ -322,7 +396,10 @@ class Admin extends CI_Controller
     {
         if ($this->session->username == TRUE) {
             $data['ubah'] = $this->M_admin->getDataUbahPaket($id)->row();
+            $this->load->view('admin/template/header');
+            $this->load->view('admin/template/topbar');
             $this->load->view('admin/ubahPaket', $data);
+            $this->load->view('admin/template/footer');
         } else {
             redirect(base_url('login'));
         }
@@ -357,7 +434,7 @@ class Admin extends CI_Controller
                 'gambar' => $this->input->post('old_image', true)
             ];
             $this->M_admin->updatePaket($data, ['id_paket' => $this->input->post('id')]);
-            $this->session->set_flashdata('success', 'berhasil');
+            $this->session->set_flashdata('flash', 'Diubah');
             redirect(base_url('admin/paket'), 'refresh');
         }
     }
@@ -367,8 +444,8 @@ class Admin extends CI_Controller
         unlink('./assets/gambar/' . $_id->gambar);
         $this->M_admin->hapusPaket($id);
         $this->session->set_flashdata(
-            'delete',
-            'Berhasil'
+            'flash',
+            'Dihapus'
         );
         redirect(base_url('admin/paket'));
     }
@@ -378,31 +455,25 @@ class Admin extends CI_Controller
     public function keHalamanTransaksi()
     {
         if ($this->session->username == TRUE) {
+            $id = $this->session->userdata('id');
+
             // load library
             $this->load->library('pagination');
 
-            // ambil data keyword
-            if ($this->input->post('submit')) {
-                $data['keyword'] = $this->input->post('keyword');
-                $this->session->set_userdata('keyword', $data['keyword']);
-            } else {
-                $data['keyword'] = $this->session->userdata('keyword');
-            }
-
-            // config
-            $this->db->like('kode_invoice', $data['keyword']);
-            $this->db->from('tb_transaksi');
             $config['base_url'] = 'http://localhost/Laundry-app/admin/keHalamanTransaksi/';
-            $config['total_rows'] = $this->db->count_all_results();
+            $config['total_rows'] = $this->M_admin->countAllOrders($id);
             $data['total_rows'] = $config['total_rows'];
-            $config['per_page'] = 5;
+            $config['per_page'] = 3;
 
             // initialize
             $this->pagination->initialize($config);
 
             $data['start'] = $this->uri->segment(3);
-            $data['transaksi'] = $this->M_admin->getDataTransaksi($config['per_page'], $data['start'], $data['keyword']);
+            $data['transaksi'] = $this->M_admin->getDataTransaksi($config['per_page'], $data['start']);
+            $this->load->view('admin/template/header');
+            $this->load->view('admin/template/topbar');
             $this->load->view('admin/transaksi', $data);
+            $this->load->view('admin/template/footer');
         } else {
             redirect(base_url('login'));
         }
@@ -412,7 +483,10 @@ class Admin extends CI_Controller
         if ($this->session->username == TRUE) {
             $data['transaksi'] = $this->M_admin->getDataDetailTransaksi($id)->row();
             $data['detail'] = $this->M_admin->getDataDetails($id)->result();
+            $this->load->view('admin/template/header');
+            $this->load->view('admin/template/topbar');
             $this->load->view('admin/detailTransaksi', $data);
+            $this->load->view('admin/template/footer');
         } else {
             redirect(base_url('login'));
         }
@@ -424,7 +498,7 @@ class Admin extends CI_Controller
         );
 
         $this->M_admin->updateStat($data, ['kode_invoice' => $this->input->post('id')]);
-        $this->session->set_flashdata('success', 'berhasil');
+        $this->session->set_flashdata('flash', 'Diupdate');
         redirect(base_url('admin/transaksi'));
     }
     public function updateBayar()
@@ -446,7 +520,7 @@ class Admin extends CI_Controller
             'verifikasi_pembayaran' => $this->input->post('setuju', true)
         );
         $this->M_admin->updateVerifikasi($data, ['kode_invoice' => $this->input->post('id')]);
-        $this->session->set_flashdata('success', 'berhasil');
+        $this->session->set_flashdata('flash', 'Disetujui');
         redirect(base_url('admin/transaksi'));
     }
     public function verifikasiTolak($id)
@@ -456,7 +530,46 @@ class Admin extends CI_Controller
             'verifikasi_pembayaran' => $this->input->post('tolak', true)
         );
         $this->M_admin->updateVerifikasi($data, ['kode_invoice' => $this->input->post('id')]);
-        $this->session->set_flashdata('delete', 'berhasil');
+        $this->session->set_flashdata('flash', 'Ditolak');
         redirect(base_url('admin/transaksi'));
+    }
+
+
+    // Laporan
+    public function laporan()
+    {
+        if ($this->session->username == TRUE) {
+            $id = $this->session->userdata('id');
+
+            // load library
+            $this->load->library('pagination');
+
+            $config['base_url'] = 'http://localhost/Laundry-app/admin/laporan/';
+            $config['total_rows'] = $this->M_admin->countAllOrders($id);
+            $data['total_rows'] = $config['total_rows'];
+            $config['per_page'] = 8;
+
+            // initialize
+            $this->pagination->initialize($config);
+
+            $data['start'] = $this->uri->segment(3);
+            $data['transaksi'] = $this->M_admin->getDataTransaksi($config['per_page'], $data['start']);
+            $this->load->view('admin/template/header');
+            $this->load->view('admin/template/topbar');
+            $this->load->view('admin/laporan', $data);
+            $this->load->view('admin/template/footer');
+        } else {
+            redirect(base_url('login'));
+        }
+    }
+    public function export()
+    {
+        $data['transaksi'] = $this->M_admin->getLaporanExport();
+        $this->load->view('admin/export', $data);
+    }
+    public function exportExcel()
+    {
+        $data['transaksi'] = $this->M_admin->getLaporanExport();
+        $this->load->view('admin/exportExcel', $data);
     }
 }
