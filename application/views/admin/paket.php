@@ -87,7 +87,8 @@
                         <div class="input-group mb-3">
                             <input type="file" class="form-control" id="gambar" name="gambar" required>
                         </div>
-                        <div class="mb-3 d-flex justify-content-end">
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class=" btn btn-back" data-bs-dismiss="modal" aria-label="Close">Batal</button>
                             <button class="add_new" data-bs-dismiss="modal">Simpan</button>
                         </div>
                     </form>

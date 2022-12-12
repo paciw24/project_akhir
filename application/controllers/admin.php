@@ -463,7 +463,7 @@ class Admin extends CI_Controller
             $config['base_url'] = 'http://localhost/Laundry-app/admin/keHalamanTransaksi/';
             $config['total_rows'] = $this->M_admin->countAllOrders($id);
             $data['total_rows'] = $config['total_rows'];
-            $config['per_page'] = 3;
+            $config['per_page'] = 6;
 
             // initialize
             $this->pagination->initialize($config);

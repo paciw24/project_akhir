@@ -80,9 +80,13 @@
                                 ?>
                             </td>
                             <td class="align-middle">
-                                <a href="<?= base_url('assets/bukti/' . $tr['bukti']) ?>" target="_blank">
-                                    <img src="<?= base_url('assets/bukti/' . $tr['bukti']) ?>" class="img-bukti" alt="Gambar Bukti">
-                                </a>
+                                <?php if ($tr['bukti'] === null) { ?>
+                                    
+                                <?php } else { ?>
+                                    <a href="<?= base_url('assets/bukti/' . $tr['bukti']) ?>" target="_blank">
+                                        <img src="<?= base_url('assets/bukti/' . $tr['bukti']) ?>" class="img-bukti" alt="Gambar Bukti">
+                                    </a>
+                                <?php } ?>
                             </td>
                             <td class="align-middle">
                                 <?php
@@ -122,5 +126,5 @@
     <!--Container Main end-->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script>
-        
+
     </script>

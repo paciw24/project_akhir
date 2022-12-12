@@ -5,9 +5,9 @@
                     <img class="nav_logo-icon" src="<?= base_url('assets/img/logo.png') ?>" alt="" srcset=""><span class="nav_logo-name">Berkah Laundry</span>
                 </a>
                 <div class="nav_list">
-                    <a href="<?= base_url('member/dashboard') ?>" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a>
+                    <a href="<?= base_url('member/dashboard') ?>" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a>
                     <a href="<?= base_url('member/layanan') ?>" class="nav_link">
-                        <ion-icon name="layers-outline"></ion-icon> <span class="nav_name">Layanan</span>
+                        <ion-icon name="layers-outline"></ion-icon> <span class="nav_name active">Layanan</span>
                     </a>
                     <a href="<?= base_url('member/pesanan') ?>" class="nav_link">
                         <ion-icon name="cart-outline" class="nav_icon"></ion-icon> <span class="nav_name">Pesanan Saya</span>

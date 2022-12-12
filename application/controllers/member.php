@@ -160,6 +160,7 @@ class Member extends CI_Controller
         $is_processed = $this->M_member->pembayaran();
         if ($pengiriman === "bayar_ditempat") {
             $this->session->set_flashdata('flash', 'Berhasil');
+            $this->cart->destroy();
             redirect(base_url('member/layanan'));
         }
         if ($is_processed) {

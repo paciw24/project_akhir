@@ -54,30 +54,46 @@
                             ?>
                         </td>
                         <td class="align-middle text-center">
-                            <?php if ($ps['bukti'] === null) { ?>
-                                <span class='btn-proses'>Belum Melakukan Pembayaran</span>
+                            <?php if ($ps['pengiriman'] === "bayar_ditempat") { ?>
+                                    <?php
+                                    if ($ps['verifikasi_pembayaran'] == "setuju") {
+                                        echo "<span class='btn-diambil'>Disetujui</span>";
+                                    } elseif ($ps['verifikasi_pembayaran'] == "tolak") {
+                                        echo "<span class='btn-selesai'>Ditolak</span>";
+                                    } else {
+                                        echo "<span class='btn-baru'>Sedang Proses Pemeriksaan</span>";
+                                    }
+                                    ?>
                             <?php } else { ?>
-                                <?php
-                                if ($ps['verifikasi_pembayaran'] == "setuju") {
-                                    echo "<span class='btn-diambil'>Disetujui</span>";
-                                } elseif ($ps['verifikasi_pembayaran'] == "tolak") {
-                                    echo "<span class='btn-selesai'>Ditolak</span>";
-                                } else {
-                                    echo "<span class='btn-baru'>Sedang Proses Pemeriksaan</span>";
-                                }
-                                ?>
+                                <?php if ($ps['bukti'] === null) { ?>
+                                    <span class='btn-proses'>Belum Melakukan Pembayaran</span>
+                                <?php } else { ?>
+                                    <?php
+                                    if ($ps['verifikasi_pembayaran'] == "setuju") {
+                                        echo "<span class='btn-diambil'>Disetujui</span>";
+                                    } elseif ($ps['verifikasi_pembayaran'] == "tolak") {
+                                        echo "<span class='btn-selesai'>Ditolak</span>";
+                                    } else {
+                                        echo "<span class='btn-baru'>Sedang Proses Pemeriksaan</span>";
+                                    }
+                                    ?>
+                                <?php } ?>
                             <?php } ?>
                         </td>
                         <td class="align-middle text-end">
-                            <?php if ($ps['bukti'] === null) { ?>
-                                <a class="btn btn-sm btn-edit" href="<?= base_url('member/pesanan/pembayaran/' . $ps['kode_invoice']) ?>" id="btnEdit">Kirim Bukti Pembayaran</a>
+                            <?php if ($ps['pengiriman'] === "bayar_ditempat") { ?>
+                                <a class="btn btn-sm btn-edit" href="<?= base_url('member/pesanan/detail/' . $ps['kode_invoice']) ?>" i d="btnEdit">Lihat Detail</a>
                             <?php } else { ?>
-                                <?php if ($ps['verifikasi_pembayaran'] === 'setuju') { ?>
-                                    <a class="btn btn-sm btn-edit" href="<?= base_url('member/pesanan/detail/' . $ps['kode_invoice']) ?>" id="btnEdit">Lihat Detail</a>
-                                <?php } elseif ($ps['verifikasi_pembayaran'] === 'tolak') { ?>
-                                    <a class="btn btn-sm btn-edit" href="<?= base_url('member/pesanan/pembayaran/' . $ps['kode_invoice']) ?>" id="btnEdit">Kirim Ulang Bukti Pembayaran</a>
+                                <?php if ($ps['bukti'] === null) { ?>
+                                    <a class="btn btn-sm btn-edit" href="<?= base_url('member/pesanan/pembayaran/' . $ps['kode_invoice']) ?>" id="btnEdit">Kirim Bukti Pembayaran</a>
                                 <?php } else { ?>
-                                    <a class="btn btn-sm btn-edit" href="<?= base_url('member/pesanan/detail/' . $ps['kode_invoice']) ?>" id="btnEdit">Lihat Detail</a>
+                                    <?php if ($ps['verifikasi_pembayaran'] === 'setuju') { ?>
+                                        <a class="btn btn-sm btn-edit" href="<?= base_url('member/pesanan/detail/' . $ps['kode_invoice']) ?>" id="btnEdit">Lihat Detail</a>
+                                    <?php } elseif ($ps['verifikasi_pembayaran'] === 'tolak') { ?>
+                                        <a class="btn btn-sm btn-edit" href="<?= base_url('member/pesanan/pembayaran/' . $ps['kode_invoice']) ?>" id="btnEdit">Kirim Ulang Bukti Pembayaran</a>
+                                    <?php } else { ?>
+                                        <a class="btn btn-sm btn-edit" href="<?= base_url('member/pesanan/detail/' . $ps['kode_invoice']) ?>" id="btnEdit">Lihat Detail</a>
+                                    <?php } ?>
                                 <?php } ?>
                             <?php } ?>
                         </td>
